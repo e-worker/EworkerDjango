@@ -1,0 +1,2 @@
+# EworkerDjango
+# Documentation soon ~Wojtek
