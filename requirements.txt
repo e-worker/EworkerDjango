@@ -1,0 +1,20 @@
+# usage
+# install anaconda for python 3.7 (choose correct installer for your operating system): https://www.anaconda.com/distribution/
+# after installing anaconda:
+# on Windows - open Anaconda Prompt and navigate to project directory using cd, then type: conda create --name Ework 
+# this will create virtual environment for our django application
+# after succesfull environment creation type conda activate Ework, and run:     
+# pip install -r requirements.txt
+# (make sure you are in correct directory, where requirements.txt file is located)
+# on Linux - open bash console and navigate to project directory, then type conda create --name Ework
+# this will create virtual environment for our django application
+# after succesfull environment creation type source activate Ework, and run:     
+# pip install -r requirements.txt
+# 
+# Your environment should be set up now - when you are working with Django, always work with your environment activated (conda activate Ework)
+# otherwise your project won't run. Good Luck and Have Fun ~ Wojtek 
+ 
+
+certifi==2019.3.9
+Django==2.1.7
+pytz==2018.9
