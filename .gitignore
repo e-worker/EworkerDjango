@@ -5,8 +5,8 @@
 __pycache__/
 local_settings.py
 db.sqlite3
-media
-
+/media
+/static
 #MacJacka.DS_Store
 
 .DS_Store
