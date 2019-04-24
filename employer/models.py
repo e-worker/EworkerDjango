@@ -11,7 +11,6 @@ class Company(models.Model):
     house_number = models.CharField(max_length=20)
     flat_number = models.CharField(max_length=20, blank=True, null=True)
     email = models.CharField(max_length=127)
-    phone = models.CharField(max_length=20)
     description = models.CharField(max_length=255)
     creation_date = models.DateTimeField(default=datetime.now)
     user = models.ForeignKey(CustomUser, models.DO_NOTHING)

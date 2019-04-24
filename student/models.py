@@ -7,7 +7,6 @@ class Student(models.Model):
     id = models.AutoField(primary_key = True)
     name = models.CharField(max_length=50)
     surname = models.CharField(max_length=50)
-    phone = models.CharField(max_length=20)
     email = models.CharField(max_length=127)
     city = models.CharField(max_length=127, blank=True, null=True)
     street = models.CharField(max_length=127, blank=True, null=True)
