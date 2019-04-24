@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'job_offers',
     'employer',
     'student',
+    'message_app',
 ]
 
 MIDDLEWARE = [
