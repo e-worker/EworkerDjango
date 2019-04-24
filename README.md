@@ -30,31 +30,31 @@ python manage.py createsuperuser # creates admin account so you can access /admi
 ```
 
 # Project's structure explanation:
-Eworker Django
-|
+<p>Eworker Django</p>
+<p>|</p>
 <p>|- Ework -> contains settings.py, urls.py and __init__.py, wsgi.py files (only urls and settings intrests us)</p>
-|- employer - app that will cover logic for company/employer (create read update)
-|- job_offers - app that will cover logic for job offers (create read delete)
-|- student - app that will cover logic for student's account (create read update)
-|- templates - folder that contains html files which are treated as a templates, we will fill them using content from db 
-|- users - app that will  cover generic logic for account (register login)
-|- manage.py - Django's command-line utility for administrative tasks
+<p>|- employer - app that will cover logic for company/employer (create read update)</p>
+<p>|- job_offers - app that will cover logic for job offers (create read delete)</p>
+<p>|- student - app that will cover logic for student's account (create read update)</p>
+<p>|- templates - folder that contains html files which are treated as a templates, we will fill them using content from db</p> 
+<p>|- users - app that will  cover generic logic for account (register login)</p>
+<p>|- manage.py - Django's command-line utility for administrative tasks</p>
 
 # Request-response cycle in Django:
 ![request-response](https://4.bp.blogspot.com/-KowrZmen8ko/WMluNkJmN5I/AAAAAAAACCU/SePlDNoOUmkdB_mck0gKDTZB4qgROlzzgCLcB/s640/django-request-life-cycle.png)
 
 # Models we need to create student's cv:
-(let's assume that multiple means >= 1)
+<p>(let's assume that multiple means >= 1)</p>
 <p>Student (and that model is foreign key in models below)</p>
-Student Info (multiple) -> student skill -> skill
-Student degree course (multiple) -> degree course -> department
-Student language (multiple) -> language -> language_lvl
+<p>Student Info (multiple) -> student skill -> skill</p>
+<p>Student degree course (multiple) -> degree course -> department</p>
+<p>Student language (multiple) -> language -> language_lvl</p>
 
 # Models we need to create job offer: 
-(again we are assuming that multiple means >=1)
-Company (and that model is foreign key in Job Offer)
-Job offer (and that model is foreign key in models below)
-Job info (multiple) -> student skill -> skill
-Offer degree course (multiple) -> degree course -> department
-Job offer language (multiple) -> language -> language_lvl
+<p>(again we are assuming that multiple means >=1)</p>
+<p>Company (and that model is foreign key in Job Offer)</p>
+<p>Job offer (and that model is foreign key in models below)</p>
+<p>Job info (multiple) -> student skill -> skill</p>
+<p>Offer degree course (multiple) -> degree course -> department</p>
+<p>Job offer language (multiple) -> language -> language_lvl</p>
 
