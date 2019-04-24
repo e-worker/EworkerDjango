@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block title %}Rejestracja{% endblock %}
+{% block content %}
+<main>
+    <br>
+        <div class = "nes-container with-title is-centered">
+            <p class = "title">Rejestracja</p>
+            <p>Witaj w zajebistym systemie Ework, wypełniaj pola ponizej aby sie zarejestrować 😠</p>
+    
+    <div class = "row">
+    <div class = "col l4 offset-l4">
+    
+        <label for="textarea_field">📝 Imię</label>
+        <textarea id="textarea_field" class="nes-textarea" name="first_name" style="resize:none" required></textarea>
+
+        <label for="textarea_field">📝Nazwisko</label>
+        <textarea id="textarea_field" class="nes-textarea" name="last_name" style="resize:none" required></textarea>
+
+        <label for="textarea_field">📩 E-mail</label>
+        <textarea id="textarea_field" class="nes-textarea" name="email" style="resize:none" required></textarea>
+
+        <label for="textarea_field">☎️ Numer komórkowy</label>
+        <textarea id="textarea_field" class="nes-textarea" name="phone" style="resize:none" required></textarea>
+
+        <label for="textarea_field">Zarejestruj się jako</label>
+        <div class = "nes-container is-rounded">
+            <label>
+            <input type="radio" class="nes-radio" name="isStudent" checked />
+            <span>👩‍🎓 Student</span>
+            </label>
+
+            <label>
+            <input type="radio" class="nes-radio" name="isEmployer" />
+            <span>👩‍💼 Pracodawca</span>
+            </label>
+        </div>
+
+        <label for="textarea_field">🔑 Hasło</label>
+        <textarea id="textarea_field"  class="nes-textarea" name="passwd1" style="resize:none" required></textarea>
+
+        <label for="textarea_field">🔑 Powtórz Hasło co wcześniej wpisywałeś</label>
+        <textarea id="textarea_field" class="nes-textarea" name="passwd2" style="resize:none" required></textarea>
+        </center>
+        <br><br>
+        </div>
+        </div>
+        
+
+        <input type="submit" value="Zarejestruj" class="nes-btn is-primary">
+
+        </div>
+    <br>
+</main>
+{% endblock %}
