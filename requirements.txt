@@ -17,6 +17,4 @@
 
 certifi==2019.3.9
 Django==2.1.7
-psycopg2==2.8.1
-psycopg2-binary==2.8.1
 pytz==2018.9
