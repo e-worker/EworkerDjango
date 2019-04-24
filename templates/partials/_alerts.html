@@ -1,0 +1,23 @@
+{% if messages %}
+  {% for message in messages %}
+    <body onpageshow="document.getElementById('dialog-default').showModal();">
+    <section>
+    <dialog class="nes-dialog" id="dialog-default">
+        <form method="dialog">
+        <p class="title">
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+        Napotkano problem: 
+        {% else %}
+        {{ message.tags|title }}
+        {% endif %}</p>
+        <p>{{ message }}</p>
+        <menu class="dialog-menu">
+            <button class="nes-btn">Spoko</button>
+            <button class="nes-btn is-primary">Okej</button>
+        </menu>
+        </form>
+    </dialog>
+    </section>
+    </body>
+  {% endfor %}
+{% endif %}

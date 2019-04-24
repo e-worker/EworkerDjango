@@ -85,15 +85,7 @@ DATABASES = {
     }
 }
 
-DATABASES = {
-    'default': {
-    'ENGINE': 'django.db.backends.mysql',
-    'NAME': 'eworker',
-    'USER':'root',
-    'HOST':'192.168.64.2',
-    'PORT':'3306',
-    }
-}
+
 
 
 # Password validation
