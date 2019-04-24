@@ -19,12 +19,15 @@ class Student(models.Model):
     interest_text = models.CharField(max_length=255, blank=True, null=True)
     description = models.CharField(max_length=255, blank=True, null=True)
     user = models.ForeignKey(CustomUser, models.DO_NOTHING)
+    def __str__(self):
+        return str(self.name)+" "+str(self.surname)
 
 class StudentDegreeCourse(models.Model):
     id = models.AutoField(primary_key = True)
     student = models.ForeignKey(Student, models.DO_NOTHING)
     degree_course = models.ForeignKey(DegreeCourse, models.DO_NOTHING)
-
+    def __str__(self):
+        return str(self.student)+" : "+str(self.degree_course)
 
 
 class StudentInfo(models.Model):
@@ -34,17 +37,22 @@ class StudentInfo(models.Model):
     end_date = models.DateTimeField(blank=True, null=True)
     present = models.FloatField(blank=True, null=True)
     student = models.ForeignKey(Student, models.DO_NOTHING)
-
+    def __str__(self):
+        return str(self.student)
 
 
 class StudentLanguage(models.Model):
     id = models.AutoField(primary_key = True)
     student = models.ForeignKey(Student, models.DO_NOTHING)
     language = models.ForeignKey(Language, models.DO_NOTHING)
-
+    language_lvl = models.ForeignKey('job_offers.LanguageLvl', models.DO_NOTHING)
+    def __str__(self):
+        return str(self.student)+": "+str(self.language)+" "+str(self.language_lvl)
 
 
 class StudentSkill(models.Model):
     id = models.AutoField(primary_key = True)
     skill = models.ForeignKey(Skill, models.DO_NOTHING)
     student_info = models.ForeignKey(StudentInfo, models.DO_NOTHING)
+    def __str__(self):
+        return str(self.student_info)+": "+str(self.skill)
