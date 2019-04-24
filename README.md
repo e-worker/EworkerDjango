@@ -17,7 +17,7 @@ this will create virtual environment for our django application
 after succesfull environment creation type source activate Ework, and run:     
 pip install -r requirements.txt
  
-# Your environment should be set up now
+###### Your environment should be set up now
 when you are working with Django, always work with your environment activated (conda activate Ework)
 otherwise your project won't run
 
@@ -32,7 +32,7 @@ python manage.py createsuperuser # creates admin account so you can access /admi
 # Project's structure explanation:
 Eworker Django
 |
-|- Ework -> contains settings.py, urls.py and __init__.py, wsgi.py files (only urls and settings intrests us)
+<p>|- Ework -> contains settings.py, urls.py and __init__.py, wsgi.py files (only urls and settings intrests us)</p>
 |- employer - app that will cover logic for company/employer (create read update)
 |- job_offers - app that will cover logic for job offers (create read delete)
 |- student - app that will cover logic for student's account (create read update)
@@ -45,7 +45,7 @@ Eworker Django
 
 # Models we need to create student's cv:
 (let's assume that multiple means >= 1)
-Student (and that model is foreign key in models below)
+<p>Student (and that model is foreign key in models below)</p>
 Student Info (multiple) -> student skill -> skill
 Student degree course (multiple) -> degree course -> department
 Student language (multiple) -> language -> language_lvl
