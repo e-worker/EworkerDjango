@@ -36,9 +36,10 @@ class JobOffer(models.Model):
 class JobOfferLanguage(models.Model):
     id = models.AutoField(primary_key = True)
     language = models.ForeignKey('Language', models.DO_NOTHING)
+    language_lvl = models.ForeignKey('LanguageLvl', models.DO_NOTHING)
     job_offer = models.ForeignKey(JobOffer, models.DO_NOTHING, blank=True, null=True)
     def __str__(self):
-        return str(self.language)
+        return str(self.language)+" : "+str(self.language_lvl)
 
 class JobOfferSkill(models.Model):
     id = models.AutoField(primary_key = True)
@@ -47,18 +48,18 @@ class JobOfferSkill(models.Model):
     def __str__(self):
         return str(self.skill)
 
+
+class LanguageLvl(models.Model):
+    id = models.AutoField(primary_key = True)
+    level = models.CharField(max_length=50)
+    def __str__(self):
+        return str(self.level)
+
 class Language(models.Model):
     id = models.AutoField(primary_key = True)
     name = models.CharField(max_length=50)
     def __str__(self):
         return str(self.name)
-
-class LanguageLvl(models.Model):
-    id = models.AutoField(primary_key = True)
-    level = models.CharField(max_length=50)
-    language = models.ForeignKey(Language, models.DO_NOTHING)
-    def __str__(self):
-        return str(self.language)+" : "+str(self.level)
 
 class OfferDegreeCourse(models.Model):
     id = models.AutoField(primary_key = True)
