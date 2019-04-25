@@ -23,26 +23,32 @@
 <label for="description">Opis</label>
 <textarea name="description"></textarea></br>
 {% if courses %}</br>
-<select name="courses">
+<select id="course">
   {% for course in courses %}
   <option value="{{course.name}}">{{course.name}}</option>
   {% endfor %}
 </select>
    <button id="addCourse">+</button>
+<div id="coursesContainer">
+
+</div>
 {% endif %}
 {% if languages %}</br>
-<select name="languages">
+<select id="language">
   {% for language in languages %}
     <option value="{{language.name}}">{{language.name}}</option>
   {% endfor %}
 </select>
 {% if languageLvls %}
-    <select name="languageLvls">
+    <select id="languageLvl">
         {% for languageLvl in languageLvls %}
             <option value="{{languageLvl.level}}">{{languageLvl.level}}</option>
         {% endfor %}
     </select>
     <button id="addLanguage">+</button>
+    <div id="languagesContainer">
+    
+    </div>
 {% endif %}
 {% endif %}
 {% if skills %}</br>
