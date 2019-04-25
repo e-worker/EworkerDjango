@@ -18,12 +18,7 @@
    
 </head>
 <body>
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.sidenav');
-    var instances = M.Sidenav.init(elems);
-  });
-</script>
+
 <!-- Nav Bar -->
 {% include 'partials/_navbar.html'%}
 
@@ -34,6 +29,6 @@
 <!-- Footer -->
 {% include 'partials/_footer.html'%}
 
-
+<script src="{% static 'js/dynamic_forms_student.js' %}"></script>
 </body>
 </html>

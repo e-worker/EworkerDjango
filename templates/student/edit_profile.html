@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %}Edytuj Profil{% endblock %}
+{% block content %}
+<main>
+<form method="POST">
+{% csrf_token %}
+<label for="city">Miasto:</label>
+<input type="text" name="city" required></br>
+<label for="street">Ulica</label>
+<input type="text" name="street"></br>
+<label for="house_number">Numer Domu</label>
+<input type="text" name="house_number" required></br>
+<label for="flat_number">Numer Mieszkania</label>
+<input type="text" name="flat_number"></br>
+<label for="salary_from">Zarabki od</label>
+<input type="number" name="salary_from"></br>
+<label for="salary_to">Zarabki do</label>
+<input type="number" name="salary_to"></br>
+<label for="document_url">Link do CV</label>
+<input type="text" name="document_url"></br>
+<label for="interest_text">Zainteresowania</label>
+<textarea name="interest_text"></textarea></br>
+<label for="description">Opis</label>
+<textarea name="description"></textarea></br>
+{% if courses %}</br>
+<select name="courses">
+  {% for course in courses %}
+  <option value="{{course.name}}">{{course.name}}</option>
+  {% endfor %}
+   <button id="addCourse">+</button>
+</select>
+{% endif %}
+{% if languages %}</br>
+<select name="languages">
+  {% for language in languages %}
+    <option value="{{language.name}}">{{language.name}}</option>
+  {% endfor %}
+</select>
+{% if languageLvls %}
+    <select name="languageLvls">
+        {% for languageLvl in languageLvls %}
+            <option value="{{languageLvl.level}}">{{languageLvl.level}}</option>
+        {% endfor %}
+    </select>
+    <button id="addLanguage">+</button>
+{% endif %}
+{% endif %}
+{% if skills %}</br>
+<select id="skill">
+{% for skill in skills %}
+<option value="{{skill.name}}">{{skill.name}}</option>
+{% endfor %}
+</select>
+<button id="addSkill">+</button>
+<div id="skillsContainer">
+
+</div>
+{% endif %}
+<button type="submit">Wyslij</button>
+</form>
+</main>
+{% endblock %}
