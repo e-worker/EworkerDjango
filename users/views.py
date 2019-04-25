@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
 from users.models import CustomUser
+from student.models import Student
+from employer.models import Company
+
 # Create your views here.
 def login(request):
     return render(request, 'users/login.html')
@@ -43,8 +46,15 @@ def register(request):
                                     else:
                                         user = CustomUser.objects.create_user(password=password, username=username, first_name=first_name, last_name = last_name, email = email, isEmployer=isEmployer, phone=phone)
                                         user.save()
+                                        if isEmployer == 'True':
+                                            company = Company(user=user, email=email)
+                                            company.save()
+                                        else:
+                                            student = Student(user=user, name=first_name, surname=last_name, email=email)
+                                            student.save()
                                         messages.success(request, 'Rejestracja przebiegla pomyslnie')
                                         return redirect('login')
+                                    
         else:
             messages.error(request, 'Hasla nie zgadzaja sie')
             return redirect('register')
