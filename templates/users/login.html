@@ -1,9 +1,24 @@
 {% extends 'base.html' %}
-{% block title %}Login{% endblock %}
+{% block title %}Logowanie do systemu{% endblock %}
 {% block content %}
 <main>
-<!--alerts-->
-{% include 'partials/_alerts.html' %}
-hejka, sklejka, tu bedzie byku panel do logowania wiesz
+    <div class="container">
+        <!--alerts-->
+        {% include 'partials/_alerts.html' %}
+        <div class="row">
+            <form action="{% url 'login' %}" method="POST">
+            <div class="six columns">
+            {% csrf_token %}
+                <p align="left">Username</p>
+                <input id="textarea_field" class="nes-textarea" name="username" style="resize:none" required>
+            </div>
+            <div class="six columns">
+                <p align="left">Hasło</p>
+                <input id="textarea_field" class="nes-textarea" name="password" style="resize:none" type="password" required>
+            </div>
+        </div>
+        <input type="submit" value="Zaloguj" class="nes-btn is-primary">
+        </form>
+    </div>
 </main>
 {% endblock %}
