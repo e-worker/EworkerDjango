@@ -2,52 +2,69 @@
 {% block title %}Edytuj Profil{% endblock %}
 {% block content %}
 <main>
-<form method="POST">
+<form id="student_form" method="POST">
 {% csrf_token %}
 <label for="city">Miasto:</label>
-<input type="text" name="city" required></br>
+<input type="text" name="city" required value="{{student.city}}"></br>
 <label for="street">Ulica</label>
-<input type="text" name="street"></br>
+<input type="text" name="street" value="{{student.street}}"></br>
 <label for="house_number">Numer Domu</label>
-<input type="text" name="house_number" required></br>
+<input type="text" name="house_number" required value="{{student.house_number}}"></br>
 <label for="flat_number">Numer Mieszkania</label>
-<input type="text" name="flat_number"></br>
+<input type="text" name="flat_number" value="{{student.flat_number}}"></br>
 <label for="salary_from">Zarabki od</label>
-<input type="number" name="salary_from"></br>
+<input type="number" name="salary_from" required value="{{student.salary_from}}"></br>
 <label for="salary_to">Zarabki do</label>
-<input type="number" name="salary_to"></br>
+<input type="number" name="salary_to" required value="{{student.salary_to}}"></br>
 <label for="document_url">Link do CV</label>
-<input type="text" name="document_url"></br>
+<input type="text" name="document_url" value="{{student.document_url}}"></br>
 <label for="interest_text">Zainteresowania</label>
-<textarea name="interest_text"></textarea></br>
+<textarea name="interest_text">{{student.interest_text}}</textarea></br>
 <label for="description">Opis</label>
-<textarea name="description"></textarea></br>
+<textarea name="description">{{student.description}}</textarea></br>
 {% if courses %}</br>
-<select id="course">
+<select {% if not student_courses %}name="course"{% endif %} id="course">
   {% for course in courses %}
   <option value="{{course.name}}">{{course.name}}</option>
   {% endfor %}
 </select>
    <button id="addCourse">+</button>
 <div id="coursesContainer">
-
+{% if student_courses %}
+  {% for student_course in student_courses %}
+    <div class="courseListElement">
+    {{student_course.degree_course.name}}
+    <input name="course" style="display:none;" value="{{student_course.degree_course.name}}">
+    <a class="delete-item" style="color:red;">x</a>
+    </div>
+  {% endfor %}
+{% endif %}
 </div>
 {% endif %}
 {% if languages %}</br>
-<select id="language">
+<select  {% if not student_languages %}name="language"{% endif %} id="language">
   {% for language in languages %}
     <option value="{{language.name}}">{{language.name}}</option>
   {% endfor %}
 </select>
 {% if languageLvls %}
-    <select id="languageLvl">
+    <select {% if not student_languages %}name="languageLvl"{% endif %} id="languageLvl">
         {% for languageLvl in languageLvls %}
             <option value="{{languageLvl.level}}">{{languageLvl.level}}</option>
         {% endfor %}
     </select>
     <button id="addLanguage">+</button>
     <div id="languagesContainer">
-    
+      {% if student_languages %}
+        {% for student_language in student_languages %}
+          <div class="languageListElement">
+            {{student_language.language}}: {{student_language.language_lvl}}  
+            <input name="language" style="display:none;" value="{{student_language.language}}">
+            <input name="languageLvl" style="display:none;" value="{{student_language.language_lvl}}">    
+            <a class="delete-item" style="color:red;">x</a>
+          </div>
+        {% endfor %}
+      {% endif %}    
     </div>
 {% endif %}
 {% endif %}
@@ -58,11 +75,31 @@
 {% endfor %}
 </select>
 <button id="addSkill">+</button>
-<div id="skillsContainer">
+<div id="skillsErrorMessages">
 
 </div>
+<div id="skillsContainer">
+{% if student_skills %}
+  {% for student_skill in student_skills %}
+    <div class="skillListElement">
+      {{student_skill.skill}} 
+      <a class="delete-item" style="color: red;">x</a>
+      <p></p>
+      <input name="skill" style="display: none;" value="{{student_skill.skill}}">
+      <textarea name="skillText" required="">{{student_skill.text}}</textarea>
+      <p>Data od</p>
+      <input type="date" name="date_from" value="{{student_skill.start_date|date:"Y-m-d" }}">
+      <p>Data do</p>
+      <input type="date" name="date_to" value="{{student_skill.end_date|date:"Y-m-d"}}">
+      <p>Obecnie</p>
+     <!--<input id="presentHidden" type="hidden" value="False" name="present">--> 
+      <input id="present" type="checkbox" value="True" {% if student_skill.present %}checked{% endif %} name="present">
+    </div>
+  {% endfor %}
 {% endif %}
-<button type="submit">Wyslij</button>
+</div>
+{% endif %}
+<button id="submitBtn">Wyslij</button>
 </form>
 </main>
 {% endblock %}
