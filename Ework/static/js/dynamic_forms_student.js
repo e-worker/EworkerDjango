@@ -95,10 +95,9 @@ function addSkill(e){
     const presentTitle = document.createElement('p');
     presentTitle.innerText = "Obecnie";
     
-    const presentCheckbox = document.createElement('input');
-    presentCheckbox.type = 'checkbox';
-    presentCheckbox.value = 'True';
-    presentCheckbox.name = 'present'; 
+    const presentSelect = document.createElement('select');
+    presentSelect.name = 'present';
+    presentSelect.innerHTML = '<option value="False">Nie</option><option value="True">Tak</option>';
 
     skillDiv.appendChild(delButton);
     skillDiv.appendChild(p);
@@ -109,7 +108,7 @@ function addSkill(e){
     skillDiv.appendChild(dateToTitle);
     skillDiv.appendChild(dateTo);
     skillDiv.appendChild(presentTitle);
-    skillDiv.appendChild(presentCheckbox);
+    skillDiv.appendChild(presentSelect);
     
 
 

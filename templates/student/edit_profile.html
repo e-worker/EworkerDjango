@@ -92,8 +92,10 @@
       <p>Data do</p>
       <input type="date" name="date_to" value="{{student_skill.end_date|date:"Y-m-d"}}">
       <p>Obecnie</p>
-     <!--<input id="presentHidden" type="hidden" value="False" name="present">--> 
-      <input id="present" type="checkbox" value="True" {% if student_skill.present %}checked{% endif %} name="present">
+      <select id="present" name="present">
+        <option value="False">Nie</option>
+        <option {% if student_skill.present %}selected{% endif %} value="True">Tak</option>
+      </select>
     </div>
   {% endfor %}
 {% endif %}
