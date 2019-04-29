@@ -1,9 +1,35 @@
+
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Login{% endblock %}
 {% block content %}
+
 <main>
 <!--alerts-->
 {% include 'partials/_alerts.html' %}
-hejka, sklejka, tu bedzie byku panel do logowania wiesz
+<br>
+<div class = "container nes-container with-title is-centered">
+    <p class = "title">Logowanie</p>
+    <p>Witaj w zajebistym systemie Ework, czas na logowanie 😠</p>
+    <br>
+<div class = "row">
+    <!--alerts-->
+    {% include 'partials/_alerts.html' %}
+    <div class = "col l4 offset-l1">
+        <form action="{% url 'login' %}" method="POST">
+            {% csrf_token %} 
+
+            <p align="left">😡 Login</p>
+            <textarea id="textarea_field" class="nes-textarea" name="username" style="resize:none" required placeholder="Login"></textarea>
+
+        </div>
+        
+            <p align="left">🔑 Hasło</p>
+            <textarea id="textarea_field"  class="nes-textarea" name="passwd1" style="resize:none" required placeholder="Hasło"></textarea>
+            </center>
+            <br><br>
+        </div>
+        <input type="submit" value="Zaloguj się" class="nes-btn is-primary">
+    </div>
 </main>
 {% endblock %}
