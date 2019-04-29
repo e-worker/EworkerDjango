@@ -11,6 +11,8 @@ body
 main
 {
     flex: 1 0 auto;
+      margin: 0;
+
   
 }
 
@@ -64,6 +66,7 @@ a
     justify-content: center;
     align-items: center;
     flex: 1;
+    z-index: -1;
  }
  
  /* Sidebar */
@@ -240,10 +243,7 @@ a
      box-sizing: border-box;
      
  }
- main {
-    margin: 0;
-    z-index: -1;
- }
+
  .percentage__high {
     background: rgb(18, 192, 18);
  }

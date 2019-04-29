@@ -3,7 +3,6 @@
 
 {% block title %}Logowanie do systemu{% endblock %}
 
-{% load static %}
 {% block content %}
 
 <main>
@@ -23,12 +22,11 @@
             {% csrf_token %} 
 
             <p align="left">😡 Login</p>
-            <input id="textarea_field" class="nes-textarea" name="username" style="resize:none" required>
+            <input  class="nes-textarea" name="username" style="resize:none" required>
         </div>
         
             <p align="left">🔑 Hasło</p>
-             <input id="textarea_field" class="nes-textarea" name="password" style="resize:none" type="password" required>
-            </center>
+             <input  class="nes-textarea" name="password" style="resize:none" type="password" required>
             <br><br>
         </div>
         <input type="submit" value="Zaloguj się" class="nes-btn is-primary">

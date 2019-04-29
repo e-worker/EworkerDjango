@@ -113,3 +113,6 @@ def edit_profile(request):
         print(request.POST)
 
     return render(request, 'student/edit_profile.html', context)
+
+def student_offers(request):
+    return render(request, 'student/student_offers.html')

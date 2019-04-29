@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Edytuj Profil{% endblock %}
 {% block content %}
 <main>
@@ -104,4 +105,5 @@
 <button id="submitBtn">Wyslij</button>
 </form>
 </main>
+<script src="{% static 'js/dynamic_forms_student.js' %}"></script>
 {% endblock %}
