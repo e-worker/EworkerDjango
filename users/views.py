@@ -14,7 +14,7 @@ def login(request):
         if user is not None:
             auth.login(request, user)
             messages.success(request, 'You are now logged in')
-            return redirect('login')
+            return redirect('edit_profile')
         else:
             messages.error(request, 'Invalid credentials')
             return render(request, 'users/login.html')

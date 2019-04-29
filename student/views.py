@@ -1,10 +1,13 @@
 from django.shortcuts import render
 from .models import Student, StudentInfo, StudentSkill, StudentDegreeCourse, StudentLanguage
 from job_offers.models import DegreeCourse, LanguageLvl, Language, Skill
-# Create your views here.
+from django.contrib.auth.decorators import login_required
 
+
+# Create your views here.
+@login_required()
 def edit_profile(request):
-    student = Student.objects.get(user__id=1)
+    student = Student.objects.get(user__id=request.user.id)
     student_courses = StudentDegreeCourse.objects.filter(student=student)
     student_languages = StudentLanguage.objects.filter(student=student)
     student_skills = StudentInfo.objects.filter(student=student)
@@ -93,25 +96,7 @@ def edit_profile(request):
                 
                 student_info.save()
                 
-        print(student)
-
-        print(city+"\n")
-        #dodaj date do formularza i zmien na bool w bazie present
-        print(street+"\n")
-        print(house_number+"\n")
-        print(flat_number+"\n")
-        print(str(salary_from)+"\n")
-        print(str(salary_to)+"\n")
-        print(document_url+"\n")
-        print(interest_text+"\n")
-        print(description+"\n")
-        print(courses)
-        print(languages)
-        print(languagesLvls)
-        print(skills)
-        print(skillsTexts)
-        print(request.POST)
-
+      
     return render(request, 'student/edit_profile.html', context)
 
 def student_offers(request):

@@ -133,3 +133,6 @@ AUTH_USER_MODEL = 'users.CustomUser'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+#login url
+LOGIN_URL = '/users/login'
