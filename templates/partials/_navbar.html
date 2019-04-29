@@ -1,16 +1,54 @@
 {% load static %}
 <!--Navbar-->
-<nav>
-    <div class="nav-wrapper blue darken-4">
-      <a href="#" class="brand-logo">Ework</a>
-      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="/users/login" class="">Zaloguj</a></li>
-        <li><a href="/users/register" class="">Rejestracja</a></li>
-      </ul>
+<style>
+
+  nav{ 
+   
+    padding: 10px; 
+    background-color: rgb(62, 29, 248);
+  }
+ul {
+ 
+    text-align: right;
+    margin: 0;
+    padding: 0px; 
+    overflow: hidden;
+  }
+  li{
+    display: inline-block;
+  }
+
+  a{
+    color: beige;
+  }
+  @media screen and (max-width: 600px) {
+    
+    ul{
+      text-align: center;
+    }
+    li{
+    display: block;
+  }
+}
+</style>
+
+<nav class="main-navbar">
+     <div class="row">
+        <!--<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>--> 
+    <div class="one column"><a href="#" class="brand-logo">Ework</a></div> 
+    <div class="eleven columns">
+        <ul>
+            <li><a href="/users/login" class="navbar" id="zaloguj">Zaloguj</a></li>
+            <li><a href="/users/register" class="navbar">Rejestracja</a></li>
+          </ul>
     </div>
+   
+     </div> 
+   
 </nav>
-<ul class="sidenav" id="mobile-demo">
+<!--
+  <ul class="sidenav" id="mobile-demo">
         <li><a href="/users/login" class="">Zaloguj</a></li>
         <li><a href="/users/register" class="">Rejestracja</a></li>
 </ul>
+-->

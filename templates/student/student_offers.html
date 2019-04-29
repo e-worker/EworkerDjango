@@ -1,0 +1,391 @@
+<!-- {% extends 'base.html' %} -->
+{% load static %}
+{% block title %}Offers{% endblock %}
+{% block content %}
+<style>
+*, *::before, *::after {
+   box-sizing: border-box;
+}
+
+body {
+ 
+   font-size: 1.2em;
+   color: #333;
+}
+
+h1 {
+  font-size: 1.4em;
+}
+
+em {
+   font-style: normal;
+}
+
+a {
+   margin-top: 10px;
+   text-decoration: none;
+   color: inherit;
+} 
+p {
+  margin: 0;
+  font-size: 1.2em;
+}
+.row {
+  font-size: 1.4em;
+}
+ li {
+  
+   padding-right: 10px;
+} 
+/* Layout */
+.s-layout {
+   display: flex;
+   width: 100%;
+   min-height: 100vh;
+}
+
+.s-layout__content {
+   background: white;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex: 1;
+}
+
+/* Sidebar */
+.s-sidebar__trigger {
+   z-index: 2;
+   position: fixed;
+   top: 11%;
+   left: 0;
+   width: 100%;
+   height: 5em;
+   background-color: rgb(62, 29, 248);
+}
+
+.s-sidebar__trigger > i {
+   display: inline-block;
+   margin: 1.5em 0 0 1.5em;
+   color: #f07ab0;
+}
+
+.s-sidebar__nav {
+   position: fixed;
+   top: 15%;
+   left: -35em;
+   overflow: hidden;
+   transition: all .3s ease-in;
+   width: 35em;
+   height: 100%;
+   background-color: rgb(62, 29, 248);
+   color: rgba(255, 255, 255, 0.7);
+}
+
+.s-sidebar__nav:hover,
+.s-sidebar__nav:focus,
+.s-sidebar__trigger:focus + .s-sidebar__nav,
+.s-sidebar__trigger:hover + .s-sidebar__nav {
+   left: 0;
+}
+
+.s-sidebar__nav ul {
+   position: absolute;
+   top: 4em;
+   left: 0;
+   margin: 0;
+   padding: 0;
+   width: 35em;
+}
+
+.s-sidebar__nav ul li {
+   width: 100%;
+}
+
+.s-sidebar__nav-link {
+   position: relative;
+   display: inline-block;
+   width: 100%;
+   height: 5em;
+}
+
+.s-sidebar__nav-link em {
+   position: absolute;
+   top: 50%;
+   left: 4em;
+   transform: translateY(-50%);
+}
+
+.s-sidebar__nav-link:hover {
+   background: #4d6276;
+}
+
+.s-sidebar__nav-link > i {
+   position: absolute;
+   top: 0;
+   left: 0;
+   display: inline-block;
+   width: 4em;
+   height: 3em;
+}
+
+.s-sidebar__nav-link > i::before {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+}
+
+/* Mobile First */
+@media (min-width: 42em) {
+   .s-layout__content {
+     margin-top: 4em;
+      margin-left: 10em;
+      margin-right: 7em;
+
+   }
+   
+   /* Sidebar */
+   .s-sidebar__trigger {
+    top: 3.1%;
+      width: 4em;
+   }
+   
+   .s-sidebar__nav {
+    top: 3.1%;
+      width: 4em;
+      left: 0;
+   }
+   
+   .s-sidebar__nav:hover,
+   .s-sidebar__nav:focus,
+   .s-sidebar__trigger:hover + .s-sidebar__nav,
+   .s-sidebar__trigger:focus + .s-sidebar__nav {
+      width: 35em;
+   }
+}
+
+@media (min-width: 68em) {
+   .s-layout__content {
+      margin-left: 40em;
+      margin-right: 4em;
+   }
+   
+   /* Sidebar */
+   .s-sidebar__trigger {
+      display: none
+   }
+   
+   .s-sidebar__nav {
+      width: 35em;
+      top: 5.1%;
+   }
+   
+   .s-sidebar__nav ul {
+      top: 1.3em;
+   }
+}
+select {
+  font-size: 14px;
+}
+label{
+  margin: 0px;
+  text-align: center;
+  position: relative;
+  font-size: 12px;
+}
+input{
+  margin: 0;
+  position: relative;
+}
+textarea {
+  margin: 0;
+}
+.label-dropdown{
+  padding-right: 53%;
+}
+div .sidebar__title-paragraph {
+  font-size: 1.5rem;
+  margin-right: 26%;
+}
+  #nes-select__language {
+  margin: 0;
+  padding: 0;
+}
+#nes-select__language-lvl{
+  margin: 0;
+  padding: 0;
+}
+#label-dropdown__lvl{
+  padding-right: 0;
+  padding: 0;
+  margin: 0;
+  
+} 
+.u-full-width{
+   width: 100%;
+    box-sizing: border-box;
+    
+}
+main {
+   margin: 0;
+   z-index: -1;
+}
+.percentage__high {
+   background: rgb(18, 192, 18);
+}
+.percentage__mid {
+   background: rgb(207, 230, 0);
+}
+.percentage__low {
+   background: rgb(230, 35, 0);
+}
+.company-img{
+   height: 25%;
+   width: 28%;
+}
+.u-full-width {
+   font-weight: 600;
+     backface-visibility: hidden;
+     box-shadow: 1px 5px 20px -5px rgba(0,0,0,1);
+     border-style: outset;
+}
+.course {
+   padding-left: 5px;
+   padding-right: 15px;
+}
+.language{
+   padding-left: 10px;
+}
+
+</style>
+<div class="s-layout">
+  <!-- Sidebar -->
+  <div class="s-layout__sidebar">
+    <a class="s-sidebar__trigger" href="#0">
+       <i class="fa fa-bars"></i>
+    </a>
+  
+    <nav class="s-sidebar__nav">
+    
+      <br>
+      <form method="POST">
+
+          <ul class="form">
+            <li>
+                <div class="sidebar__title">
+                    <p class="sidebar__title-paragraph">Wyszukiwarka <i class="fa fa-search"></i></p>
+                     
+                  </div>
+            </li>
+              <li>
+                 <a class="s-sidebar__nav-link" href="#0">
+                    <label for="salary_from">Zarabki od</label>
+                      <input type="number" name="salary_from">
+                 </a>
+              </li>
+              <li>
+                  <a class="s-sidebar__nav-link" href="#0">
+                      <label for="salary_to">Zarabki do</label>
+                        <input type="number" name="salary_to">
+                   </a>
+              </li>
+              <li class="course">
+                 <a class="s-sidebar__nav-link" href="#0">
+                   
+                      <label for="default_select" class="label-dropdown">Kierunek studiów</label>
+                      <br>
+                      <div class="nes-select">
+                      <select required id="default_select">
+                      <option value="" disabled selected hidden>Wybierz...</option>
+                      <option value="0">Informatyka</option>
+                      <option value="1">Zarządzanie</option>
+                       </select>
+                    </div>
+                 </a>
+              </li>
+              <li class="language">
+                  <a class="s-sidebar__nav-link" href="#0">
+                    <div class="row">
+                      <div class="eight columns">
+                          <label for="default_select" class="label-dropdown">Język</label>
+                          <br>
+                          <div class="nes-select" id="nes-select__language">
+                          <select required id="default_select">
+                          <option value="" disabled selected hidden>Wybierz...</option>
+                          <option value="0">Angielski</option>
+                          <option value="1">Niemiecki</option>
+                           </select>
+                        </div>
+                      </div>
+                       <div class="four columns">
+                          <label for="default_select" class="label-dropdown" id="label-dropdown__lvl">Poziom</label>
+                          <br>
+                          <div class="nes-select" id="nes-select__language-lvl">
+                          <select required id="default_select">
+                          <option value="" disabled selected hidden>Wybierz...</option>
+                          <option value="0">A1</option>
+                          <option value="1">A2</option>
+                          <option value="2">B1</option>
+                           </select>
+                        </div>
+                       </div>
+                      
+                    </div>
+                      
+                  </a>
+               </li>
+               <li class="course">
+                  <a class="s-sidebar__nav-link" href="#0">
+                    
+                       <label for="default_select" class="label-dropdown">Doświadczenie</label>
+                       <br>
+                       <div class="nes-select">
+                       <select required id="default_select">
+                       <option value="" disabled selected hidden>Wybierz...</option>
+                       <option value="0">Praca</option>
+                       <option value="1">Staż</option>
+                       <option value="2">Praktyki</option>
+                        </select>
+                     </div>
+                  </a>
+               </li>
+               <li>
+                     <button type="button" class="nes-btn is-primary" id="search-btn">Primary</button>
+               </li>
+           </ul>
+          
+      </form>
+       
+    </nav>
+  </div>
+  
+  <!-- Content -->
+  <main class="s-layout__content">
+            <table class="u-full-width">
+                  <tbody>
+                    <tr>
+                        <td><a href="#"><img src="{% static 'images/Screenshot from 2019-04-28 15-27-32.png' %}" alt="Asseco" class="company-img"></a></td>
+                        <td>Programista</td>
+                        <td>Warszawa</td>
+                        <td class="percentage__high">100%</td>
+                    
+                    </tr>
+                    <tr>
+                        <td><a href="#"><img src="{% static 'images/Screenshot from 2019-04-28 15-40-15.png' %}" alt="Comarch" class="company-img"></a></td>
+                        <td>Stażysta</td>
+                        <td>Kraków</td>
+                        <td class="percentage__mid">60%</td>
+                  </tr>
+                  <tr>
+                        <td><a href="#"><img src="{% static 'images/Screenshot from 2019-04-28 15-43-23.png' %}" alt="Biedronka" class="company-img"></a></td>
+                        <td>Kasjer</td>
+                        <td>Rzeszów</td>
+                        <td class="percentage__low">20%</td>
+                  </tr>
+                    
+                  </tbody>
+                </table>
+                
+  </main>
+  </div>
+{% endblock %}

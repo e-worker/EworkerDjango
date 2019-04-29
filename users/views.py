@@ -7,7 +7,25 @@ from employer.models import Company
 
 # Create your views here.
 def login(request):
-    return render(request, 'users/login.html')
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = auth.authenticate(username=username, password=password)
+        if user is not None:
+            auth.login(request, user)
+            messages.success(request, 'You are now logged in')
+            return redirect('login')
+        else:
+            messages.error(request, 'Invalid credentials')
+            return render(request, 'users/login.html')
+    else:
+        return render(request, 'users/login.html')
+
+def logout(request):
+    if request.method =='POST':
+        auth.logout(request)
+        messages.success(request, 'You have logged out')
+        return redirect('login')
 
 def register(request):
     if request.method == 'POST':
