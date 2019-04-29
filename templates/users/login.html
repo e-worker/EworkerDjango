@@ -1,24 +1,37 @@
+
 {% extends 'base.html' %}
+
 {% block title %}Logowanie do systemu{% endblock %}
+
+{% load static %}
 {% block content %}
+
 <main>
-    <div class="container">
-        <!--alerts-->
-        {% include 'partials/_alerts.html' %}
-        <div class="row">
-            <form action="{% url 'login' %}" method="POST">
-            <div class="six columns">
-            {% csrf_token %}
-                <p align="left">Username</p>
-                <input id="textarea_field" class="nes-textarea" name="username" style="resize:none" required>
-            </div>
-            <div class="six columns">
-                <p align="left">Hasło</p>
-                <input id="textarea_field" class="nes-textarea" name="password" style="resize:none" type="password" required>
-            </div>
+
+<!--alerts-->
+{% include 'partials/_alerts.html' %}
+<br>
+<div class = "container nes-container with-title is-centered">
+    <p class = "title">Logowanie</p>
+    <p>Witaj w zajebistym systemie Ework, czas na logowanie 😠</p>
+    <br>
+<div class = "row">
+    <!--alerts-->
+    {% include 'partials/_alerts.html' %}
+    <div class = "col l4 offset-l1">
+        <form action="{% url 'login' %}" method="POST">
+            {% csrf_token %} 
+
+            <p align="left">😡 Login</p>
+            <input id="textarea_field" class="nes-textarea" name="username" style="resize:none" required>
         </div>
-        <input type="submit" value="Zaloguj" class="nes-btn is-primary">
-        </form>
+        
+            <p align="left">🔑 Hasło</p>
+             <input id="textarea_field" class="nes-textarea" name="password" style="resize:none" type="password" required>
+            </center>
+            <br><br>
+        </div>
+        <input type="submit" value="Zaloguj się" class="nes-btn is-primary">
     </div>
 </main>
 {% endblock %}
