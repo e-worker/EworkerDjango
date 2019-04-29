@@ -18,6 +18,7 @@ class Department(models.Model):
 class JobInfo(models.Model):
     id = models.AutoField(primary_key = True)
     text = models.TextField()
+    job_skill = models.ForeignKey('JobOfferSkill', models.DO_NOTHING)
     job_offer = models.ForeignKey('JobOffer', models.DO_NOTHING)
     def __str__(self):
         return str(self.job_offer)    
@@ -44,7 +45,7 @@ class JobOfferLanguage(models.Model):
 class JobOfferSkill(models.Model):
     id = models.AutoField(primary_key = True)
     skill = models.ForeignKey('Skill', models.DO_NOTHING)
-    job_info = models.ForeignKey(JobInfo, models.DO_NOTHING)
+    # job_info = models.ForeignKey(JobInfo, models.DO_NOTHING)
     def __str__(self):
         return str(self.skill)
 
