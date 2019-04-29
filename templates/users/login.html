@@ -1,10 +1,13 @@
 
 {% extends 'base.html' %}
+
+{% block title %}Logowanie do systemu{% endblock %}
+
 {% load static %}
-{% block title %}Login{% endblock %}
 {% block content %}
 
 <main>
+
 <!--alerts-->
 {% include 'partials/_alerts.html' %}
 <br>
@@ -20,12 +23,11 @@
             {% csrf_token %} 
 
             <p align="left">😡 Login</p>
-            <textarea id="textarea_field" class="nes-textarea" name="username" style="resize:none" required placeholder="Login"></textarea>
-
+            <input id="textarea_field" class="nes-textarea" name="username" style="resize:none" required>
         </div>
         
             <p align="left">🔑 Hasło</p>
-            <textarea id="textarea_field"  class="nes-textarea" name="passwd1" style="resize:none" required placeholder="Hasło"></textarea>
+             <input id="textarea_field" class="nes-textarea" name="password" style="resize:none" type="password" required>
             </center>
             <br><br>
         </div>
