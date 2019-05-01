@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Student, StudentInfo, StudentSkill, StudentDegreeCourse, StudentLanguage
 from job_offers.models import DegreeCourse, LanguageLvl, Language, Skill
 from django.contrib.auth.decorators import login_required
+from employer.views import edit_profile as employer_edit_profile
 
 
 # Create your views here.
@@ -100,8 +101,7 @@ def edit_profile(request):
         
         return render(request, 'student/edit_profile.html', context)
     else:
-        #employer edit profile
-        return redirect('login')
+        return employer_edit_profile(request)
 
 def student_offers(request):
     return render(request, 'student/student_offers.html')
