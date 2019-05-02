@@ -12,12 +12,11 @@ main
 {
     flex: 1 0 auto;
       margin: 0;
-
-  
 }
 
 a
 {
+   height: inherit;
     text-decoration: none;
     margin-top: 10px;
     text-decoration: none;
@@ -50,9 +49,68 @@ a
    font-size: 1.4em;
  }
   li {
-   
+   display: inline-block;
     padding-right: 10px;
  } 
+ nav{
+   padding: 10px; 
+   background-color: rgb(62, 29, 248);
+ }
+ul {
+
+   text-align: right;
+   margin: 0;
+   padding: 0px; 
+   overflow: hidden;
+ }
+ .container {
+   background:linear-gradient(to right bottom,  #c2c7c7, #bdbebebb);
+ }
+ footer{
+   margin: 0px;
+   padding-top: 10px;
+   padding-bottom: 10px;
+   background-color: rgb(62, 29, 248);
+   margin-top: auto;
+}
+ .footer-copyright{
+    text-align: center;
+ }
+ .course {
+   padding-left: 5px;
+   padding-right: 15px;
+}
+.language{
+   padding-left: 10px;
+}
+#nes-select__language {
+   margin: 0;
+   padding: 0;
+ } 
+ #nes-select__language-lvl{
+   margin: 0;
+   padding: 0;
+ }
+ #label-dropdown__lvl{
+   padding-right: 120%;  
+   margin: 0;
+ }  
+ .label-dropdown{
+   padding-right: 52%;
+ }
+ .label-dropdown_experience {
+   padding-right: 60%;
+ }
+
+ .label-dropdown_language{
+   padding-right: 87%;
+   margin: -7px;
+ }
+ 
+ #search-btn{
+   margin-top: 5%;
+  width: 100%;
+}
  /* Layout */
  .s-layout {
     display: flex;
@@ -68,11 +126,20 @@ a
     flex: 1;
     z-index: -1;
  }
- 
+ .u-full-width{
+   width: 100%;
+   box-sizing: border-box;
+   font-size: 1.2em;
+   font-weight: 600;
+   backface-visibility: hidden;
+   box-shadow: 1px 5px 20px -5px rgba(0,0,0,1);
+   border-style: outset;
+    
+}
  /* Sidebar */
  .s-sidebar__trigger {
     z-index: 2;
-    position: fixed;
+    position: absolute;
     top: 11%;
     left: 0;
     width: 100%;
@@ -87,7 +154,7 @@ a
  }
  
  .s-sidebar__nav {
-    position: fixed;
+    position: absolute;
     top: 15%;
     left: -35em;
     overflow: hidden;
@@ -151,16 +218,21 @@ a
     left: 50%;
     transform: translate(-50%, -50%);
  }
- 
+ .company-img{
+   height: 25%;
+   width: 28%;
+}
  /* Mobile First */
- @media (min-width: 42em) {
+ @media  (min-width: 42em) {
     .s-layout__content {
       margin-top: 4em;
        margin-left: 10em;
        margin-right: 7em;
  
     }
-    
+    .s-layout {
+       min-height: 91vh;
+    }
     /* Sidebar */
     .s-sidebar__trigger {
      top: 3.1%;
@@ -168,7 +240,8 @@ a
     }
     
     .s-sidebar__nav {
-     top: 3.1%;
+       height: 96%;
+     top: 4.1%;
        width: 4em;
        left: 0;
     }
@@ -194,13 +267,179 @@ a
     
     .s-sidebar__nav {
        width: 35em;
-       top: 5.1%;
+       top: 4.1%;
     }
     
     .s-sidebar__nav ul {
        top: 1.3em;
     }
  }
+ .company_name{
+   display: none;
+}
+ @media only screen and (max-width: 600px){
+   .company_name{
+      border-style: solid;
+      display: inline-block;
+      font-size: 14px;
+   }
+   td {
+      padding: 2% 1%;
+   }
+   td:first-child {
+      display: none;
+   }
+     nav {
+       width: 100vw;
+    }
+    footer {
+      width: 100vw;
+    } 
+    .company-img{
+       width: 10%;
+    }
+    ul{
+      text-align: center;
+    }
+    li{
+    display: block;
+    }
+    .s-layout {
+      display: flex;
+      min-height: 73vh;
+  }
+   .s-layout__content {
+      margin-top: 4em;
+       margin-left: 0;
+       margin-right: 0;
+ 
+    }
+    .u-full-width {
+      /* width: 145%; */
+    }
+    
+    /* Sidebar */
+    .s-sidebar__trigger {
+      z-index: 2;
+      position: absolute;
+      top: 12%;
+      left: 0;
+      width: 100vw;
+      height: 5em;
+      background-color: rgb(62, 29, 248);
+   }
+    
+   .s-sidebar__nav {
+      overflow: scroll;
+      position: absolute;
+      top: 20%;
+      left: -35em;
+      overflow: hidden;
+      transition: all .3s ease-in;
+      width: 31em;
+      height: 96%;
+      background-color: rgb(62, 29, 248);
+      color: rgba(255, 255, 255, 0.7);
+   }
+    
+   .s-sidebar__nav:hover,
+   .s-sidebar__nav:focus,
+   .s-sidebar__trigger:focus + .s-sidebar__nav,
+   .s-sidebar__trigger:hover + .s-sidebar__nav {
+      left: 0;
+   }
+   
+   .s-sidebar__nav ul {
+      position: absolute;
+      top: 4em;
+      left: 0;
+      margin: 0;
+      padding: 0;
+      width: 35em;
+   }
+   
+   .s-sidebar__nav ul li {
+      width: 93%;
+   }
+   
+   .s-sidebar__nav-link {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      height: 5em;
+   }
+   
+   .s-sidebar__nav-link em {
+      position: absolute;
+      top: 50%;
+      left: 4em;
+      transform: translateY(-50%);
+   }
+   
+   .s-sidebar__nav-link:hover {
+      background: #4d6276;
+   }
+   
+   .s-sidebar__nav-link > i {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: inline-block;
+      width: 4em;
+      height: 3em;
+   }
+   
+   .s-sidebar__nav-link > i::before {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+   }
+   .label-dropdown{
+      padding-right: 40%;
+   }
+   .course {
+      padding-left: 0px;
+      padding-right: 40px;
+   }
+   .language{
+      padding-left: 0px;
+   }
+   .nes-select{
+      width: 103%;
+      margin-left:1%;
+   }
+   input .salary {
+      width: auto;
+   }
+   #search-btn{
+       margin-top: 5%;
+       width: 95%;
+       margin-left: -5px;
+   }
+   #nes-select__language {
+      margin: 0;
+      padding: 0;
+      width: 95%;
+      margin-left:1%;
+    } 
+    #nes-select__language-lvl{
+      margin: 0;
+      padding: 0;
+      width: 95%;
+      margin-left:1%;
+    }
+    #label-dropdown__lvl{
+      padding-right: 77%;  
+      margin: 0;
+      margin-top: 5%
+    }  
+    .label-dropdown_experience {
+      padding-right: 51%;
+  }
+ }
+
+ 
  select {
    font-size: 14px;
  }
@@ -217,60 +456,28 @@ a
  textarea {
    margin: 0;
  }
- .label-dropdown{
-   padding-right: 53%;
- }
+ 
  div .sidebar__title-paragraph {
    font-size: 1.5rem;
    margin-right: 26%;
  }
-   #nes-select__language {
-   margin: 0;
-   padding: 0;
- }
- #nes-select__language-lvl{
-   margin: 0;
-   padding: 0;
- }
- #label-dropdown__lvl{
-   padding-right: 0;
-   padding: 0;
-   margin: 0;
-   
- } 
- .u-full-width{
-    width: 100%;
-     box-sizing: border-box;
-     
- }
-
+ 
+ 
  .percentage__high {
+    text-align: center;
     background: rgb(18, 192, 18);
  }
  .percentage__mid {
+   text-align: center;
     background: rgb(207, 230, 0);
  }
  .percentage__low {
+   text-align: center;
     background: rgb(230, 35, 0);
  }
- .company-img{
-    height: 25%;
-    width: 28%;
- }
- .u-full-width {
-    font-weight: 600;
-      backface-visibility: hidden;
-      box-shadow: 1px 5px 20px -5px rgba(0,0,0,1);
-      border-style: outset;
- }
- .course {
-    padding-left: 5px;
-    padding-right: 15px;
- }
- .language{
-    padding-left: 10px;
- }
- #search-btn{
-     margin-top: 5%;
-    width: 100%;
- }
+
+.edit_profile {
+   margin-top: 1vw;
+   text-align: left;
+   font-size: 1.2em;
+}
