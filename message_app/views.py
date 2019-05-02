@@ -22,7 +22,7 @@ def new_message(request):
                 if request.user.isEmployer:
                     student_email = request.POST['email-adresat']
                     company = request.user
-                    if Student.objects.get(email=student_email):
+                    if Student.objects.filter(email=student_email).exists():
                         student = CustomUser.objects.get(email=student_email)
                         message = Message(header=header, content=content, msg_from=company, msg_to=student)
                         message.save()
@@ -32,7 +32,7 @@ def new_message(request):
                 else:
                     student = request.user
                     company_email = request.POST['email-adresat']
-                    if Company.objects.get(email=company_email):
+                    if Company.objects.filter(email=company_email).exists():
                         company = CustomUser.objects.get(email=company_email)
                         message = Message(header=header, content=content, msg_from=student, msg_to=company)
                         message.save()
