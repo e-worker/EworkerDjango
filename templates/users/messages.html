@@ -5,37 +5,38 @@
 
 Do kogo ja pisalem
 <table>
-{% for item1 in from_list%}
+    {% if isEmployer %}
+        {% for item1, surname in from_list%}
+        <tr><td>Student: {{item1}} {{surname}}<td></tr>
+                    {% empty %}
+             <li>Nie masz zadnych wiadomosci</li>
+        {% endfor %}
+        {% else %}
 
-{% if isEmployer %}
-<tr><td>Imie studenta: {{item1}}<td></tr>
-{% else %}
-<tr><td>Nazwa firmy: {{item1}}<td></tr>
-{% endif %}
-{% empty %}
-
-<li>Nie masz zadnych wiadomosci</li>
-
-{% endfor %}
-
+        {% for item1 in from_list%}
+        <tr><td>Nazwa firmy: {{item1}}<td></tr>
+        {% empty %}
+        <li>Nie masz zadnych wiadomosci</li>
+        {% endfor %}
+    {% endif %}
 </table>
 
 Kto do mnie pisał
 <table>
-{% for item2 in to_list%}
+    {% if isEmployer %}
+        {% for item1, surname in to_list%}
+        <tr><td>Student: {{item1}} {{surname}}<td></tr>
+                    {% empty %}
+             <li>Nie masz zadnych wiadomosci</li>
+        {% endfor %}
+        {% else %}
 
-{% if isEmployer %}
-<tr><td>Imie studenta: {{item2}}<td></tr>
-{% else %}
-<tr><td>Nazwa firmy: {{item2}}<td></tr>
-{% endif %}
-
-{% empty %}
-
-<li>Nie masz zadnych wiadomosci</li>
-
-{% endfor %}
-
+        {% for item1 in to_list%}
+        <tr><td>Nazwa firmy: {{item1}}<td></tr>
+        {% empty %}
+        <li>Nie masz zadnych wiadomosci</li>
+        {% endfor %}
+    {% endif %}
 </table>
 
 

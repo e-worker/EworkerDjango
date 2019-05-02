@@ -21,17 +21,34 @@ class Message(models.Model):
         if not CustomUser.isEmployer:
             messages_from_me_to = Message.objects.filter(msg_from=CustomUser.id).values_list('msg_to_id', 'msg_to__company__company_name')
             messages_to_me = Message.objects.filter(msg_to=CustomUser.id).values_list('msg_from_id', 'msg_from__company__company_name')
+            msg_from_me = set()
+            for messages in messages_from_me_to:
+                msg_from_me.add(messages[1])
+
+            msg_to_me = set()
+            for messages in messages_to_me:
+                msg_to_me.add(messages[1])
         else:
-            messages_from_me_to = Message.objects.filter(msg_from=CustomUser.id).values_list('msg_to_id', 'msg_to__student__name')
-            messages_to_me = Message.objects.filter(msg_to=CustomUser.id).values_list('msg_from_id', 'msg_from__student__name')
+            messages_from_me_to = Message.objects.filter(msg_from=CustomUser.id).values_list('msg_to_id', 'msg_to__student__name', 'msg_to__student__surname')
+            messages_to_me = Message.objects.filter(msg_to=CustomUser.id).values_list('msg_from_id', 'msg_from__student__name', 'msg_from__student__surname')
 
         msg_from_me = set()
-        for messages in messages_from_me_to:
-            msg_from_me.add(messages[1])
-
         msg_to_me = set()
-        for messages in messages_to_me:
-            msg_to_me.add(messages[1])
+        if CustomUser.isEmployer:
+            for messages in messages_from_me_to:
+                student_name = (messages[1], messages[2])
+                msg_from_me.add(student_name)
+
+            for messages in messages_to_me:
+                student_name = (messages[1], messages[2])
+                msg_to_me.add(student_name)
+        else:
+            for messages in messages_from_me_to:
+                msg_from_me.add(messages[1])
+
+            for messages in messages_to_me:
+                msg_to_me.add(messages[1])
+
 
         user_type = CustomUser.isEmployer
 
