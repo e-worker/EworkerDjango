@@ -12,8 +12,6 @@ main
 {
     flex: 1 0 auto;
       margin: 0;
-
-  
 }
 
 a
@@ -98,11 +96,17 @@ ul {
    margin: 0;
  }  
  .label-dropdown{
-   padding-right: 50%;
+   padding-right: 52%;
  }
  .label-dropdown_experience {
-   padding-right: 56%;
+   padding-right: 60%;
  }
+
+ .label-dropdown_language{
+   padding-right: 87%;
+   margin: -7px;
+ }
+ 
  #search-btn{
    margin-top: 5%;
   width: 100%;
@@ -124,11 +128,12 @@ ul {
  }
  .u-full-width{
    width: 100%;
-    box-sizing: border-box;
-    font-weight: 600;
-     backface-visibility: hidden;
-     box-shadow: 1px 5px 20px -5px rgba(0,0,0,1);
-     border-style: outset;
+   box-sizing: border-box;
+   font-size: 1.2em;
+   font-weight: 600;
+   backface-visibility: hidden;
+   box-shadow: 1px 5px 20px -5px rgba(0,0,0,1);
+   border-style: outset;
     
 }
  /* Sidebar */
@@ -277,6 +282,9 @@ ul {
       border-style: solid;
       display: inline-block;
       font-size: 14px;
+   }
+   td {
+      padding: 2% 1%;
    }
    td:first-child {
       display: none;
@@ -449,10 +457,6 @@ ul {
    margin: 0;
  }
  
- .label-dropdown_language{
-   padding-right: 79%;
- }
- 
  div .sidebar__title-paragraph {
    font-size: 1.5rem;
    margin-right: 26%;
@@ -460,12 +464,15 @@ ul {
  
  
  .percentage__high {
+    text-align: center;
     background: rgb(18, 192, 18);
  }
  .percentage__mid {
+   text-align: center;
     background: rgb(207, 230, 0);
  }
  .percentage__low {
+   text-align: center;
     background: rgb(230, 35, 0);
  }
 
