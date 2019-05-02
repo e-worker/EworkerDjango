@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Wiadomosci{% endblock %}
+{% block content %}
+<main>
+
+Konwersacje
+
+<ul>
+{% for item1, item2 in messages_list%}
+
+<li>{{item2.creation_date}}, Odbiorca: {{item1}}, Temat: {{item2.header}}, Wiadomość: {{item2.content}}</li>
+
+{% empty %}
+
+<li>Nie masz zadnych wiadomosci</li>
+
+{% endfor %}
+</ul>
+
+<a href="/users/new_message">Wyslij nowa wiadomosc</a>
+
+</main>
+{% endblock %}
