@@ -3,13 +3,32 @@
 {% block content %}
 <main>
 
-Konwersacje
+Do kogo ja pisalem
 <table>
-{% for item1, item2 in messages_list%}
+{% for item1 in from_list%}
 
-<!--<li>{{item2.creation_date}}, Odbiorca: {{item1}}, Temat: {{item2.header}}, Wiadomość: {{item2.content}}</li>-->
+{% if isEmployer %}
+<tr><td>Imie studenta: {{item1}}<td></tr>
+{% else %}
+<tr><td>Nazwa firmy: {{item1}}<td></tr>
+{% endif %}
+{% empty %}
 
-<tr><td>Temat: {{messages_list}}<td></tr>
+<li>Nie masz zadnych wiadomosci</li>
+
+{% endfor %}
+
+</table>
+
+Kto do mnie pisał
+<table>
+{% for item2 in to_list%}
+
+{% if isEmployer %}
+<tr><td>Imie studenta: {{item2}}<td></tr>
+{% else %}
+<tr><td>Nazwa firmy: {{item2}}<td></tr>
+{% endif %}
 
 {% empty %}
 
@@ -18,6 +37,8 @@ Konwersacje
 {% endfor %}
 
 </table>
+
+
 
 <a href="/users/new_message">Wyslij nowa wiadomosc</a>
 

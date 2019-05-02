@@ -44,29 +44,21 @@ def new_message(request):
 
 def dashboard(request):
     
-    # if request.user.isEmployer:
-    #     id = Company.objects.get(user_id=request.user.id)
-    #     query_result = Message.objects.filter(company_id=id)
-    #     students = query_result.values_list('student_id', flat = True)
-    #     senders = Student.objects.filter(id__in=students)
-    #     mylist = zip(senders, query_result)
-    #     context = {
-    #        'messages_list': mylist,
-    #     }
-    #     return render(request, 'users/messages.html', context)
-    # else:
-    #     id = Student.objects.get(user_id=request.user.id)
-    #     query_result = Message.objects.filter(student_id=id)
-    #     companies = query_result.values_list('company_id', flat = True)
-    #     senders = Company.objects.filter(id__in=companies)
-    #     mylist = zip(senders, query_result)
-    #     context = {
-    #         'messages_list': mylist,
-    #     }
-    #     return render(request, 'users/messages.html', context)
+    # id = request.user.id
+    # query_result1 = Message.objects.filter(msg_from=id).values_list('header', 'content')
 
-
-    return render(request, 'users/messages.html')
+    # query_result2 = Message.objects.filter(msg_to=id).order_by('creation_date').distinct()
+    # context = {
+    #    'from_list': query_result1,
+    #    'to_list': query_result2,
+    # }
+    query_result = Message.received_messages(request.user)
+    context = {
+        'from_list': query_result[0],
+        'to_list': query_result[1],
+        'isEmployer': query_result[2],
+    }
+    return render(request, 'users/messages.html', context)
 
 def viewMessages(request):
     # todo generate all messages beeing sent to receiver in separate window
