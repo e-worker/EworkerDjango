@@ -44,7 +44,8 @@ class Message(models.Model):
 
         messages = Message.objects.filter(msg_from=user_id, msg_to=number_id)
         messages2 = Message.objects.filter(msg_from=number_id, msg_to=user_id)
-
-        all_messages = zip(messages, messages2).sort(key=['creation_date'])
+        all_messages = messages.union(messages2)
+        all_messages.order_by('-creation_date')
+        # all_messages = zip(messages, messages2).sort(key=['creation_date'])
 
         return all_messages

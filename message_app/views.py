@@ -52,6 +52,9 @@ def dashboard(request):
     }
     return render(request, 'users/messages.html', context)
 
-def viewMessages(request):
-    print(request.POST)
-    #oumen = Message.chat(request.user, request.content_params)
+def viewMessages(request, user_id):
+    messages = Message.chat(request.user, user_id)
+    context = {
+        'messages': messages
+    }
+    return render(request, 'users/chat.html', context)

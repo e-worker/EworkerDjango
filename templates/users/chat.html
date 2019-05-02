@@ -3,45 +3,12 @@
 {% block content %}
 <main>
 
-Do kogo ja pisalem
-<table>
-    {% if isEmployer %}
-        {% for id, name, surname in from_list%}
-        <tr><td>Student: {{ id }}, {{name}} {{surname}}<td></tr>
-                    {% empty %}
-             <li>Nie masz zadnych wiadomosci</li>
-        {% endfor %}
-        {% else %}
+{% for message in messages %}
+<p>{{message.header}}</p>
+<p>{{message.content}}</p>
+<p>......</p>
 
-        {% for id, name in from_list%}
-        <tr><td>Nazwa firmy: {{ id }} {{name}}<td></tr>
-        {% empty %}
-        <li>Nie masz zadnych wiadomosci</li>
-        {% endfor %}
-    {% endif %}
-</table>
-
-Kto do mnie pisał
-<table>
-    {% if isEmployer %}
-        {% for id, name, surname in to_list%}
-        <tr><td>Student:{{ id }} {{name}} {{surname}}<td></tr>
-                    {% empty %}
-             <li>Nie masz zadnych wiadomosci</li>
-        {% endfor %}
-        {% else %}
-
-        {% for id, name in to_list%}
-        <tr><td>Nazwa firmy:{{ id }} {{name}}<td></tr>
-        {% empty %}
-        <li>Nie masz zadnych wiadomosci</li>
-        {% endfor %}
-    {% endif %}
-</table>
-
-
-
-<a href="/users/new_message">Wyslij nowa wiadomosc</a>
+{% endfor %}
 
 </main>
 {% endblock %}

@@ -7,14 +7,14 @@ Do kogo ja pisalem
 <table>
     {% if isEmployer %}
         {% for id, name, surname in from_list %}
-            <tr><td><a href="/chat/user_id={{ id }}"> Student: {{name}} {{surname}} </a><td></tr>
+            <tr><td><a href="{% url 'chat' id %}"> Student: {{name}} {{surname}} </a><td></tr>
                     {% empty %}
              <li>Nie masz zadnych wiadomosci</li>
         {% endfor %}
         {% else %}
 
         {% for id, name in from_list%}
-            <tr><td><a href="/chat/user_id={{ id }}">Nazwa firmy: {{name}} </a><td></tr>
+            <tr><td><a href="{% url 'chat' id %}">Nazwa firmy: {{name}} </a><td></tr>
         {% empty %}
         <li>Nie masz zadnych wiadomosci</li>
         {% endfor %}
@@ -25,14 +25,14 @@ Kto do mnie pisał
 <table>
     {% if isEmployer %}
         {% for id, name, surname in to_list%}
-            <tr><td><a href="/chat/user_id={{ id }}">Student: {{name}} {{surname}} </a><td></tr>
+            <tr><td><a href="{% url 'chat' id %}">Student: {{name}} {{surname}} </a><td></tr>
                     {% empty %}
              <li>Nie masz zadnych wiadomosci</li>
         {% endfor %}
         {% else %}
 
         {% for id, name in to_list%}
-            <tr><td><a href="/chat/user_id={{ id }}">Nazwa firmy: {{name}} </a><td></tr>
+            <tr><td><a href="{% url 'chat' id %}">Nazwa firmy: {{name}} </a><td></tr>
         {% empty %}
         <li>Nie masz zadnych wiadomosci</li>
         {% endfor %}
