@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="360d5802-a722-48f6-8c92-e0be99c037ec" name="Default Changelist" comment="Messages dashboard fixed">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -226,7 +225,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1556801121594</updated>
-      <workItem from="1556801125407" duration="7559000" />
+      <workItem from="1556801125407" duration="7610000" />
     </task>
     <task id="LOCAL-00001" summary="Messages dashboard fixed">
       <created>1556808488241</created>
@@ -239,20 +238,20 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7559000" />
+    <option name="totallyTimeSpent" value="7610000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1011" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24973376" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24973376" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" />
       <window_info anchor="bottom" id="Version Control" weight="0.3297062" />
       <window_info anchor="bottom" id="Python Console" weight="0.3297062" />
-      <window_info anchor="bottom" id="Terminal" visible="true" weight="0.21980414" />
+      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.21980414" />
       <window_info anchor="bottom" id="Event Log" sideWeight="0.5005325" side_tool="true" weight="0.3297062" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />

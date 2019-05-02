@@ -10,8 +10,8 @@ db.sqlite3
 #MacJacka.DS_Store
 
 .DS_Store
-.idea
-.vscode
+idea/
+vscode/
 
 # If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/
 # in your Git repository. Update and uncomment the following line accordingly.
