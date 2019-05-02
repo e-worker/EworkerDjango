@@ -1,9 +1,32 @@
+
 {% extends 'base.html' %}
-{% block title %}Wiadomosci{% endblock %}
+
+{% block title %}Wyslij nowa wiadomosc{% endblock %}
 {% block content %}
 <main>
-Wyslij wiadomosc
+    <br>
+        <div class = "container nes-container with-title is-centered">
+            <p class = "title">Nowa wiadomosc</p>
+    <div class = "row">
+        <!--alerts-->
+        {% include 'partials/_alerts.html' %}
+        <div class = "col l4 offset-l1">
+            <form action="{% url 'new_message' %}" method="POST">
+                {% csrf_token %} 
+                <p align="left">📝 E-Mail odbiorcy</p>
+                <textarea  class="nes-textarea" name="email-adresat" style="resize:none" required placeholder="E-mail"></textarea>
+                <p align="left">📩 Temat</p>
+                <textarea  class="nes-textarea" name="header" style="resize:none" required placeholder="Temat"></textarea>
+                <p align="left">📩 Wiadomosc</p>
+                <textarea  class="nes-textarea" name="content" style="resize:none" required placeholder="Wiadomosc"></textarea>
+            </div>
+        </div>
+        
 
+        <input type="submit" value="Wyslij" class="nes-btn is-primary">
+        </form>
 
+        </div>
+    <br>
 </main>
 {% endblock %}

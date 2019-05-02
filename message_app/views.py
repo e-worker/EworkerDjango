@@ -21,9 +21,9 @@ def new_message(request):
         if not Company.objects.filter(email=company).exists() or not Student.objects.filter(email=student).exists():
             messages.error(request, 'Podany adresat nie istnieje w bazie, sprawdz email')
         else:
-            company_id = Company.objects.get(email__exact=company).id
-            student_id = Student.objects.get(email__exact=student).id
-            message = Message(header=header, content=content, student=student,company=company)
+            company_id = Company.objects.get(email=company).id
+            student_id = Student.objects.get(email=student).id
+            message = Message(header=header, content=content, company_id=company_id,student_id=student_id)
             message.save()
             return redirect('messages')
     return render(request, 'users/new_message.html')
