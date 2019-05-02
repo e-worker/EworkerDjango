@@ -2,108 +2,151 @@
 {% load static %}
 {% block title %}Edytuj Profil{% endblock %}
 {% block content %}
-<main>
-<form id="student_form" method="POST">
-{% csrf_token %}
-<label for="city">Miasto:</label>
-<input type="text" name="city" required value="{{student.city}}"></br>
-<label for="street">Ulica</label>
-<input type="text" name="street" value="{{student.street}}"></br>
-<label for="house_number">Numer Domu</label>
-<input type="text" name="house_number" required value="{{student.house_number}}"></br>
-<label for="flat_number">Numer Mieszkania</label>
-<input type="text" name="flat_number" value="{{student.flat_number}}"></br>
-<label for="salary_from">Zarabki od</label>
-<input type="number" name="salary_from" required value="{{student.salary_from}}"></br>
-<label for="salary_to">Zarabki do</label>
-<input type="number" name="salary_to" required value="{{student.salary_to}}"></br>
-<label for="document_url">Link do CV</label>
-<input type="text" name="document_url" value="{{student.document_url}}"></br>
-<label for="interest_text">Zainteresowania</label>
-<textarea name="interest_text">{{student.interest_text}}</textarea></br>
-<label for="description">Opis</label>
-<textarea name="description">{{student.description}}</textarea></br>
-{% if courses %}</br>
-<select {% if not student_courses %}name="course"{% endif %} id="course">
-  {% for course in courses %}
-  <option value="{{course.name}}">{{course.name}}</option>
-  {% endfor %}
-</select>
-   <button id="addCourse">+</button>
-<div id="coursesContainer">
-{% if student_courses %}
-  {% for student_course in student_courses %}
-    <div class="courseListElement">
-    {{student_course.degree_course.name}}
-    <input name="course" style="display:none;" value="{{student_course.degree_course.name}}">
-    <a class="delete-item" style="color:red;">x</a>
-    </div>
-  {% endfor %}
-{% endif %}
-</div>
-{% endif %}
-{% if languages %}</br>
-<select  {% if not student_languages %}name="language"{% endif %} id="language">
-  {% for language in languages %}
-    <option value="{{language.name}}">{{language.name}}</option>
-  {% endfor %}
-</select>
-{% if languageLvls %}
-    <select {% if not student_languages %}name="languageLvl"{% endif %} id="languageLvl">
-        {% for languageLvl in languageLvls %}
-            <option value="{{languageLvl.level}}">{{languageLvl.level}}</option>
-        {% endfor %}
-    </select>
-    <button id="addLanguage">+</button>
-    <div id="languagesContainer">
-      {% if student_languages %}
-        {% for student_language in student_languages %}
-          <div class="languageListElement">
-            {{student_language.language}}: {{student_language.language_lvl}}  
-            <input name="language" style="display:none;" value="{{student_language.language}}">
-            <input name="languageLvl" style="display:none;" value="{{student_language.language_lvl}}">    
-            <a class="delete-item" style="color:red;">x</a>
-          </div>
-        {% endfor %}
-      {% endif %}    
-    </div>
-{% endif %}
-{% endif %}
-{% if skills %}</br>
-<select id="skill">
-{% for skill in skills %}
-<option value="{{skill.name}}">{{skill.name}}</option>
-{% endfor %}
-</select>
-<button id="addSkill">+</button>
-<div id="skillsErrorMessages">
 
-</div>
-<div id="skillsContainer">
-{% if student_skills %}
-  {% for student_skill in student_skills %}
-    <div class="skillListElement">
-      {{student_skill.skill}} 
-      <a class="delete-item" style="color: red;">x</a>
-      <p></p>
-      <input name="skill" style="display: none;" value="{{student_skill.skill}}">
-      <textarea name="skillText" required="">{{student_skill.text}}</textarea>
-      <p>Data od</p>
-      <input type="date" name="date_from" value="{{student_skill.start_date|date:"Y-m-d" }}">
-      <p>Data do</p>
-      <input type="date" name="date_to" value="{{student_skill.end_date|date:"Y-m-d"}}">
-      <p>Obecnie</p>
-      <select id="present" name="present">
-        <option value="False">Nie</option>
-        <option {% if student_skill.present %}selected{% endif %} value="True">Tak</option>
-      </select>
-    </div>
-  {% endfor %}
-{% endif %}
-</div>
-{% endif %}
-<button id="submitBtn">Wyslij</button>
+<main>
+    <div class = "container nes-container with-title is-centered">
+        <p class = "title">Edycja profilu</p>
+        <div class = "row">
+            <form id="student_form" method="POST">
+                {% csrf_token %}
+                <div class="nes-field">
+                    <label for="city" class="edit_profile">Miasto:</label>
+                    <input type="text" name="city" class="nes-input" required value="{{student.city}}">
+                </div>
+                <div class="nes-field">
+                    <label for="street" class="edit_profile">Ulica</label>
+                    <input type="text" name="street" class="nes-input" value="{{student.street}}">
+                </div>
+                <div class="nes-field">
+                    <label for="house_number" class="edit_profile">Numer Domu</label>
+                    <input type="text" name="house_number" class="nes-input" required value="{{student.house_number}}">
+                </div>
+                <div class="nes-field">
+                    <label for="flat_number" class="edit_profile">Numer Mieszkania</label>
+                    <input type="text" name="flat_number" class="nes-input" value="{{student.flat_number}}">
+                </div>
+                <div class="nes-field">
+                    <label for="salary_from" class="edit_profile">Zarabki od</label>
+                    <input type="number" name="salary_from" class="nes-input" required value="{{student.salary_from}}">
+                </div>
+                <div class="nes-field">
+                    <label for="salary_to" class="edit_profile">Zarabki do</label>
+                    <input type="number" name="salary_to" class="nes-input" required value="{{student.salary_to}}">
+                </div>
+                <div class="nes-field">
+                    <label for="document_url" class="edit_profile">Link do CV</label>
+                    <input type="text" name="document_url" class="nes-input" value="{{student.document_url}}">
+                </div>
+                <div class="nes-field">
+                    <label for="interest_text" class="edit_profile">Zainteresowania</label>
+                    <textarea name="interest_text" class="nes-input">{{student.interest_text}}</textarea>
+                </div>
+               <div class="nes-field">
+                  <label for="description" class="edit_profile">Opis</label>
+                  <textarea name="description" class="nes-input">{{student.description}}</textarea>
+               </div>
+               <label for="course" class="edit_profile">Kierunki studiów</label>
+               <div class="nes-select">
+                  {% if courses %}
+                  <select {% if not student_courses %}name="course"{% endif %} id="course">
+                    {% for course in courses %}
+                    <option value="{{course.name}}">{{course.name}}</option>
+                    {% endfor %}
+                  </select>
+               </div>
+               <button id="addCourse" class="nes-btn is-primary">+</button>
+                   
+                <div id="coursesContainer">
+                {% if student_courses %}
+                  {% for student_course in student_courses %}
+                    <div class="courseListElement">
+                    {{student_course.degree_course.name}}
+                    <input name="course" style="display:none;"  value="{{student_course.degree_course.name}}">
+                    <a class="delete-item" style="color:red;">x</a>
+                    </div>
+                  {% endfor %}
+                {% endif %}
+                </div>
+                {% endif %}
+                <br>
+                <label for="language" class="edit_profile">Języki obce</label>
+                <div class="nes-select">
+                    <select  {% if not student_languages %}name="language"{% endif %} id="language">
+                        {% for language in languages %}
+                          <option value="{{language.name}}">{{language.name}}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                {% if languages %}
+                <label for="languageLvl" class="edit_profile">Poziom</label>
+                <div class="nes-select">
+                {% if languageLvls %}
+                    <select {% if not student_languages %}name="languageLvl"{% endif %} id="languageLvl">
+                        {% for languageLvl in languageLvls %}
+                            <option value="{{languageLvl.level}}">{{languageLvl.level}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                    <button id="addLanguage" class="nes-btn is-primary">+</button>
+                    <div id="languagesContainer">
+                      {% if student_languages %}
+                        {% for student_language in student_languages %}
+                          <div class="languageListElement">
+                            {{student_language.language}}: {{student_language.language_lvl}}  
+                            <input name="language" style="display:none;" value="{{student_language.language}}">
+                            <input name="languageLvl" style="display:none;" value="{{student_language.language_lvl}}">    
+                            <a class="delete-item" style="color:red;">x</a>
+                          </div>
+                        {% endfor %}
+                      {% endif %}    
+                    </div>
+                {% endif %}
+                {% endif %}
+                <br>
+                <label for="skill" class="edit_profile">Doświadczenie</label>
+                <div class="nes-select">
+                    {% if skills %}
+                    <select id="skill">
+                    {% for skill in skills %}
+                    <option value="{{skill.name}}">{{skill.name}}</option>
+                    {% endfor %}
+                    </select>
+                </div>
+                
+                <button id="addSkill" class="nes-btn is-primary">+</button>
+                <div id="skillsErrorMessages">
+                
+                </div>
+                <div id="skillsContainer">
+                {% if student_skills %}
+                  {% for student_skill in student_skills %}
+                    <div class="skillListElement">
+                      {{student_skill.skill}} 
+                      <a class="delete-item" style="color: red;">x</a>
+                      <p></p>
+                      <input name="skill" style="display: none; font-size: 1.2em;" value="{{student_skill.skill}}">
+                      <textarea name="skillText" class="nes-input" required="">{{student_skill.text}}</textarea>
+                      <p class="edit_profile"> Data od</p>
+                      <input type="date" name="date_from" class="nes-input" value="{{student_skill.start_date|date:"Y-m-d" }}">
+                      <p class="edit_profile">Data do</p>
+                      <input type="date" name="date_to" class="nes-input" value="{{student_skill.end_date|date:"Y-m-d"}}">
+                      <p class="edit_profile">Obecnie</p>
+                      <div class="nes-select">
+                          <select id="present" name="present">
+                              <option value="False">Nie</option>
+                              <option {% if student_skill.present %}selected{% endif %} value="True">Tak</option>
+                            </select>
+                      </div>
+                    </div>
+                  {% endfor %}
+                {% endif %}
+                </div>
+                {% endif %}
+        </div>
+
+<button id="submitBtn" class="nes-btn is-primary">Wyslij</button>
 </form>
+</div>
 </main>
 <script src="{% static 'js/dynamic_forms_student.js' %}"></script>
 {% endblock %}

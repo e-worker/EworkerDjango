@@ -8,12 +8,13 @@
     <a class="s-sidebar__trigger" href="#0">
        <i class="fa fa-bars"></i>
     </a>
-  
+   
     <nav class="s-sidebar__nav">
     
       <br>
+      
       <form method="POST">
-
+      
           <ul class="form">
             <li>
                 <div class="sidebar__title">
@@ -24,22 +25,22 @@
               <li>
                  <a class="s-sidebar__nav-link" href="#0">
                     <label for="salary_from">Zarabki od</label>
-                      <input type="number" name="salary_from">
+                      <input type="number" name="salary_from" class="salary">
                  </a>
               </li>
               <li>
                   <a class="s-sidebar__nav-link" href="#0">
                       <label for="salary_to">Zarabki do</label>
-                        <input type="number" name="salary_to">
+                        <input type="number" name="salary_to" class="salary">
                    </a>
               </li>
               <li class="course">
                  <a class="s-sidebar__nav-link" href="#0">
                    
-                      <label for="default_select" class="label-dropdown">Kierunek studiów</label>
+                      <label for="course_select" class="label-dropdown">Kierunek studiów</label>
                       <br>
                       <div class="nes-select">
-                      <select required id="default_select">
+                      <select required id="course_select">
                       <option value="" disabled selected hidden>Wybierz...</option>
                       <option value="0">Informatyka</option>
                       <option value="1">Zarządzanie</option>
@@ -49,42 +50,41 @@
               </li>
               <li class="language">
                   <a class="s-sidebar__nav-link" href="#0">
-                    <div class="row">
-                      <div class="eight columns">
-                          <label for="default_select" class="label-dropdown">Język</label>
+                    
+                      
+                          <label for="language_select" class="label-dropdown_language">Język</label>
                           <br>
                           <div class="nes-select" id="nes-select__language">
-                          <select required id="default_select">
+                          <select required id="language_select">
                           <option value="" disabled selected hidden>Wybierz...</option>
                           <option value="0">Angielski</option>
                           <option value="1">Niemiecki</option>
                            </select>
                         </div>
-                      </div>
-                       <div class="four columns">
-                          <label for="default_select" class="label-dropdown" id="label-dropdown__lvl">Poziom</label>
-                          <br>
+                      
+                       
+                          <label for="language_lvl-select" class="label-dropdown" id="label-dropdown__lvl">Poziom</label>
                           <div class="nes-select" id="nes-select__language-lvl">
-                          <select required id="default_select">
+                          <select required id="language_lvl-select">
                           <option value="" disabled selected hidden>Wybierz...</option>
                           <option value="0">A1</option>
                           <option value="1">A2</option>
                           <option value="2">B1</option>
                            </select>
                         </div>
-                       </div>
+                       
                       
-                    </div>
+                  
                       
                   </a>
                </li>
                <li class="course">
                   <a class="s-sidebar__nav-link" href="#0">
                     
-                       <label for="default_select" class="label-dropdown">Doświadczenie</label>
+                       <label for="experience_select" class="label-dropdown_experience">Doświadczenie</label>
                        <br>
                        <div class="nes-select">
-                       <select required id="default_select">
+                       <select required id="experience_select">
                        <option value="" disabled selected hidden>Wybierz...</option>
                        <option value="0">Praca</option>
                        <option value="1">Staż</option>
@@ -97,39 +97,37 @@
                      <button type="button" class="nes-btn is-primary" id="search-btn">Primary</button>
                </li>
            </ul>
-          
       </form>
-       
     </nav>
+    
   </div>
   
   <!-- Content -->
   <main class="s-layout__content">
-            <table class="u-full-width">
-                  <tbody>
-                    <tr>
-                        <td><a href="#"><img src="{% static 'images/Screenshot from 2019-04-28 15-27-32.png' %}" alt="Asseco" class="company-img"></a></td>
-                        <td>Programista</td>
-                        <td>Warszawa</td>
-                        <td class="percentage__high">100%</td>
-                    
-                    </tr>
-                    <tr>
-                        <td><a href="#"><img src="{% static 'images/Screenshot from 2019-04-28 15-40-15.png' %}" alt="Comarch" class="company-img"></a></td>
-                        <td>Stażysta</td>
-                        <td>Kraków</td>
-                        <td class="percentage__mid">60%</td>
-                  </tr>
-                  <tr>
-                        <td><a href="#"><img src="{% static 'images/Screenshot from 2019-04-28 15-43-23.png' %}" alt="Biedronka" class="company-img"></a></td>
-                        <td>Kasjer</td>
-                        <td>Rzeszów</td>
-                        <td class="percentage__low">20%</td>
-                  </tr>
-                    
-                  </tbody>
-                </table>
-                
+               <table class="u-full-width">
+                     <tbody>
+                       <tr>
+                           <td><a href="#" ><img src="{% static 'images/Screenshot from 2019-04-28 15-27-32.png' %}" alt="Asseco" class="company-img"></a></td>
+                           <td>Programista <p class="company_name">Firma: Asseco</p></td>
+                           <td>Warszawa</td>
+                           <td class="percentage__high">100%</td>
+                       
+                       </tr>
+                       <tr>
+                           <td><a href="#" ><img src="{% static 'images/Screenshot from 2019-04-28 15-40-15.png' %}" alt="Comarch" class="company-img"></a></td>
+                           <td>Stażysta <p class="company_name">Firma: Comarch</p></td>
+                           <td>Kraków</td>
+                           <td class="percentage__mid">60%</td>
+                     </tr>
+                     <tr>
+                           <td><a href="#" ><img src="{% static 'images/Screenshot from 2019-04-28 15-43-23.png' %}" alt="Biedronka" class="company-img"></a></td>
+                           <td>Kasjer <p class="company_name">Firma: Biedronka</p></td>
+                           <td>Rzeszów</td>
+                           <td class="percentage__low">20%</td>
+                     </tr>  
+                     </tbody>
+                   </table>
+         
   </main>
   </div>
 {% endblock %}
