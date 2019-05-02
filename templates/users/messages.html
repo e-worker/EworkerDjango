@@ -4,18 +4,20 @@
 <main>
 
 Konwersacje
-
-<ul>
+<table>
 {% for item1, item2 in messages_list%}
 
-<li>{{item2.creation_date}}, Odbiorca: {{item1}}, Temat: {{item2.header}}, Wiadomość: {{item2.content}}</li>
+<!--<li>{{item2.creation_date}}, Odbiorca: {{item1}}, Temat: {{item2.header}}, Wiadomość: {{item2.content}}</li>-->
+
+<tr><td>Temat: {{item1}}<td></tr>
 
 {% empty %}
 
 <li>Nie masz zadnych wiadomosci</li>
 
 {% endfor %}
-</ul>
+
+</table>
 
 <a href="/users/new_message">Wyslij nowa wiadomosc</a>
 
