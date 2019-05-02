@@ -6,15 +6,15 @@
 Do kogo ja pisalem
 <table>
     {% if isEmployer %}
-        {% for id, name, surname in from_list %}
-            <tr><td><a href="/chat/user_id={{ id }}"> Student: {{name}} {{surname}} </a><td></tr>
+        {% for id, name, surname in from_list%}
+        <tr><td>Student: {{ id }}, {{name}} {{surname}}<td></tr>
                     {% empty %}
              <li>Nie masz zadnych wiadomosci</li>
         {% endfor %}
         {% else %}
 
         {% for id, name in from_list%}
-            <tr><td><a href="/chat/user_id={{ id }}">Nazwa firmy: {{name}} </a><td></tr>
+        <tr><td>Nazwa firmy: {{ id }} {{name}}<td></tr>
         {% empty %}
         <li>Nie masz zadnych wiadomosci</li>
         {% endfor %}
@@ -25,14 +25,14 @@ Kto do mnie pisał
 <table>
     {% if isEmployer %}
         {% for id, name, surname in to_list%}
-            <tr><td><a href="/chat/user_id={{ id }}">Student: {{name}} {{surname}} </a><td></tr>
+        <tr><td>Student:{{ id }} {{name}} {{surname}}<td></tr>
                     {% empty %}
              <li>Nie masz zadnych wiadomosci</li>
         {% endfor %}
         {% else %}
 
         {% for id, name in to_list%}
-            <tr><td><a href="/chat/user_id={{ id }}">Nazwa firmy: {{name}} </a><td></tr>
+        <tr><td>Nazwa firmy:{{ id }} {{name}}<td></tr>
         {% empty %}
         <li>Nie masz zadnych wiadomosci</li>
         {% endfor %}

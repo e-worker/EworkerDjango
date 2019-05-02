@@ -6,4 +6,5 @@ urlpatterns = [
     path("register", views.register, name="register"),
     path("new_message", msg.new_message, name="new_message"),
     path("messages", msg.dashboard, name="messages"),
+    path("chat/<int:user_id>", msg.viewMessages, name="chat"),
 ]

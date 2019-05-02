@@ -43,15 +43,7 @@ def new_message(request):
 
 
 def dashboard(request):
-    
-    # id = request.user.id
-    # query_result1 = Message.objects.filter(msg_from=id).values_list('header', 'content')
 
-    # query_result2 = Message.objects.filter(msg_to=id).order_by('creation_date').distinct()
-    # context = {
-    #    'from_list': query_result1,
-    #    'to_list': query_result2,
-    # }
     query_result = Message.received_messages(request.user)
     context = {
         'from_list': query_result[0],
@@ -61,5 +53,5 @@ def dashboard(request):
     return render(request, 'users/messages.html', context)
 
 def viewMessages(request):
-    # todo generate all messages beeing sent to receiver in separate window
-    xd
+    print(request.POST)
+    #oumen = Message.chat(request.user, request.content_params)

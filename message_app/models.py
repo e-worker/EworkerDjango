@@ -16,40 +16,35 @@ class Message(models.Model):
     def __str__(self):
         return str(self.header)
 
-    def received_messages(CustomUser: CustomUser):
+    def received_messages(user: CustomUser):
 
-        if not CustomUser.isEmployer:
-            messages_from_me_to = Message.objects.filter(msg_from=CustomUser.id).values_list('msg_to_id', 'msg_to__company__company_name')
-            messages_to_me = Message.objects.filter(msg_to=CustomUser.id).values_list('msg_from_id', 'msg_from__company__company_name')
-            msg_from_me = set()
-            for messages in messages_from_me_to:
-                msg_from_me.add(messages[1])
+        user_type = user.isEmployer
+        user_id = user.id
 
-            msg_to_me = set()
-            for messages in messages_to_me:
-                msg_to_me.add(messages[1])
+        if not user_type:
+            messages_from_me_to = Message.objects.filter(msg_from=user_id).values_list('msg_to_id', 'msg_to__company__company_name')
+            messages_to_me = Message.objects.filter(msg_to=user_id).values_list('msg_from_id', 'msg_from__company__company_name')
         else:
-            messages_from_me_to = Message.objects.filter(msg_from=CustomUser.id).values_list('msg_to_id', 'msg_to__student__name', 'msg_to__student__surname')
-            messages_to_me = Message.objects.filter(msg_to=CustomUser.id).values_list('msg_from_id', 'msg_from__student__name', 'msg_from__student__surname')
+            messages_from_me_to = Message.objects.filter(msg_from=user_id).values_list('msg_to_id', 'msg_to__student__name', 'msg_to__student__surname')
+            messages_to_me = Message.objects.filter(msg_to=user_id).values_list('msg_from_id', 'msg_from__student__name', 'msg_from__student__surname')
 
         msg_from_me = set()
         msg_to_me = set()
-        if CustomUser.isEmployer:
-            for messages in messages_from_me_to:
-                student_name = (messages[1], messages[2])
-                msg_from_me.add(student_name)
+        for messages in messages_from_me_to:
+            msg_from_me.add(messages)
 
-            for messages in messages_to_me:
-                student_name = (messages[1], messages[2])
-                msg_to_me.add(student_name)
-        else:
-            for messages in messages_from_me_to:
-                msg_from_me.add(messages[1])
-
-            for messages in messages_to_me:
-                msg_to_me.add(messages[1])
-
-
-        user_type = CustomUser.isEmployer
+        for messages in messages_to_me:
+            msg_to_me.add(messages)
 
         return msg_from_me, msg_to_me, user_type
+
+    def chat(user: CustomUser, number_id: int):
+        user_type = user.isEmployer
+        user_id = user.id
+
+        messages = Message.objects.filter(msg_from=user_id, msg_to=number_id)
+        messages2 = Message.objects.filter(msg_from=number_id, msg_to=user_id)
+
+        all_messages = zip(messages, messages2).sort(key=['creation_date'])
+
+        return all_messages
