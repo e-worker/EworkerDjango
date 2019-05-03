@@ -48,7 +48,8 @@ def dashboard(request):
     context = {
         'from_list': query_result[0],
         'to_list': query_result[1],
-        'isEmployer': query_result[2],
+        'all_messages': query_result[2],
+        'isEmployer': query_result[3],
     }
     return render(request, 'users/messages.html', context)
 
