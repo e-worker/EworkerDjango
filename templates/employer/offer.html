@@ -1,0 +1,37 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block title %}Offer{% endblock %}
+{% block content %}
+
+<main> 
+    <div class="container container-offer">
+        <header>
+            <div class="row">
+                <div class="nine columns">
+                        <p class="header_title">Junior Pascal Developer</p>
+                        <a href="#" class="header_company-name">Asseco Poland</a>
+                        <p class="header_company-localication"><i class="fa fa-home">Rzeszów, podkarpackie </i></p>
+                </div>
+                  <div class="three columns">
+                        <img src="{% static 'images/Screenshot from 2019-04-28 15-27-32.png' %}" alt="Asseco" class="header_company-img">
+                  </div>
+            </div>    
+        </header>
+        <div class="offer_description">
+            <div class="job_description">
+                <p class="job_description-title"> Opis stanowiska</p>
+                <p class="job_description-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate dolorem mollitia neque iusto voluptas asperiores accusamus quaerat, maxime sint autem eaque animi. Deleniti, obcaecati voluptatum quam laborum incidunt corporis suscipit, quos odio vitae voluptas ad cupiditate. Ipsa qui neque iusto rerum voluptatem, accusamus iste earum soluta vel nobis possimus vitae.</p>
+                            
+            </div>
+            <div class="job_responsibilities">
+                    <p class="job_description-title"> Obowiązki osoby zatrudnionej</p>
+                    <p class="job_description-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate dolorem mollitia neque iusto voluptas asperiores accusamus quaerat, maxime sint autem eaque animi. Deleniti, obcaecati voluptatum quam laborum incidunt corporis suscipit, quos odio vitae voluptas ad cupiditate. Ipsa qui neque iusto rerum voluptatem, accusamus iste earum soluta vel nobis possimus vitae.</p>
+            </div>
+            <div class="job_requirements">
+                    <p class="job_description-title"> Wymagania</p>
+                    <p class="job_description-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate dolorem mollitia neque iusto voluptas asperiores accusamus quaerat, maxime sint autem eaque animi. Deleniti, obcaecati voluptatum quam laborum incidunt corporis suscipit, quos odio vitae voluptas ad cupiditate. Ipsa qui neque iusto rerum voluptatem, accusamus iste earum soluta vel nobis possimus vitae.</p>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

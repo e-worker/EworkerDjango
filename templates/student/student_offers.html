@@ -1,107 +1,10 @@
- {% extends 'base.html' %} 
+{% extends 'base.html' %} 
 {% load static %}
 {% block title %}Offers{% endblock %}
 {% block content %}
 <div class="s-layout">
   <!-- Sidebar -->
-  <div class="s-layout__sidebar">
-    <a class="s-sidebar__trigger" href="#0">
-       <i class="fa fa-bars"></i>
-    </a>
-   
-    <nav class="s-sidebar__nav">
-    
-      <br>
-      
-      <form method="POST">
-      
-          <ul class="form">
-            <li>
-                <div class="sidebar__title">
-                    <p class="sidebar__title-paragraph">Wyszukiwarka <i class="fa fa-search"></i></p>
-                     
-                  </div>
-            </li>
-              <li>
-                 <a class="s-sidebar__nav-link" href="#0">
-                    <label for="salary_from">Zarabki od</label>
-                      <input type="number" name="salary_from" class="salary">
-                 </a>
-              </li>
-              <li>
-                  <a class="s-sidebar__nav-link" href="#0">
-                      <label for="salary_to">Zarabki do</label>
-                        <input type="number" name="salary_to" class="salary">
-                   </a>
-              </li>
-              <li class="course">
-                 <a class="s-sidebar__nav-link" href="#0">
-                   
-                      <label for="course_select" class="label-dropdown">Kierunek studiów</label>
-                      <br>
-                      <div class="nes-select">
-                      <select required id="course_select">
-                      <option value="" disabled selected hidden>Wybierz...</option>
-                      <option value="0">Informatyka</option>
-                      <option value="1">Zarządzanie</option>
-                       </select>
-                    </div>
-                 </a>
-              </li>
-              <li class="language">
-                  <a class="s-sidebar__nav-link" href="#0">
-                    
-                      
-                          <label for="language_select" class="label-dropdown_language">Język</label>
-                          <br>
-                          <div class="nes-select" id="nes-select__language">
-                          <select required id="language_select">
-                          <option value="" disabled selected hidden>Wybierz...</option>
-                          <option value="0">Angielski</option>
-                          <option value="1">Niemiecki</option>
-                           </select>
-                        </div>
-                      
-                        <br>
-                          <label for="language_lvl-select" class="label-dropdown" id="label-dropdown__lvl">Poziom</label>
-                          <div class="nes-select" id="nes-select__language-lvl">
-                          <select required id="language_lvl-select">
-                          <option value="" disabled selected hidden>Wybierz...</option>
-                          <option value="0">A1</option>
-                          <option value="1">A2</option>
-                          <option value="2">B1</option>
-                           </select>
-                        </div>
-                       
-                      
-                  
-                      
-                  </a>
-               </li>
-               <li class="course">
-                  <a class="s-sidebar__nav-link" href="#0">
-                    
-                       <label for="experience_select" class="label-dropdown_experience">Doświadczenie</label>
-                       <br>
-                       <div class="nes-select">
-                       <select required id="experience_select">
-                       <option value="" disabled selected hidden>Wybierz...</option>
-                       <option value="0">Praca</option>
-                       <option value="1">Staż</option>
-                       <option value="2">Praktyki</option>
-                        </select>
-                     </div>
-                  </a>
-               </li>
-               <li>
-                     <button type="button" class="nes-btn is-primary" id="search-btn">Primary</button>
-               </li>
-           </ul>
-      </form>
-    </nav>
-    
-  </div>
-  
+  {% include 'partials/_sidenav.html'%}
   <!-- Content -->
   <main class="s-layout__content">
                <table class="u-full-width">

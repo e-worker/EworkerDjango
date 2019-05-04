@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib import messages, auth
 from .models import Company
+from student.models import Student
 
 def edit_profile(request):
     if request.user.isEmployer:
@@ -29,3 +30,11 @@ def edit_profile(request):
                 company.description = description
                 company.save()
     return render(request, 'employer/edit_profile.html', context)
+
+def find_students(request):
+    if request.method=='POST':
+        pass
+    return render(request, 'employer/find_student.html')
+
+def offer(request):
+    return render(request, 'employer/offer.html')
