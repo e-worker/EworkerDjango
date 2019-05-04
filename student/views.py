@@ -147,16 +147,18 @@ def edit_profile(request):
 
 
 def string_to_int(variable, error_message, request, length):
-    if len(str(variable)) < length:
-        messages.error(request, error_message)
-        return False, variable, False
-    else:
-        try:
-            variable = (int(variable))
-            return True, variable, True
-        except ValueError:
+    try:
+        variable = (int(variable))
+        if len(str(variable)) < length:
             messages.error(request, error_message)
-            return True, variable, False
+            return False, variable, False
+        else:
+            return True, variable, True
+    except:
+        messages.error(request, error_message)
+        return True, variable, False
+
+
 
 
 def student_offers(request):
