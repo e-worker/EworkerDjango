@@ -44,7 +44,7 @@ function submitCheck(e)
        skillsErrorMessages.appendChild(p);
        setTimeout(function(){
            document.querySelector('#error').remove();
-       }, 2000); 
+       }, 3000);
     }else
     {
         document.getElementById("student_form").submit();
