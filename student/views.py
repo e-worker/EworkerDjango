@@ -61,88 +61,102 @@ def edit_profile(request):
                     if len(str(house_number)) < 1:
                         messages.error(request, 'Podaj całkowity numer budynku')
                     else:
-                        if (len(str(salary_from)) < 2):
-                            messages.error(request, 'Podaj całkowity dwucyfrowy dolny przedział zarobkowy na godzinę')
-                        else:
-                            _salary_from = string_to_int(salary_from,'Podaj całkowity dwucyfrowy dolny przedział zarobkowy na godzinę', request)
-                            if _salary_from[0]:
-                                salary_from = _salary_from[1]
-                                if len(str(salary_to)) < 2:
-                                    messages.error(request, 'Podaj całkowity dwucyfrowy górny przedział zarobkowy na godzinę')
+                        _salary_from = string_to_int(salary_from,
+                                                     'Podaj całkowity dwucyfrowy dolny przedział zarobkowy na godzinę',
+                                                     request,
+                                                     2)
+                        if _salary_from[0] and _salary_from[2]:
+                            salary_from = _salary_from[1]
+                            _salary_to = string_to_int(salary_to,
+                                                       'Podaj całkowity dwucyfrowy górny przedział zarobkowy na godzinę',
+                                                       request,
+                                                       2)
+                            if _salary_to[0] and _salary_to[2]:
+                                salary_to = _salary_to[1]
+                                if salary_from > salary_to:
+                                    messages.error(request, 'Zarobki "od" nie mogą być wyższe niż zarobi "do"')
                                 else:
-                                    _salary_to = string_to_int(salary_to, 'Podaj całkowity dwucyfrowy górny przedział zarobkowy na godzinę', request)
-                                    if _salary_to[0]:
-                                        salary_to = _salary_to[1]
-                                        if salary_from > salary_to:
-                                            messages.error(request,'Zarobki "od" nie mogą być wyższe niż zarobi "do"')
+                                    if len(interest_text) < 5:
+                                        messages.error(request, 'Podaj jakieś swoje zainteresowania')
+                                    else:
+                                        if len(description) < 3:
+                                            messages.error(request, 'Powiedz coś o sobie ;)')
                                         else:
-                                            if len(interest_text) < 5:
-                                                messages.error(request, 'Podaj jakieś swoje zainteresowania')
-                                            else:
-                                                if len(description) < 3:
-                                                    messages.error(request, 'Powiedz coś o sobie ;)')
-                                                else:
-                                                    #student profile update
-                                                    student.city = city
-                                                    student.street = street
-                                                    student.house_number = house_number
-                                                    student.flat_number = flat_number
-                                                    student.salary_from = salary_from
-                                                    student.salary_to = salary_to
-                                                    student.document_url = document_url
-                                                    student.interest_text = interest_text
-                                                    student.description = description
-                                                    student.save()
+                                            # student profile update
+                                            student.city = city
+                                            student.street = street
+                                            student.house_number = house_number
+                                            student.flat_number = flat_number
+                                            student.salary_from = salary_from
+                                            student.salary_to = salary_to
+                                            student.document_url = document_url
+                                            student.interest_text = interest_text
+                                            student.description = description
+                                            student.save()
 
-                                                    StudentDegreeCourse.objects.filter(student=student).delete()
-                                                    for course in courses: # szukam czy juz  taki studentdegree bylo dodane, jesli nie to tworze
-                                                        if not StudentDegreeCourse.objects.filter(student = student, degree_course__name = course).exists():
-                                                            degree_course = DegreeCourse.objects.get(name=course)
-                                                            student_degree_course = StudentDegreeCourse(student=student, degree_course = degree_course)
-                                                            student_degree_course.save()
+                                            StudentDegreeCourse.objects.filter(student=student).delete()
+                                            for course in courses:  # szukam czy juz  taki studentdegree bylo dodane, jesli nie to tworze
+                                                if not StudentDegreeCourse.objects.filter(student=student,
+                                                                                          degree_course__name=course).exists():
+                                                    degree_course = DegreeCourse.objects.get(name=course)
+                                                    student_degree_course = StudentDegreeCourse(student=student,
+                                                                                                degree_course=degree_course)
+                                                    student_degree_course.save()
 
-                                                    StudentLanguage.objects.filter(student=student).delete()
-                                                    for index, language in enumerate(languages):
-                                                        if not StudentLanguage.objects.filter(student=student, language__name=language).exists():
-                                                            language_model = Language.objects.get(name=language)
-                                                            languageLvl = LanguageLvl.objects.get(level=languagesLvls[index])
-                                                            student_language = StudentLanguage(student=student, language=language_model, language_lvl=languageLvl)
-                                                            student_language.save()
+                                            StudentLanguage.objects.filter(student=student).delete()
+                                            for index, language in enumerate(languages):
+                                                if not StudentLanguage.objects.filter(student=student,
+                                                                                      language__name=language).exists():
+                                                    language_model = Language.objects.get(name=language)
+                                                    languageLvl = LanguageLvl.objects.get(
+                                                        level=languagesLvls[index])
+                                                    student_language = StudentLanguage(student=student,
+                                                                                       language=language_model,
+                                                                                       language_lvl=languageLvl)
+                                                    student_language.save()
 
-                                                    StudentInfo.objects.filter(student=student).delete()
-                                                    for index, skill in enumerate(skills):
-                                                        if not StudentInfo.objects.filter(student=student, skill__skill__name=skill, text=skillsTexts[index]).exists():
-                                                            skill_model = Skill.objects.get(name=skill)
-                                                            if not StudentSkill.objects.filter(skill=skill_model).exists():
-                                                                student_skill = StudentSkill(skill=skill_model)
-                                                                student_skill.save()
-                                                            else:
-                                                                student_skill = StudentSkill.objects.get(skill=skill_model)
-                                                            student_info = StudentInfo(text=skillsTexts[index], student=student, skill=student_skill)
-                                                            # , start_date=, end_date=skillsDateTo[index], present=skillsPresent[index],
-                                                            if skillsDateFrom[index] is not "":
-                                                                student_info.start_date=skillsDateFrom[index]
-                                                            if skillsDateTo[index] is not "":
-                                                                student_info.end_date=skillsDateTo[index]
-                                                            if skillsPresent[index] == "True":
-                                                                student_info.present=True
-                                                            elif skillsPresent[index] == "False":
-                                                                student_info.present=False
+                                            StudentInfo.objects.filter(student=student).delete()
+                                            for index, skill in enumerate(skills):
+                                                if not StudentInfo.objects.filter(student=student,
+                                                                                  skill__skill__name=skill,
+                                                                                  text=skillsTexts[index]).exists():
+                                                    skill_model = Skill.objects.get(name=skill)
+                                                    if not StudentSkill.objects.filter(skill=skill_model).exists():
+                                                        student_skill = StudentSkill(skill=skill_model)
+                                                        student_skill.save()
+                                                    else:
+                                                        student_skill = StudentSkill.objects.get(skill=skill_model)
+                                                    student_info = StudentInfo(text=skillsTexts[index],
+                                                                               student=student, skill=student_skill)
+                                                    # , start_date=, end_date=skillsDateTo[index], present=skillsPresent[index],
+                                                    if skillsDateFrom[index] is not "":
+                                                        student_info.start_date = skillsDateFrom[index]
+                                                    if skillsDateTo[index] is not "":
+                                                        student_info.end_date = skillsDateTo[index]
+                                                    if skillsPresent[index] == "True":
+                                                        student_info.present = True
+                                                    elif skillsPresent[index] == "False":
+                                                        student_info.present = False
 
-                                                            student_info.save()
+                                                    student_info.save()
                     
         
         return render(request, 'student/edit_profile.html', context)
     else:
         return employer_edit_profile(request)
 
-def string_to_int(variable, error_message, request):
-    try:
-        variable = (int(variable))
-        return True, variable
-    except ValueError:
+
+def string_to_int(variable, error_message, request, length):
+    if len(str(variable)) < length:
         messages.error(request, error_message)
-        return False,
+        return False, variable, False
+    else:
+        try:
+            variable = (int(variable))
+            return True, variable, True
+        except ValueError:
+            messages.error(request, error_message)
+            return True, variable, False
 
 
 def student_offers(request):
