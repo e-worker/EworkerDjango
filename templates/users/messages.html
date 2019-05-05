@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}Wiadomosci{% endblock %}
+{% block content %}
+<main>
+
+Do kogo ja pisalem
+<table>
+    {% if isEmployer %}
+        {% for id, name, surname in from_list %}
+            <tr><td><a href="{% url 'chat' id %}"> Student: {{name}} {{surname}} </a><td></tr>
+                    {% empty %}
+             <li>Nie masz zadnych wiadomosci</li>
+        {% endfor %}
+        {% else %}
+
+        {% for id, name in from_list%}
+            <tr><td><a href="{% url 'chat' id %}">Nazwa firmy: {{name}} </a><td></tr>
+        {% empty %}
+        <li>Nie masz zadnych wiadomosci</li>
+        {% endfor %}
+    {% endif %}
+</table>
+
+Kto do mnie pisał
+<table>
+    {% if isEmployer %}
+        {% for id, name, surname in to_list%}
+            <tr><td><a href="{% url 'chat' id %}">Student: {{name}} {{surname}} </a><td></tr>
+                    {% empty %}
+             <li>Nie masz zadnych wiadomosci</li>
+        {% endfor %}
+        {% else %}
+
+        {% for id, name in to_list%}
+            <tr><td><a href="{% url 'chat' id %}">Nazwa firmy: {{name}} </a><td></tr>
+        {% empty %}
+        <li>Nie masz zadnych wiadomosci</li>
+        {% endfor %}
+    {% endif %}
+</table>
+
+
+
+<a href="/users/new_message">Wyslij nowa wiadomosc</a>
+
+</main>
+{% endblock %}

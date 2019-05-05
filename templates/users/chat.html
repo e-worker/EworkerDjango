@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Wiadomosci{% endblock %}
+{% block content %}
+<main>
+
+{% for message in messages %}
+<p>{{message.header}}</p>
+<p>{{message.content}}</p>
+<p>......</p>
+
+{% endfor %}
+
+</main>
+{% endblock %}
