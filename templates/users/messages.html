@@ -2,46 +2,59 @@
 {% block title %}Wiadomosci{% endblock %}
 {% block content %}
 <main>
+<div class = "container nes-container with-title is-centered">
 
-Do kogo ja pisalem
-<table>
-    {% if isEmployer %}
-        {% for id, name, surname in from_list %}
-            <tr><td><a href="{% url 'chat' id %}"> Student: {{name}} {{surname}} </a><td></tr>
+    <p class = "title">Wiadomości</p>
+    {% include 'partials/_alerts.html' %}
+    <div class="nes-table-responsive">
+        <table class="nes-table is-bordered is-centered is-dark">
+            <tbody>
+                {% if isEmployer %}
+                    {% for id, name, surname in all_messages %}
+                        <tr>
+                            <td>
+                                Student:
+
+                            </td>
+                            <td>
+                                <a href="{% url 'chat' id %}">
+                                    {{name}} {{surname}}
+                                </a>
+                            </td>
+
                     {% empty %}
-             <li>Nie masz zadnych wiadomosci</li>
-        {% endfor %}
-        {% else %}
+                            <td>
+                             Nie masz zadnych wiadomosci
+                            </td>
+                         </tr>
+                    {% endfor %}
+                {% else %}
 
-        {% for id, name in from_list%}
-            <tr><td><a href="{% url 'chat' id %}">Nazwa firmy: {{name}} </a><td></tr>
-        {% empty %}
-        <li>Nie masz zadnych wiadomosci</li>
-        {% endfor %}
-    {% endif %}
-</table>
-
-Kto do mnie pisał
-<table>
-    {% if isEmployer %}
-        {% for id, name, surname in to_list%}
-            <tr><td><a href="{% url 'chat' id %}">Student: {{name}} {{surname}} </a><td></tr>
+                    {% for id, name in from_list%}
+                        <tr>
+                            <td>
+                                Nazwa firmy:
+                            </td>
+                            <td>
+                                <a href="{% url 'chat' id %}">
+                                    {{name}}
+                                </a>
+                            </td>
                     {% empty %}
-             <li>Nie masz zadnych wiadomosci</li>
-        {% endfor %}
-        {% else %}
+                            <td>
+                                Nie masz zadnych wiadomosci
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
 
-        {% for id, name in to_list%}
-            <tr><td><a href="{% url 'chat' id %}">Nazwa firmy: {{name}} </a><td></tr>
-        {% empty %}
-        <li>Nie masz zadnych wiadomosci</li>
-        {% endfor %}
-    {% endif %}
-</table>
+<form action="/users/new_message">
+<input type="submit" class="nes-btn is-primary" value="Wyslij nowa wiadomosc">
+</form>
 
-
-
-<a href="/users/new_message">Wyslij nowa wiadomosc</a>
-
+</div>
 </main>
 {% endblock %}
