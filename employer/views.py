@@ -32,9 +32,32 @@ def edit_profile(request):
     return render(request, 'employer/edit_profile.html', context)
 
 def find_students(request):
+    students = Student.objects.all()
+    filtered_students=[]
+    # for student in students:
+    #     if student.filter_student(**data):
+    #         filtered_students.append(student)
     if request.method=='POST':
-        pass
+        salary_from = request.POST['salary_from']
+        salary_to = request.POST['salary_to']
+        courses = request.POST['courses']
+        language = request.POST['language']
+        language_lvl = request.POST['language_lvl']
+        skills = request.POST['skills']
+
+        if int(salary_from) > int(salary_to):
+            messages.error(request, 'Próg dolny zarobków nie może być wyższy od progu górnego')
+        data = {
+            'salary_from': salary_from,
+            'salary_to': salary_to,
+            'courses': courses,
+            'language': language,
+            'language_lvl': language_lvl,
+            'skills': skills,
+        }        
     return render(request, 'employer/find_student.html')
+
 
 def offer(request):
     return render(request, 'employer/offer.html')
+

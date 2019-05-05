@@ -36,7 +36,7 @@
                       <label for="course_select" class="label-dropdown">Kierunek studiów</label>
                       <br>
                       <div class="nes-select">
-                      <select required id="course_select">
+                      <select required id="course_select" name="courses">
                       <option value="" disabled selected hidden>Wybierz...</option>
                       <option value="0">Informatyka</option>
                       <option value="1">Zarządzanie</option>
@@ -46,12 +46,10 @@
               </li>
               <li class="language">
                   <a class="s-sidebar__nav-link" href="#0">
-                    
-                      
                           <label for="language_select" class="label-dropdown_language">Język</label>
                           <br>
                           <div class="nes-select" id="nes-select__language">
-                          <select required id="language_select">
+                          <select required id="language_select" name="language">
                           <option value="" disabled selected hidden>Wybierz...</option>
                           <option value="0">Angielski</option>
                           <option value="1">Niemiecki</option>
@@ -61,7 +59,7 @@
                         <br>
                           <label for="language_lvl-select" class="label-dropdown" id="label-dropdown__lvl">Poziom</label>
                           <div class="nes-select" id="nes-select__language-lvl">
-                          <select required id="language_lvl-select">
+                          <select required id="language_lvl-select" name="language_lvl">
                           <option value="" disabled selected hidden>Wybierz...</option>
                           <option value="0">A1</option>
                           <option value="1">A2</option>
@@ -80,7 +78,7 @@
                        <label for="experience_select" class="label-dropdown_experience">Doświadczenie</label>
                        <br>
                        <div class="nes-select">
-                       <select required id="experience_select">
+                       <select required id="experience_select" name="skills" multiple>
                        <option value="" disabled selected hidden>Wybierz...</option>
                        <option value="0">Praca</option>
                        <option value="1">Staż</option>

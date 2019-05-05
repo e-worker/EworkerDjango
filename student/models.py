@@ -21,21 +21,6 @@ class Student(models.Model):
     user = models.ForeignKey(CustomUser, models.DO_NOTHING)
     def __str__(self):
         return str(self.name)+" "+str(self.surname)
-    def get_info(self):
-        salary_from = self.salary_from
-        salary_to = self.salary_to
-        degree_course = StudentDegreeCourse.objects.filter(student=self)
-        skills = StudentInfo.objects.filter(student=self) #poprawka (wez tylko skillsy)
-        language = StudentLanguage.objects.filter(student=self)
-        context={
-            'salary_from': salary_from,
-            'salary_to': salary_to,
-            'degree_course': degree_course,
-            'skills': skills,
-            'language': language,
-        }
-        return context
-
 
     def get_matching_info(self):
         """matching categories
