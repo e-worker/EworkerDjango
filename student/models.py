@@ -21,21 +21,6 @@ class Student(models.Model):
     user = models.ForeignKey(CustomUser, models.DO_NOTHING)
     def __str__(self):
         return str(self.name)+" "+str(self.surname)
-    def get_info(self):
-        salary_from = self.salary_from
-        salary_to = self.salary_to
-        degree_course = StudentDegreeCourse.objects.filter(student=self)
-        skills = StudentInfo.objects.filter(student=self) #poprawka (wez tylko skillsy)
-        language = StudentLanguage.objects.filter(student=self)
-        context={
-            'salary_from': salary_from,
-            'salary_to': salary_to,
-            'degree_course': degree_course,
-            'skills': skills,
-            'language': language,
-        }
-        return context
-
 
     def get_matching_info(self):
         """matching categories
@@ -48,20 +33,31 @@ class Student(models.Model):
         """
         degree_course_info = StudentDegreeCourse.objects.filter(student=self).values("degree_course__name")
         skills_info = StudentInfo.objects.filter(student=self).values('skill__skill__name').distinct()
+        languages_info = StudentLanguage.objects.filter(student=self).values('language__name', 'language_lvl__level')
         skills = []
         degree_course = []
+        languages = []
+        languages_lvl = []
         for skill in skills_info:
             skills.append(skill["skill__skill__name"])
         for degree in degree_course_info:
             degree_course.append(degree["degree_course__name"])
-        salary_from = self.salary_from   
+        for language in languages_info:
+            languages.append(language["language__name"])
+            languages_lvl.append(language["language_lvl__level"])
 
+        
+        salary_from = self.salary_from   
+        salary_to = self.salary_to
         #bierz po jednym, pozniej zrob slownik z ofertami i  do kazdej oferty obliczaj dopasowanie
 
         context = {
             'degree_course': degree_course,
             'skills': skills,
+            'languages': languages,
+            'languages_lvl': languages_lvl,
             'salary_from': salary_from,
+            'salary_to': salary_to,
         }
         return context
 
@@ -87,6 +83,48 @@ class Student(models.Model):
         percentage = student_matched_skills/job_req_skills
         match = StudentMatchOffer(offer=job_offer, percentage=percentage)
         return match
+
+    def filter_student(self, **data):
+        student_info = self.get_matching_info()
+        salary_from = data['salary_from']
+        salary_to = data['salary_to']
+        degree = data['degree_course']
+        language = data['language']
+        # language_lvl = data['language_lvl']
+        skills = data['skills']
+        filter_required = 2 + len(degree) + len(language) + len(skills)
+        filter_student = 0
+        if salary_from <= student_info["salary_from"]:
+            filter_student+=1
+        if salary_to <= student_info["salary_to"]:
+            filter_student+=1
+        for d in student_info["degree_course"]:
+            if d in degree:
+                filter_student+=1
+        for l in student_info['languages']:
+            if l in language:
+                filter_student+=1
+        for skill in student_info['skills']:
+            if skill in skills:
+                filter_student+=1
+        if filter_student>=filter_required:
+            return True
+        return False
+
+    # def return_dict(self):
+    #     salary_from = 2
+    #     salary_to = 3
+    #     degree = ['Automatyka i Robotyka']
+    #     skills = ['Działalność w organizacjach']
+    #     language = ['Angielski']
+    #     data = {
+    #         'salary_from': salary_from,
+    #         'salary_to': salary_to,
+    #         'degree_course': degree,
+    #         'skills': skills,
+    #         'language': language,
+    #     }
+    #     return data
 
 
 class StudentDegreeCourse(models.Model):
