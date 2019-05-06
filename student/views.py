@@ -103,5 +103,6 @@ def edit_profile(request):
     else:
         return employer_edit_profile(request)
 
+
 def student_offers(request):
     return render(request, 'student/student_offers.html')

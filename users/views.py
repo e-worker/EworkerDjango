@@ -13,7 +13,7 @@ def login(request):
         user = auth.authenticate(username=username, password=password)
         if user is not None:
             auth.login(request, user)
-            messages.success(request, 'You are now logged in')
+            messages.success(request, 'Pomyślnie zalogowano')
             return redirect('edit_profile')
         else:
             messages.error(request, 'Invalid credentials')
@@ -24,7 +24,7 @@ def login(request):
 def logout(request):
     if request.method =='POST':
         auth.logout(request)
-        messages.success(request, 'You have logged out')
+        messages.success(request, 'Pomyślnie wylogowano')
         return redirect('login')
 
 def register(request):

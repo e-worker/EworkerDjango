@@ -7,17 +7,25 @@
     <div class="one column"><a href="#" class="brand-logo">Ework</a></div> 
     <div class="eleven columns">
         <ul>
-            <li><a href="/users/login" class="navbar" id="zaloguj">Zaloguj</a></li>
-            <li><a href="/users/register" class="navbar">Rejestracja</a></li>
+        {% if user.is_authenticated %}
+         <p class="title">Witaj, {{user.first_name}}!</p>
+          <li><a class="white-text" href="{% url 'edit_profile' %}" class="navbar">Profil</a></li>
+          <li><a class="white-text" href="{% url 'student_offers' %}" class="navbar">Oferty</a></li>
+          <li><a class="white-text" href="{% url 'messages' %}" class="navbar">Wiadomości</a></li>
+          <li><a class="white-text" href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
+                Wyloguj
+                </a>
+                <form action="{% url 'logout' %}" method="POST" id="logout">
+                {% csrf_token %}
+                <input type="hidden">
+                </form></li>
+            {% else %}
+            <li><a class="white-text" href="{% url 'login' %}" class="navbar" id="zaloguj">Zaloguj</a></li>
+            <li><a class="white-text" href="{% url 'register' %}" class="navbar">Rejestracja</a></li>
+            {% endif %}
           </ul>
     </div>
    
      </div> 
    
 </nav>
-<!--
-  <ul class="sidenav" id="mobile-demo">
-        <li><a href="/users/login" class="">Zaloguj</a></li>
-        <li><a href="/users/register" class="">Rejestracja</a></li>
-</ul>
--->
