@@ -9,7 +9,6 @@
             <p class = "title">Nowa wiadomosc</p>
     <div class = "row">
         <!--alerts-->
-        {% include 'partials/_alerts.html' %}
         <div class = "col l4 offset-l1">
             <form action="{% url 'new_message' %}" method="POST">
                 {% csrf_token %} 

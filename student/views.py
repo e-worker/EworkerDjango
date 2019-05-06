@@ -159,7 +159,5 @@ def string_to_int(variable, error_message, request, length):
         return True, variable, False
 
 
-
-
 def student_offers(request):
     return render(request, 'student/student_offers.html')
