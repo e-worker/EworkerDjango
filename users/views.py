@@ -79,3 +79,14 @@ def register(request):
     return render(request, 'users/register.html')
     
     
+def profile(request):
+    if request.user.isEmployer:
+        pass #do something
+    else:
+        return redirect("edit_profile") #do zmiany jak bedzie templatka
+
+def offers(request):
+    if request.user.isEmployer:
+        pass #do something
+    else:
+        return redirect('student_offers')
