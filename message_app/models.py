@@ -30,13 +30,16 @@ class Message(models.Model):
 
         msg_from_me = set()
         msg_to_me = set()
+        all_messages = set()
         for messages in messages_from_me_to:
             msg_from_me.add(messages)
+            all_messages.add(messages)
 
         for messages in messages_to_me:
             msg_to_me.add(messages)
+            all_messages.add(messages)
 
-        return msg_from_me, msg_to_me, user_type
+        return msg_from_me, msg_to_me, all_messages, user_type
 
     def chat(user: CustomUser, number_id: int):
         user_type = user.isEmployer

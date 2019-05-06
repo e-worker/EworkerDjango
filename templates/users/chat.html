@@ -2,13 +2,54 @@
 {% block title %}Wiadomosci{% endblock %}
 {% block content %}
 <main>
+    <br>
+        <div class = "container nes-container with-title">
 
-{% for message in messages %}
-<p>{{message.header}}</p>
-<p>{{message.content}}</p>
-<p>......</p>
+            <p class = "title">Wiadomosci z uzytkownikiem {{ opposite_user_name }}</p>
 
-{% endfor %}
+            <div class = "row">
+                <!--alerts-->
+                {% include 'partials/_alerts.html' %}
+                <div class = "col l4 offset-l1">
+                    <section class="message-list">
+                    {% for message in messages %}
+                        {% if message.msg_from_id == user_id  %}
+                                <section class="message -right" align="right">
+                                    <div class="nes-balloon from-right" >
+                                        <h6><span class="nes-text is-primary">{{ request_user_name }}</span></h6>
+                                        <h4><span class="nes-text is-success">Temat: {{message.header}}</span></h4>
+                                        <h5>{{message.content}}</h5>
+                                    </div>
+                                </section>
+                        {% else %}
+                                <section class="message -left" align="left">
+                                    <div class="nes-balloon from-left" >
+                                        <h6><span class="nes-text is-primary">{{ opposite_user_name }}</span></h6>
+                                        <h4><span class="nes-text is-warning">Temat: {{message.header}}</span></h4>
+                                        <h5>{{message.content}}</h5>
+                                    </div>
+                                </section>
+                        {% endif %}
+                    {% endfor %}
+                    </section>
+                </div>
+            </div>
+    <div class = "row">
+        <div class = "col l4 offset-l1">
+            <form action="{% url 'new_message' %}" method="POST">
+                {% csrf_token %}
+                <p align="left">📝 E-Mail odbiorcy</p>
+                <textarea  class="nes-textarea" name="email-adresat" style="resize:none" required placeholder="E-mail">{{ opposite_email }}</textarea>
+                <p align="left">📩 Temat</p>
+                <textarea  class="nes-textarea" name="header" style="resize:none" required placeholder="Temat">RE: {{messages.last.header}}</textarea>
+                <p align="left">📩 Wiadomosc</p>
+                <textarea  class="nes-textarea" name="content" style="resize:none" required placeholder="Wiadomosc"></textarea>
+            </div>
+        </div>
 
+
+        <input type="submit" value="Wyslij" class="nes-btn is-primary">
+        </form>
+        </div>
 </main>
 {% endblock %}

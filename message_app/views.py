@@ -48,13 +48,33 @@ def dashboard(request):
     context = {
         'from_list': query_result[0],
         'to_list': query_result[1],
-        'isEmployer': query_result[2],
+        'all_messages': query_result[2],
+        'isEmployer': query_result[3],
     }
     return render(request, 'users/messages.html', context)
 
 def viewMessages(request, user_id):
     messages = Message.chat(request.user, user_id)
+
+    if request.user.isEmployer:
+        request_name = Company.objects.get(user_id=request.user.id).company_name
+    else:
+        request_name = Student.objects.get(user_id=request.user.id).name
+
+    if Company.objects.filter(user_id=user_id).exists():
+        user_name = Company.objects.get(user_id=user_id).company_name
+        opposite_email = Company.objects.get(user_id=user_id).email
+    else:
+        first_name = Student.objects.get(user_id=user_id).name
+        last_name = Student.objects.get(user_id=user_id).surname
+        user_name = first_name +" "+ last_name
+        opposite_email = Student.objects.get(user_id=user_id).email
+
     context = {
-        'messages': messages
+        'messages': messages,
+        'user_id': request.user.id,
+        'request_user_name': request_name,
+        'opposite_user_name': user_name,
+        'opposite_email': opposite_email,
     }
     return render(request, 'users/chat.html', context)
