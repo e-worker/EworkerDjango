@@ -1,51 +1,31 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Edytuj Profil{% endblock %}
+{% block title %}Dodaj ofertę{% endblock %}
 {% block content %}
 
 <main>
     <div class = "container nes-container with-title is-centered">
-        <p class = "title">Edycja profilu</p>
+        <p class = "title">Tworzenie oferty pracy</p>
         <div class = "row">
             <!--alerts-->
             {% include 'partials/_alerts.html' %}
-            <form id="student_form" method="POST">
+            <form id="job_offer_form" method="POST">
                 {% csrf_token %}
                 <div class="nes-field">
-                    <label for="city" class="edit_profile">Miasto:</label>
-                    <input type="text" name="city" class="nes-input" required value="{{student.city}}">
-                </div>
-                <div class="nes-field">
-                    <label for="street" class="edit_profile">Ulica</label>
-                    <input type="text" name="street" class="nes-input" value="{{student.street}}">
-                </div>
-                <div class="nes-field">
-                    <label for="house_number" class="edit_profile">Numer Domu</label>
-                    <input type="text" name="house_number" class="nes-input" required value="{{student.house_number}}">
-                </div>
-                <div class="nes-field">
-                    <label for="flat_number" class="edit_profile">Numer Mieszkania</label>
-                    <input type="text" name="flat_number" class="nes-input" value="{{student.flat_number}}">
+                    <label for="title" class="edit_profile">Nagłówek</label>
+                    <input type="text" name="title" class="nes-input" required>
                 </div>
                 <div class="nes-field">
                     <label for="salary_from" class="edit_profile">Zarobki od</label>
-                    <input type="number" name="salary_from" class="nes-input" required value="{{student.salary_from}}">
+                    <input type="number" name="salary_from" class="nes-input" required>
                 </div>
                 <div class="nes-field">
                     <label for="salary_to" class="edit_profile">Zarobki do</label>
-                    <input type="number" name="salary_to" class="nes-input" required value="{{student.salary_to}}">
-                </div>
-                <div class="nes-field">
-                    <label for="document_url" class="edit_profile">Link do CV</label>
-                    <input type="text" name="document_url" class="nes-input" value="{{student.document_url}}">
-                </div>
-                <div class="nes-field">
-                    <label for="interest_text" class="edit_profile">Zainteresowania</label>
-                    <textarea name="interest_text" class="nes-input">{{student.interest_text}}</textarea>
+                    <input type="number" name="salary_to" class="nes-input" required>
                 </div>
                <div class="nes-field">
-                  <label for="description" class="edit_profile">Opis</label>
-                  <textarea name="description" class="nes-input">{{student.description}}</textarea>
+                  <label for="description" class="edit_profile">Opis stanowiska</label>
+                  <textarea name="description" class="nes-input"></textarea>
                </div>
                <label for="course" class="edit_profile">Kierunki studiów</label>
                <div class="nes-select">
@@ -120,28 +100,7 @@
                 
                 </div>
                 <div id="skillsContainer">
-                {% if student_skills %}
-                  {% for student_skill in student_skills %}
-                    <div class="skillListElement">
-                      {{student_skill.skill}} 
-                      <a class="delete-item" style="color: red;">x</a>
-                      <p></p>
-                      <input name="skill" style="display: none; font-size: 1.2em;" value="{{student_skill.skill}}">
-                      <textarea name="skillText" class="nes-input" required="">{{student_skill.text}}</textarea>
-                      <p class="edit_profile"> Data od</p>
-                      <input type="date" name="date_from" class="nes-input" value="{{student_skill.start_date|date:"Y-m-d" }}">
-                      <p class="edit_profile">Data do</p>
-                      <input type="date" name="date_to" class="nes-input" value="{{student_skill.end_date|date:"Y-m-d"}}">
-                      <p class="edit_profile">Obecnie</p>
-                      <div class="nes-select">
-                          <select id="present" name="present">
-                              <option value="False">Nie</option>
-                              <option {% if student_skill.present %}selected{% endif %} value="True">Tak</option>
-                            </select>
-                      </div>
-                    </div>
-                  {% endfor %}
-                {% endif %}
+
                 </div>
                 {% endif %}
         </div>
@@ -150,5 +109,5 @@
 </form>
 </div>
 </main>
-<script src="{% static 'js/dynamic_forms_student.js' %}"></script>
+<script src="{% static 'js/dynamic_forms_offer.js' %}"></script>
 {% endblock %}
