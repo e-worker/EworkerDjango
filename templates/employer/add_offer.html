@@ -16,18 +16,18 @@
                     <input type="text" name="title" class="nes-input" required>
                 </div>
                 <div class="nes-field">
-                    <label for="salary_from" class="edit_profile">Zarobki od</label>
+                    <label for="salary_from" class="edit_profile">Zarobki na godzinę od:</label>
                     <input type="number" name="salary_from" class="nes-input" required>
                 </div>
                 <div class="nes-field">
-                    <label for="salary_to" class="edit_profile">Zarobki do</label>
+                    <label for="salary_to" class="edit_profile">Zarobki na godzinę do:</label>
                     <input type="number" name="salary_to" class="nes-input" required>
                 </div>
                <div class="nes-field">
-                  <label for="description" class="edit_profile">Opis stanowiska</label>
+                  <label for="description" class="edit_profile">Opis stanowiska:</label>
                   <textarea name="description" class="nes-input"></textarea>
                </div>
-               <label for="course" class="edit_profile">Kierunki studiów</label>
+               <label for="course" class="edit_profile">Kierunki studiów:</label>
                <div class="nes-select">
                   {% if courses %}
                   <select {% if not student_courses %}name="course"{% endif %} id="course">
@@ -51,7 +51,7 @@
                 </div>
                 {% endif %}
                 <br>
-                <label for="language" class="edit_profile">Języki obce</label>
+                <label for="language" class="edit_profile">Znajomość języków obcych:</label>
                 <div class="nes-select">
                     <select  {% if not student_languages %}name="language"{% endif %} id="language">
                         {% for language in languages %}
@@ -60,7 +60,7 @@
                       </select>
                     </div>
                 {% if languages %}
-                <label for="languageLvl" class="edit_profile">Poziom</label>
+                <label for="languageLvl" class="edit_profile">Poziom języka:</label>
                 <div class="nes-select">
                 {% if languageLvls %}
                     <select {% if not student_languages %}name="languageLvl"{% endif %} id="languageLvl">
@@ -85,7 +85,7 @@
                 {% endif %}
                 {% endif %}
                 <br>
-                <label for="skill" class="edit_profile">Doświadczenie</label>
+                <label for="skill" class="edit_profile">Doświadczenie:</label>
                 <div class="nes-select">
                     {% if skills %}
                     <select id="skill">
