@@ -1,4 +1,4 @@
- from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from .models import Company
 from job_offers.models import JobInfo, JobOfferLanguage, JobOfferSkill, OfferDegreeCourse, Skill, Language, LanguageLvl, DegreeCourse, JobOffer
@@ -34,7 +34,17 @@ def edit_profile(request):
 
 def find_students(request):
     students = Student.objects.all()
+    languages = Language.objects.all()
+    language_lvls = LanguageLvl.objects.all()
+    skills = Skill.objects.all()
+    courses = DegreeCourse.objects.all()
     filtered_students=[]
+    context = {
+        'languages': languages,
+        'language_lvls': language_lvls,
+        'skills': skills,
+        'courses': courses,
+    }
     # for student in students:
     #     if student.filter_student(**data):
     #         filtered_students.append(student)
@@ -51,12 +61,23 @@ def find_students(request):
         data = {
             'salary_from': salary_from,
             'salary_to': salary_to,
-            'courses': courses,
+            'degree_course': courses,
             'language': language,
-            'language_lvl': language_lvl,
+            # 'language_lvl': language_lvl,
             'skills': skills,
-        }        
-    return render(request, 'employer/find_student.html')
+        } 
+        for student in students:
+            print(student.filter_student(**data))
+            if student.filter_student(**data):
+                filtered_students.append(student)
+        context={
+            'students': filtered_students,
+        }
+        print(context)
+        print(data)
+        return render(request, 'employer/find_student.html', context)
+
+    return render(request, 'employer/find_student.html', context)
 
 
 def offer(request):

@@ -6,29 +6,21 @@
         {% include 'partials/_sidenav.html'%}
         <main class="s-layout__content">
                 <ul class="student_profile">
-                        <li class="student_profile-content">
-                                <div class="row">
-                                        <div class="three columns">
-                                                <img src="{% static 'images/pudzian.png' %}" alt="Pudzian" class="student_profile-img">
-                                        </div>
-                                        <div class="nine columns">
-                                                <p class="personal_data">Mariusz Pudzianowski</p>
-                                        </div>
-                                </div>
-                                
-                        </li>
+                        {% for student in students %}
                         <li class="student_profile-content">
                                         <div class="row">
+                                                
                                                 <div class="three columns">
                                                         <img src="{% static 'images/pudzian.png' %}" alt="Pudzian" class="student_profile-img">
                                                 </div>
                                                 <div class="nine columns">
-                                                        <p class="personal_data">Mariusz Pudzianowski</p>
+                                                        <p class="personal_data">{{student.name}}</p>
                                                 </div>
+                                               
                                         </div>
                                         
                         </li>
-
+                        {% endfor %}
                 </ul>
         </main>
 </div>

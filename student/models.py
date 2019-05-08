@@ -86,17 +86,23 @@ class Student(models.Model):
 
     def filter_student(self, **data):
         student_info = self.get_matching_info()
+        print('---------')
+        print(student_info)
+        print(data)
+        print('---------')
         salary_from = data['salary_from']
         salary_to = data['salary_to']
         degree = data['degree_course']
         language = data['language']
         # language_lvl = data['language_lvl']
         skills = data['skills']
-        filter_required = 2 + len(degree) + len(language) + len(skills)
+        # filter_required = 2 + len(degree) + len(language) + len(skills)
+        filter_required = 5 #nie trzeba wszystkich pól wypełniać(poprawic) liczyc w lepszy sposob filter_required
         filter_student = 0
-        if salary_from <= student_info["salary_from"]:
+        print(filter_required)
+        if int(salary_from) <= student_info["salary_from"]:
             filter_student+=1
-        if salary_to <= student_info["salary_to"]:
+        if int(salary_to) >= student_info["salary_to"]:
             filter_student+=1
         for d in student_info["degree_course"]:
             if d in degree:
@@ -108,7 +114,9 @@ class Student(models.Model):
             if skill in skills:
                 filter_student+=1
         if filter_student>=filter_required:
+            print(filter_student)
             return True
+        print(filter_student)
         return False
 
     # def return_dict(self):
