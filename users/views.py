@@ -14,7 +14,10 @@ def login(request):
         if user is not None:
             auth.login(request, user)
             messages.success(request, 'Pomyślnie zalogowano')
-            return redirect('edit_profile')
+            if request.user.doneProfileEdit:
+                return redirect('offers')
+            else:
+                return redirect('edit_profile')
         else:
             messages.error(request, 'Invalid credentials')
             return render(request, 'users/login.html')

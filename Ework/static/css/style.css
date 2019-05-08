@@ -199,9 +199,9 @@ header{
 .sidebar-menu_content li:hover{
    background: #036be9;
 }
-.active{
-   background: #036be9;
-  
+.active {
+    background: #036be9;
+}
 .student_profile{
    text-align: left;
    width: 70%;

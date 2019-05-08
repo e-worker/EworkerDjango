@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+ from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from .models import Company
 from job_offers.models import JobInfo, JobOfferLanguage, JobOfferSkill, OfferDegreeCourse, Skill, Language, LanguageLvl, DegreeCourse, JobOffer

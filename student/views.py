@@ -4,6 +4,7 @@ from job_offers.models import DegreeCourse, LanguageLvl, Language, Skill
 from django.contrib.auth.decorators import login_required
 from employer.views import edit_profile as employer_edit_profile
 from django.contrib import messages
+from users.models import CustomUser
 
 
 # Create your views here.
@@ -93,6 +94,10 @@ def edit_profile(request):
                                             student.interest_text = interest_text
                                             student.description = description
                                             student.save()
+
+                                            #user profile edit set to done
+
+                                            request.user.doneProfileEdit = 1
 
                                             StudentDegreeCourse.objects.filter(student=student).delete()
                                             for course in courses:  # szukam czy juz  taki studentdegree bylo dodane, jesli nie to tworze
