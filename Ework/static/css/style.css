@@ -201,6 +201,37 @@ header{
 }
 .active{
    background: #036be9;
+  
+.student_profile{
+   text-align: left;
+   width: 70%;
+}
+.student_profile-content{
+   width: 100%;
+}
+.personal_data{
+   margin-top: 7%;
+   text-align: center;
+   margin-bottom: 4%; 
+}
+.student_profile-content::before{
+   content: "";
+   display: block;
+   width: 98%;
+   height: 3px;
+   position: absolute;
+   left: 1%;
+   background-color: #efc73c;
+}
+.student_profile-content::after{
+   content: "";
+   display: block;
+   width: 98%;
+   height: 3px;
+   position: absolute;
+   left: 1%;
+   background-color: #efc73c;
+
 }
  /* Layout */
  .s-layout {
