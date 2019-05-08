@@ -1,4 +1,9 @@
 {% load static %}
+
+.white-text{
+   color: whitesmoke;
+}
+
 body
 {
     font-size: 1.2em;

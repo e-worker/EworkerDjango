@@ -12,16 +12,16 @@
 <br>
 <div class = "container nes-container with-title is-centered">
     <p class = "title">Logowanie</p>
-    <p>Witaj w zajebistym systemie Ework, czas na logowanie 😠</p>
+    <p>Witaj w systemie Ework</p>
     <br>
 <div class = "row">
     <!--alerts-->
-    {% include 'partials/_alerts.html' %}
+    
     <div class = "col l4 offset-l1">
         <form action="{% url 'login' %}" method="POST">
             {% csrf_token %} 
 
-            <p align="left">😡 Login</p>
+            <p align="left">Login</p>
             <input  class="nes-textarea" name="username" style="resize:none" required>
         </div>
         

@@ -38,7 +38,7 @@ function submitCheck(e)
     if(skillsContainer.innerText==="")
     {
        const p = document.createElement('p');
-       p.innerText = "Uzupełnij informacje o sobie";
+       p.innerText = "Uzupełnij informacje o ofercie";
        p.id = "error";
        p.style = 'color:red;';
        skillsErrorMessages.appendChild(p);
@@ -47,7 +47,7 @@ function submitCheck(e)
        }, 3000);
     }else
     {
-        document.getElementById("student_form").submit();
+        document.getElementById("job_offer_form").submit();
     }
     e.preventDefault();
 }
