@@ -161,3 +161,6 @@ def string_to_int(variable, error_message, request, length):
 
 def student_offers(request):
     return render(request, 'student/student_offers.html')
+
+def student_profile(request):
+    return render(request, 'student/student_profile.html')
