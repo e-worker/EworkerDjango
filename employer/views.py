@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from .models import Company
 from job_offers.models import JobInfo, JobOfferLanguage, JobOfferSkill, OfferDegreeCourse, Skill, Language, LanguageLvl, DegreeCourse, JobOffer
@@ -35,9 +35,31 @@ def edit_profile(request):
     return render(request, 'employer/edit_profile.html', context)
 
 def find_students(request):
+    students = Student.objects.all()
+    filtered_students=[]
+    # for student in students:
+    #     if student.filter_student(**data):
+    #         filtered_students.append(student)
     if request.method=='POST':
-        pass
+        salary_from = request.POST['salary_from']
+        salary_to = request.POST['salary_to']
+        courses = request.POST['courses']
+        language = request.POST['language']
+        language_lvl = request.POST['language_lvl']
+        skills = request.POST['skills']
+
+        if int(salary_from) > int(salary_to):
+            messages.error(request, 'Próg dolny zarobków nie może być wyższy od progu górnego')
+        data = {
+            'salary_from': salary_from,
+            'salary_to': salary_to,
+            'courses': courses,
+            'language': language,
+            'language_lvl': language_lvl,
+            'skills': skills,
+        }        
     return render(request, 'employer/find_student.html')
+
 @login_required()
 def offer(request, id):
     try:
@@ -55,6 +77,7 @@ def offer(request, id):
     except:
         messages.error(request, 'podana oferta nie istnieje')
         return redirect('profile')
+
 
 def add_offer(request):
     if request.user.isEmployer:
@@ -130,6 +153,7 @@ def add_offer(request):
         return redirect("login")
 
 
+
 def employer_offers(request): 
     company = Company.objects.get(user=request.user)
     offers = JobOffer.objects.filter(company=company)
@@ -151,3 +175,4 @@ def delete_offer(request, id):
         return redirect("employer_offers")
     except:
         return redirect("profile")
+

@@ -1,0 +1,37 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block title %}Offers{% endblock %}
+{% block content %}
+
+<div class="container container-profile">
+   
+    <header class="header-profile">
+            <div class="row">
+                    <div class="nine columns">
+                            <p class="header-name">Mariusz Pudzianowski</p>
+                            <p class="header_company-localication"><i class="fa fa-home">Rzeszów </i></p>
+                    </div>
+                      <div class="three columns">
+                            <img src="{% static 'images/Screenshot from 2019-04-28 15-27-32.png' %}" alt="Asseco" class="profile-img">
+                      </div>
+                </div>  
+    </header>
+    <div class="profile-description">
+        <div class="content">
+                <p class="content-title"> Kierunki studiów</p>
+                <p class="content-description">Informatyka</p>
+        </div>
+        <div class="content">
+                <p class="content-title"> Języki</p>
+                <p class="content-description">Angielski</p>
+        </div>
+        <div class="content">
+            <p class="content-title"> Zainteresowania</p>
+           <p class="content-description">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus perspiciatis, omnis exercitationem expedita asperiores dignissimos eum ipsum in eaque fugiat reprehenderit! Voluptatum ab, veniam dolore ducimus vitae id minima, impedit aperiam vel est rem eaque quis eum dolores aliquam sit, obcaecati libero corrupti voluptas corporis earum hic ullam quisquam incidunt?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde quibusdam labore eligendi ullam quod suscipit iste autem temporibus nihil beatae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Error dicta assumenda, aperiam aut illum accusamus molestias magni nam ex reprehenderit exercitationem iusto quasi fuga veniam, dolor accusantium quibusdam quam. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum, dolor? 
+           </p> 
+        </div>
+    </div>
+    {% include 'partials/_dashboard.html'%}
+</div>
+{% endblock %}
