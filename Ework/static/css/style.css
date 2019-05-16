@@ -246,7 +246,9 @@ header{
     justify-content: center;
     align-items: center;
     flex: 1;
-    z-index: -1;
+    /* z-index: -1;  NIE DALO SIE KLIKNAC LINKA 'ZOBACZ OFERTE'*/
+    z-index: 10;
+
  }
  .u-full-width{
    width: 100%;
@@ -346,6 +348,8 @@ header{
     height: 100%;
     background-color: #013c83;
     color: rgba(255, 255, 255, 0.7);
+    z-index: 20; 
+    /* TUTAJ POPRAWECZKA Z Z-INDEX KTOREGO WCZESNIEJ NIE BYLO ZEBY NIE WYJEBALO SIE DO KONCA */
  }
  
  .s-sidebar__nav:hover,

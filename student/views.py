@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Student, StudentInfo, StudentSkill, StudentDegreeCourse, StudentLanguage
-from job_offers.models import DegreeCourse, LanguageLvl, Language, Skill
+from job_offers.models import JobOffer, DegreeCourse, LanguageLvl, Language, Skill
 from django.contrib.auth.decorators import login_required
 from employer.views import edit_profile as employer_edit_profile
 from django.contrib import messages
@@ -165,7 +165,9 @@ def string_to_int(variable, error_message, request, length):
 
 
 def student_offers(request):
-    return render(request, 'student/student_offers.html')
+    offers = JobOffer.objects.all()
+    context = {
+        'offers': offers,
+    }
+    return render(request, 'student/student_offers.html', context)
 
-def student_profile(request):
-    return render(request, 'student/student_profile.html')

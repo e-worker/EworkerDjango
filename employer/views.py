@@ -1,8 +1,10 @@
- from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from .models import Company
 from job_offers.models import JobInfo, JobOfferLanguage, JobOfferSkill, OfferDegreeCourse, Skill, Language, LanguageLvl, DegreeCourse, JobOffer
 from student.models import Student
+from django.contrib.auth.decorators import login_required
+
 
 def edit_profile(request):
     if request.user.isEmployer:
@@ -58,9 +60,24 @@ def find_students(request):
         }        
     return render(request, 'employer/find_student.html')
 
+@login_required()
+def offer(request, id):
+    try:
+        offer = JobOffer.objects.get(id=id)
+        offer_language = JobOfferLanguage.objects.filter(job_offer=offer)
+        offer_info = JobInfo.objects.filter(job_offer=offer)
+        offer_degree = OfferDegreeCourse.objects.filter(job_offer=offer)
+        context = {
+            'offer': offer,
+            'offer_language': offer_language,
+            'offer_info': offer_info,
+            'offer_degree': offer_degree,
+        }
+        return render(request, 'employer/offer.html', context)
+    except:
+        messages.error(request, 'podana oferta nie istnieje')
+        return redirect('profile')
 
-def offer(request):
-    return render(request, 'employer/offer.html')
 
 def add_offer(request):
     if request.user.isEmployer:
@@ -134,3 +151,28 @@ def add_offer(request):
         return render(request, 'employer/add_offer.html', context)
     else:
         return redirect("login")
+
+
+
+def employer_offers(request): 
+    company = Company.objects.get(user=request.user)
+    offers = JobOffer.objects.filter(company=company)
+    context = {
+        'offers': offers,
+    }
+    return render(request, 'employer/employer_offers.html', context)
+    # except:
+    #     return redirect("login")
+
+def delete_offer(request, id):
+    try:
+        company = Company.objects.get(user=request.user)
+        offer = JobOffer.objects.get(id=id, company=company)
+        offer_language = JobOfferLanguage.objects.filter(job_offer=offer).delete()
+        offer_info = JobInfo.objects.filter(job_offer=offer).delete()
+        offer_degree = OfferDegreeCourse.objects.filter(job_offer=offer).delete()
+        offer.delete()
+        return redirect("employer_offers")
+    except:
+        return redirect("profile")
+

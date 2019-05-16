@@ -17,3 +17,4 @@ class Company(models.Model):
 
     def __str__(self):
         return str(self.company_name)
+

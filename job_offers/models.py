@@ -36,7 +36,7 @@ class JobOffer(models.Model):
 
     def get_info(self):
         degree_course_info = OfferDegreeCourse.objects.filter(job_offer=self).values("degree_course__name")
-        skills_info = JobInfo.objects.filter(job_offer=self).values('job_skill__skill__name').distinct()
+        skills_info = JobInfo.objects.filter(job_offer=self).values('job_skill__skill__name').distinct() 
         skills = []
         degree_course = []
         for skill in skills_info:
