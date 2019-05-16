@@ -9,13 +9,19 @@
   <main class="s-layout__content">
                <table class="u-full-width">
                      <tbody>
+                       {% for offer in offers %}
                        <tr>
                            <td><img src="{% static 'images/Screenshot from 2019-04-28 15-27-32.png' %}" alt="Asseco" class="company-img"></td>
-                           <td>Programista <p class="company_name">Firma: Asseco</p></td>
-                           <td>Warszawa</td>
+                           <td>{{offer.title}} <p class="company_name">Firma: {{offer.company}}</p></td>
+                           <td>{{offer.company.city}}</td>
+                           <td><a style='position:relative;' href="{% url 'offer' offer.id %}">Zobacz ofertę</a></td>
                            <td class="percentage__high">100%</td>           
                        </tr>
-                       <tr>
+                       {% empty %}
+                       <p>Nie ma ofert</p>
+                       {% endfor %}
+                       
+                       <!-- <tr>
                            <td><img src="{% static 'images/Screenshot from 2019-04-28 15-40-15.png' %}" alt="Comarch" class="company-img"></td>
                            <td>Stażysta <p class="company_name">Firma: Comarch</p></td>
                            <td>Kraków</td>
@@ -26,7 +32,7 @@
                            <td>Kasjer <p class="company_name">Firma: Biedronka</p></td>
                            <td>Rzeszów</td>
                            <td class="percentage__low">20%</td>
-                     </tr>  
+                     </tr>   -->
                      </tbody>
                    </table>
          

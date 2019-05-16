@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Moje oferty pracy{% endblock %}
+{% block content %}
+<main>
+    {% for offer in offers %}
+        <a href="{% url 'offer' offer.id %}">{{offer.title}}</a>
+        
+        <a href="javascript:{document.getElementById('{{offer.id}}').submit()}" class="nav-link">
+                <i class="fas fa-sign-out-alt"></i> X
+                </a>
+                <form action="{% url 'delete_offer' offer.id %}" method="POST" id="{{offer.id}}">
+                {% csrf_token %}
+                <input type="hidden">
+                </form>
+    {% endfor %}
+</main>
+{% endblock %}

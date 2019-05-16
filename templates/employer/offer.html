@@ -8,9 +8,9 @@
         <header>
             <div class="row">
                 <div class="nine columns">
-                        <p class="header_title">Junior Pascal Developer</p>
-                        <a href="#" class="header_company-name">Asseco Poland</a>
-                        <p class="header_company-localication"><i class="fa fa-home">Rzeszów, podkarpackie </i></p>
+                        <p class="header_title">{{offer.title}}</p>
+                        <a href="#" class="header_company-name">{{offer.company}}</a>
+                        <p class="header_company-localication"><i class="fa fa-home">{{offer.company.city}} </i></p>
                 </div>
                   <div class="three columns">
                         <img src="{% static 'images/Screenshot from 2019-04-28 15-27-32.png' %}" alt="Asseco" class="header_company-img">
@@ -20,16 +20,35 @@
         <div class="offer_description">
             <div class="job_description">
                 <p class="job_description-title"> Opis stanowiska</p>
-                <p class="job_description-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate dolorem mollitia neque iusto voluptas asperiores accusamus quaerat, maxime sint autem eaque animi. Deleniti, obcaecati voluptatum quam laborum incidunt corporis suscipit, quos odio vitae voluptas ad cupiditate. Ipsa qui neque iusto rerum voluptatem, accusamus iste earum soluta vel nobis possimus vitae.</p>
+                <p class="job_description-content">{{offer.description}}</p>
                             
             </div>
-            <div class="job_responsibilities">
+            <!-- <div class="job_responsibilities">
                     <p class="job_description-title"> Obowiązki osoby zatrudnionej</p>
                     <p class="job_description-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate dolorem mollitia neque iusto voluptas asperiores accusamus quaerat, maxime sint autem eaque animi. Deleniti, obcaecati voluptatum quam laborum incidunt corporis suscipit, quos odio vitae voluptas ad cupiditate. Ipsa qui neque iusto rerum voluptatem, accusamus iste earum soluta vel nobis possimus vitae.</p>
-            </div>
+            </div> -->
             <div class="job_requirements">
-                    <p class="job_description-title"> Wymagania</p>
-                    <p class="job_description-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate dolorem mollitia neque iusto voluptas asperiores accusamus quaerat, maxime sint autem eaque animi. Deleniti, obcaecati voluptatum quam laborum incidunt corporis suscipit, quos odio vitae voluptas ad cupiditate. Ipsa qui neque iusto rerum voluptatem, accusamus iste earum soluta vel nobis possimus vitae.</p>
+                <p class="job_description-title"> Wymagania</p>
+                    {% if offer_language %}
+                    <h3>Języki</h3>
+                    {% for language in offer_language %}
+                        <p>{{language.language}}: {{language.language_lvl}}</p>
+                    {% endfor %}
+                    {% endif %}
+                    {% if offer_degree %}
+                    <h3>Oferta skierowana do studentów kierunków:</h3>
+                    {% for degree in offer_degree %}
+                        <p>{{degree.degree_course}}</p>
+                    {% endfor %}
+                    {% endif %}
+                    {% if offer_info %}
+                    <h3>Opis wymaganych umiejętności</h3>
+                    {% for info in offer_info %}
+                        <p>{{info.job_skill}}</p>
+                        <p>{{info.text}}</p>
+                    {% endfor %}
+                    {% endif %}
+                    <!-- <p class="job_description-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate dolorem mollitia neque iusto voluptas asperiores accusamus quaerat, maxime sint autem eaque animi. Deleniti, obcaecati voluptatum quam laborum incidunt corporis suscipit, quos odio vitae voluptas ad cupiditate. Ipsa qui neque iusto rerum voluptatem, accusamus iste earum soluta vel nobis possimus vitae.</p> -->
             </div>
         </div>
     </div>
