@@ -40,6 +40,7 @@ def find_students(request):
     coursesPage = DegreeCourse.objects.all()
     filtered_students=[]
     context = {
+        'students': studentsPage,
         'languages': languagesPage,
         'language_lvls': language_lvlsPage,
         'skills': skillsPage,
