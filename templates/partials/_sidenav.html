@@ -36,7 +36,7 @@
                       <label for="course_select" class="label-dropdown">Kierunek studiów</label>
                       <br>
                       <div class="nes-select">
-                      <select required id="course_select" name="courses">
+                      <select id="course_select" name="courses">
                       <option value="" disabled selected hidden>Wybierz...</option>
                      {% for course in courses %}
                      <option value="{{course.name}}">
@@ -52,7 +52,7 @@
                           <label for="language_select" class="label-dropdown_language">Język</label>
                           <br>
                           <div class="nes-select" id="nes-select__language">
-                          <select required id="language_select" name="language">
+                          <select id="language_select" name="language">
                           <option value="" disabled selected hidden>Wybierz...</option>
                           {% for language in languages %}
                         <option value="{{language.name}}">
@@ -64,7 +64,7 @@
                         <br>
                           <label for="language_lvl-select" class="label-dropdown" id="label-dropdown__lvl">Poziom</label>
                           <div class="nes-select" id="nes-select__language-lvl">
-                          <select required id="language_lvl-select" name="language_lvl">
+                          <select id="language_lvl-select" name="language_lvl">
                           <option value="" disabled selected hidden>Wybierz...</option>
                           {% for language_lvl in language_lvls %}
                         <option value="{{language_lvl.level}}">
@@ -84,7 +84,7 @@
                        <label for="experience_select" class="label-dropdown_experience">Doświadczenie</label>
                        <br>
                        <div class="nes-select">
-                       <select required id="experience_select" name="skills" multiple>
+                       <select id="experience_select" name="skills" multiple>
                        <option value="" disabled selected hidden>Wybierz...</option>
                        {% for skill in skills %}
                         <option value="{{skill.name}}">

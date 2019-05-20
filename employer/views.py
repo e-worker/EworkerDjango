@@ -33,31 +33,42 @@ def edit_profile(request):
     return render(request, 'employer/edit_profile.html', context)
 
 def find_students(request):
-    students = Student.objects.all()
-    languages = Language.objects.all()
-    language_lvls = LanguageLvl.objects.all()
-    skills = Skill.objects.all()
-    courses = DegreeCourse.objects.all()
+    studentsPage = Student.objects.all()
+    languagesPage = Language.objects.all()
+    language_lvlsPage = LanguageLvl.objects.all()
+    skillsPage = Skill.objects.all()
+    coursesPage = DegreeCourse.objects.all()
     filtered_students=[]
     context = {
-        'languages': languages,
-        'language_lvls': language_lvls,
-        'skills': skills,
-        'courses': courses,
+        'languages': languagesPage,
+        'language_lvls': language_lvlsPage,
+        'skills': skillsPage,
+        'courses': coursesPage,
     }
     # for student in students:
     #     if student.filter_student(**data):
     #         filtered_students.append(student)
     if request.method=='POST':
-        salary_from = request.POST['salary_from']
-        salary_to = request.POST['salary_to']
-        courses = request.POST['courses']
-        language = request.POST['language']
-        language_lvl = request.POST['language_lvl']
-        skills = request.POST['skills']
-
-        if int(salary_from) > int(salary_to):
-            messages.error(request, 'Próg dolny zarobków nie może być wyższy od progu górnego')
+        salary_from=''
+        salary_to=''
+        language=''
+        courses=''
+        skills=''
+        if request.POST['salary_from']:
+            salary_from = request.POST['salary_from']
+        if request.POST['salary_to']:    
+            salary_to = request.POST['salary_to']
+        if request.POST.getlist('courses'): 
+            courses = request.POST['courses']
+        if request.POST.getlist('language'):
+            language = request.POST['language']
+        if request.POST.getlist('language_lvl'):
+            language_lvl = request.POST['language_lvl']
+        if request.POST.getlist('skills'):
+            skills = request.POST['skills']
+        if salary_from!='' and salary_to!='':
+            if int(salary_from) > int(salary_to):
+                messages.error(request, 'Próg dolny zarobków nie może być wyższy od progu górnego')
         data = {
             'salary_from': salary_from,
             'salary_to': salary_to,
@@ -66,12 +77,16 @@ def find_students(request):
             # 'language_lvl': language_lvl,
             'skills': skills,
         } 
-        for student in students:
+        for student in studentsPage:
             print(student.filter_student(**data))
             if student.filter_student(**data):
                 filtered_students.append(student)
         context={
             'students': filtered_students,
+            'languages': languagesPage,
+            'language_lvls': language_lvlsPage,
+            'skills': skillsPage,
+            'courses': coursesPage,
         }
         print(context)
         print(data)
