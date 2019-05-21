@@ -86,29 +86,65 @@ class Student(models.Model):
 
     def filter_student(self, **data):
         student_info = self.get_matching_info()
-        salary_from = data['salary_from']
-        salary_to = data['salary_to']
-        degree = data['degree_course']
-        language = data['language']
+        print('---------')
+        print(student_info)
+        print(data)
+        print('---------')
         # language_lvl = data['language_lvl']
-        skills = data['skills']
-        filter_required = 2 + len(degree) + len(language) + len(skills)
+        filter_required = 0 #nie trzeba wszystkich pól wypełniać(poprawic) liczyc w lepszy sposob filter_required
         filter_student = 0
-        if salary_from <= student_info["salary_from"]:
-            filter_student+=1
-        if salary_to <= student_info["salary_to"]:
-            filter_student+=1
-        for d in student_info["degree_course"]:
-            if d in degree:
+        print('+++')
+        # print(filter_required)
+        if data['salary_from']!='':
+            salary_from = data['salary_from']
+            filter_required+=1
+            print("*** salary from")
+            print(filter_required)
+            print("***")
+            if int(salary_from) <= student_info["salary_from"]:
                 filter_student+=1
-        for l in student_info['languages']:
-            if l in language:
+        if data['salary_to']!='':
+            salary_to = data['salary_to']
+            filter_required+=1
+            print("*** salary to")
+            print(filter_required)
+            print("***")
+            if int(salary_to) >= student_info["salary_to"]:
                 filter_student+=1
-        for skill in student_info['skills']:
-            if skill in skills:
-                filter_student+=1
+        if data['degree_course'] is not None and data['degree_course']!='':
+            degree = data['degree_course']
+            print(data['degree_course'])
+            filter_required+=1  
+            print("*** course")
+            print(filter_required)
+            print("***")
+            for d in student_info["degree_course"]:
+                if d in degree:
+                    filter_student+=1
+        if data['language'] is not None and data['language']!='':
+            language = data['language']
+            filter_required+=1  
+            print("*** language")
+            print(filter_required)
+            print("***")           
+            for l in student_info['languages']:
+                if l in language:
+                    filter_student+=1
+        if data['skills'] is not None and data['skills']!='' :
+            skills = data['skills']
+            # print("{0}".format(len(skills)))
+            filter_required+=1 
+            print("*** skills")
+            print(filter_required)
+            print("***")
+            for skill in student_info['skills']:
+                if skill in skills:
+                    filter_student+=1
+        print(filter_required)
         if filter_student>=filter_required:
+            print(filter_student)
             return True
+        print(filter_student)
         return False
 
     # def return_dict(self):
