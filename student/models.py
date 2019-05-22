@@ -18,6 +18,7 @@ class Student(models.Model):
     document_url = models.CharField(max_length=255, blank=True, null=True)
     interest_text = models.CharField(max_length=255, blank=True, null=True)
     description = models.CharField(max_length=255, blank=True, null=True)
+    image = models.CharField(max_length=511,blank=True)
     user = models.ForeignKey(CustomUser, models.DO_NOTHING)
     def __str__(self):
         return str(self.name)+" "+str(self.surname)

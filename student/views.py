@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required
 from employer.views import edit_profile as employer_edit_profile
 from django.contrib import messages
 from users.models import CustomUser
+from django.core.files.storage import FileSystemStorage
+from django.conf import settings
 
 
 # Create your views here.
@@ -31,7 +33,7 @@ def edit_profile(request):
             'student_skills': student_skills,
         }
         if request.method == "POST":
-
+            image = request.FILES['image']
             city = request.POST['city']
             street = request.POST['street']
             house_number = request.POST['house_number']
@@ -93,6 +95,10 @@ def edit_profile(request):
                                             student.document_url = document_url
                                             student.interest_text = interest_text
                                             student.description = description
+                                            fs = FileSystemStorage()
+                                            filename = fs.save(image.name, image)
+                                            uploaded_file_url = fs.url(filename)
+                                            student.image = uploaded_file_url
                                             student.save()
 
                                             #user profile edit set to done

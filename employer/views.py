@@ -4,6 +4,8 @@ from .models import Company
 from job_offers.models import JobInfo, JobOfferLanguage, JobOfferSkill, OfferDegreeCourse, Skill, Language, LanguageLvl, DegreeCourse, JobOffer
 from student.models import Student
 from django.contrib.auth.decorators import login_required
+from django.core.files.storage import FileSystemStorage
+from django.conf import settings
 
 
 def edit_profile(request):
@@ -15,6 +17,7 @@ def edit_profile(request):
         }
 
         if request.method == "POST":
+            image = request.FILES['image']
             company_name = request.POST['company_name']
             city = request.POST['city']
             street = request.POST['street']
@@ -31,6 +34,10 @@ def edit_profile(request):
                 company.house_number = house_number
                 company.flat_number = flat_number
                 company.description = description
+                fs = FileSystemStorage()
+                filename = fs.save(image.name, image)
+                uploaded_file_url = fs.url(filename)
+                company.image = uploaded_file_url
                 company.save()
     return render(request, 'employer/edit_profile.html', context)
 
