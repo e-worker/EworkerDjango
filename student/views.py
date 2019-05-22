@@ -154,8 +154,7 @@ def edit_profile(request):
         
         return render(request, 'student/edit_profile.html', context)
     else:
-        return employer_edit_profile(request)
-
+        return redirect('employer_edit_profile')
 
 def string_to_int(variable, error_message, request, length):
     try:

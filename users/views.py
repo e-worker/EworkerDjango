@@ -93,8 +93,11 @@ def profile(request):
         }
         return render(request, 'student/student_profile.html', context)
     else:
-        return redirect("edit_profile")
-   
+        try:
+            company = Company.objects.get(user=request.user)
+            return redirect('employer_profile', company.id)
+        except:
+            return redirect('login')
 def offers(request):
     if request.user.isEmployer:
         pass #do something
