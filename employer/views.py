@@ -25,23 +25,23 @@ def edit_profile(request):
             flat_number = request.POST['flat_number']
             description = request.POST['description']
 
-            if not request.user.doneProfileEdit and Company.objects.filter(company_name=company_name).exists():
-                messages.error(request, 'Nazwa firmy aktualnie wystepuje w naszym systemie')
-            elif request.user.doneProfileEdit and Company.objects.filter(company_name=company_name).exists():
-                messages.error(request, 'Nazwa firmy aktualnie wystepuje w naszym systemie')
-            elif request.user.doneProfileEdit and company.company_name == company_name:
-                company.city = city
-                company.company_name = company_name
-                company.street = street
-                company.house_number = house_number
-                company.flat_number = flat_number
-                company.description = description
-                fs = FileSystemStorage()
-                filename = fs.save(image.name, image)
-                uploaded_file_url = fs.url(filename)
-                company.image = uploaded_file_url
-                request.user.doneProfileEdit = 1
-                company.save()
+            if company.company_name != company_name:
+                if Company.objects.filter(company_name=company_name).exists():
+                    messages.error(request, 'Nazwa firmy aktualnie wystepuje w naszym systemie')
+                else:
+                    company.city = city
+                    company.company_name = company_name
+                    company.street = street
+                    company.house_number = house_number
+                    company.flat_number = flat_number
+                    company.description = description
+                    fs = FileSystemStorage()
+                    filename = fs.save(image.name, image)
+                    uploaded_file_url = fs.url(filename)
+                    company.image = uploaded_file_url
+                    request.user.doneProfileEdit = 1
+                    company.save()
+
     return render(request, 'employer/edit_profile.html', context)
 
 def find_students(request):

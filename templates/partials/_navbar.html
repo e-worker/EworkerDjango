@@ -9,24 +9,29 @@
         <ul>
         {% if user.is_authenticated %}
          <p class="title">Witaj, {{user.first_name}}!</p>
-          <li><a class="white-text" href="{% url 'profile' %}" class="navbar">Profil</a></li>
-          <li><a class="white-text" href="{% url 'offers' %}" class="navbar">Oferty</a></li>
-          <li><a class="white-text" href="{% url 'messages' %}" class="navbar">Wiadomości</a></li>
+          <li><a href="{% url 'profile' %}"><button class="nav-buttons" class="navbar">Profil</button></a></li>
+          {% if not user.isEmployer %}
+          <li><a href="{% url 'offers' %}" ><button class="nav-buttons" class="navbar">Oferty</button></a></li>
+              {% endif %}
+          <li><a href="{% url 'messages' %}"><button class="nav-buttons"  class="navbar">Wiadomości</button></a></li>
           {% if user.isEmployer %}
-          <li><a class="white-text" href="{% url 'find_student' %}" class="navbar">Wyszukiwanie studentów</a></li>
-          <li><a class="white-text" href="{% url 'add_offer' %}" class="navbar">Dodaj Ofertę</a></li>
-          <li><a class="white-text" href="{% url 'employer_offers' %}" class="navbar">Moje Oferty</a></li>
+          <li><a href="{% url 'find_student' %}"><button class="nav-buttons" class="navbar">Wyszukiwanie studentów</button></a></li>
+          <li><a href="{% url 'add_offer' %}"><button class="nav-buttons" class="navbar">Dodaj Ofertę</button></a></li>
+          <li><a href="{% url 'employer_offers' %}"><button class="nav-buttons" class="navbar">Moje Oferty</button></a></li>
           {% endif %}
-          <li><a class="white-text" href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
+          <li>
+          <form action="{% url 'logout' %}" method="POST" id="logout">
+                  <button class="nav-buttons" href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
                 Wyloguj
-                </a>
-                <form action="{% url 'logout' %}" method="POST" id="logout">
+                </button>
+
                 {% csrf_token %}
                 <input type="hidden">
-                </form></li>
+                </form>
+          </li>
             {% else %}
-            <li><a class="white-text" href="{% url 'login' %}" class="navbar" id="zaloguj">Zaloguj</a></li>
-            <li><a class="white-text" href="{% url 'register' %}" class="navbar">Rejestracja</a></li>
+            <li><a href="{% url 'login' %}"><button class="nav-buttons"  class="navbar" id="zaloguj">Zaloguj</button></a></li>
+            <li><a href="{% url 'register' %}"><button class="nav-buttons" class="navbar">Rejestracja</button></a></li>
             {% endif %}
           </ul>
     </div>

@@ -1,8 +1,21 @@
 {% load static %}
 
+
 .white-text{
    color: whitesmoke;
 }
+
+.nav-buttons{
+    color: whitesmoke;
+    background-color: royalblue;
+}
+
+.nav-buttons:hover {
+background-color: cornflowerblue;
+}
+
+
+
 
 body
 {
@@ -499,6 +512,10 @@ header{
    }
 }
  @media only screen and (max-width: 600px){
+     .nav-buttons{
+    border:none;
+    background-color:#013c83;
+    }
    .company_name{
       border-style: solid;
       display: inline-block;
