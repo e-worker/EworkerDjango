@@ -173,15 +173,16 @@ def student_offers(request):
 
 @login_required()
 def student_profile(request, id):
-    # try:
+    try:
         student = Student.objects.get(id=id)
         context = {
         'student' : student,
         'student_info': student.get_matching_info(),
+        'isEmployer': request.user.isEmployer,
         }
         return render(request, 'student/student_profile.html', context)
-    # except:
-        # messages.error(request, 'Nie znaleziono wybranego studenta')
-        # return redirect('profile')
+    except:
+        messages.error(request, 'Nie znaleziono wybranego studenta')
+        return redirect('profile')
 
 

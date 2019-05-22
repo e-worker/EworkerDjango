@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from users.models import CustomUser
 from student.models import Student
 from employer.models import Company
+from student import views as stud_views
 
 # Create your views here.
 def login(request):
@@ -81,9 +82,18 @@ def register(request):
             return redirect('register')
     return render(request, 'users/register.html')
     
-    
-def profile(request):  
-    return redirect("edit_profile")
+
+def profile(request):
+    if not request.user.isEmployer:
+        student = Student.objects.get(user_id=request.user.id)
+        context = {
+        'student' : student,
+        'student_info': student.get_matching_info(),
+        'isEmployer': request.user.isEmployer,
+        }
+        return render(request, 'student/student_profile.html', context)
+    else:
+        return redirect("edit_profile")
    
 def offers(request):
     if request.user.isEmployer:
