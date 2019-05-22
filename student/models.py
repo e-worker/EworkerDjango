@@ -33,24 +33,33 @@ class Student(models.Model):
         """
         degree_course_info = StudentDegreeCourse.objects.filter(student=self).values("degree_course__name")
         skills_info = StudentInfo.objects.filter(student=self).values('skill__skill__name').distinct()
+        skills_fullInfo = StudentInfo.objects.filter(student=self).values('skill__skill__name', 'text', 'start_date', 'end_date', 'present').distinct()
         languages_info = StudentLanguage.objects.filter(student=self).values('language__name', 'language_lvl__level')
         skills = []
+        skillsFull = []
+        skillsTemp = []
         degree_course = []
         languages = []
         languages_lvl = []
         for skill in skills_info:
             skills.append(skill["skill__skill__name"])
+        for skillFull in skills_fullInfo:
+            skillsTemp.append(skillFull["skill__skill__name"])
+            skillsTemp.append(skillFull["text"])
+            skillsTemp.append(skillFull["start_date"])
+            skillsTemp.append(skillFull["end_date"])
+            skillsTemp.append(skillFull["present"])
+            skillsFull.append(skillsTemp)
+            skillsTemp = []    
         for degree in degree_course_info:
             degree_course.append(degree["degree_course__name"])
         for language in languages_info:
             languages.append(language["language__name"])
             languages_lvl.append(language["language_lvl__level"])
-
-        
         salary_from = self.salary_from   
         salary_to = self.salary_to
         #bierz po jednym, pozniej zrob slownik z ofertami i  do kazdej oferty obliczaj dopasowanie
-
+        student_lang=zip(languages, languages_lvl)
         context = {
             'degree_course': degree_course,
             'skills': skills,
@@ -58,6 +67,8 @@ class Student(models.Model):
             'languages_lvl': languages_lvl,
             'salary_from': salary_from,
             'salary_to': salary_to,
+            'student_lang': student_lang,
+            'skillsFull': skillsFull,
         }
         return context
 

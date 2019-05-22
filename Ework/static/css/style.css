@@ -274,6 +274,7 @@ header{
   height: 60%; 
 }
 .header-name{
+   font-size: 3em;
    margin-top: 1%;
 }
 .header-name:before {
@@ -474,16 +475,15 @@ header{
    }
    .header-profile{
       margin-left: 0%;
-      width: 75%;
+      width: 96%;
    }
    .profile-description{
       margin-left: 0%;
-      width: 70%;
-      font-size: 0.8em;
+      width: 95%;
+      font-size: 1.3em;
    }
    .sidebar-menu{
-      font-size: 1em;
-      min-width: 160px;
+      display: none;
    }
    .job_description-content{
       margin-left: 0%;
@@ -492,7 +492,7 @@ header{
       font-size: 1.3em;
    }
    .content-title:after{
-      width: 40%;
+      width: 90%;
    }
    .content{
       margin-top: 10px;
@@ -550,16 +550,15 @@ header{
    }
    .header-profile{
       margin-left: 0%;
-      width: 50%;
+      width: 84%;
    }
    .profile-description{
       margin-left: 0%;
-      width: 55%;
-      font-size: 0.8em;
+      width: 95%;
+      font-size: 1.3em;
    }
    .sidebar-menu{
-      font-size: 1em;
-      min-width: 160px;
+      display: none;
    }
    .job_description-content{
       margin-left: 0%;
@@ -568,7 +567,7 @@ header{
       font-size: 1.3em;
    }
    .content-title:after{
-      width: 40%;
+      width: 90%;
    }
    .content{
       margin-top: 10px;

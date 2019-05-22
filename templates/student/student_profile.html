@@ -8,8 +8,9 @@
     <header class="header-profile">
             <div class="row">
                     <div class="nine columns">
-                            <p class="header-name">Mariusz Pudzianowski</p>
-                            <p class="header_company-localication"><i class="fa fa-home">Rzeszów </i></p>
+                            <p class="header-name">{{student.name}} {{student.surname}}</p>
+                            <p class="header_company-localication"><i class="fa fa-home">{{student.city}} </i></p>
+                            
                     </div>
                       <div class="three columns">
                             <img src="{% static 'images/Screenshot from 2019-04-28 15-27-32.png' %}" alt="Asseco" class="profile-img">
@@ -18,18 +19,49 @@
     </header>
     <div class="profile-description">
         <div class="content">
+                <p class="content-title"> O sobie: </p>
+                <p class="content-description">{{student.description}}</p> 
+        </div>
+        <div class="content">
                 <p class="content-title"> Kierunki studiów</p>
-                <p class="content-description">Informatyka</p>
+                {% for degree_course in student_info.degree_course %}
+                <p class="content-description">{{degree_course}}</p>
+                {% endfor %}
+        </div>
+        <div class="content">
+                <p class="content-title"> Doświadczenie</p>
+                {% for skillsName, text, start, end, present in student_info.skillsFull %}
+               <p class="content-description"> Typ: {{skillsName}} </p> 
+               <p class="content-description"> Opis: {{text}} </p>
+               {% if present %}
+               <p class="content-description"> Od: {{start}} - Do dziś </p>
+               {% else %}
+               <p class="content-description"> Od: {{start}} Do: {{end}} </p>
+               {% endif %}
+               <br>
+               {% endfor %}
         </div>
         <div class="content">
                 <p class="content-title"> Języki</p>
-                <p class="content-description">Angielski</p>
+                {% for languages, languages_lvl in student_info.student_lang %}
+                <p class="content-description">{{languages}} {{languages_lvl}}</p>
+                {% endfor %}
         </div>
         <div class="content">
-            <p class="content-title"> Zainteresowania</p>
-           <p class="content-description">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus perspiciatis, omnis exercitationem expedita asperiores dignissimos eum ipsum in eaque fugiat reprehenderit! Voluptatum ab, veniam dolore ducimus vitae id minima, impedit aperiam vel est rem eaque quis eum dolores aliquam sit, obcaecati libero corrupti voluptas corporis earum hic ullam quisquam incidunt?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde quibusdam labore eligendi ullam quod suscipit iste autem temporibus nihil beatae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Error dicta assumenda, aperiam aut illum accusamus molestias magni nam ex reprehenderit exercitationem iusto quasi fuga veniam, dolor accusantium quibusdam quam. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum, dolor? 
-           </p> 
+                <p class="content-title"> Zarobki od</p>
+               <p class="content-description">{{student.salary_from}} zł/h</p> 
+        </div>
+        <div class="content">
+                <p class="content-title"> Zarobki do</p>
+               <p class="content-description">{{student.salary_to}} zł/h</p> 
+        </div>
+        <div class="content">
+                <p class="content-title"> Link do CV</p>
+               <p class="content-description">{{student.document_url}}</p> 
+        </div>
+        <div class="content">
+                <p class="content-title"> Zainteresowania</p>
+               <p class="content-description">{{student.interest_text}}</p> 
         </div>
     </div>
     {% include 'partials/_dashboard.html'%}

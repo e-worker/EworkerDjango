@@ -171,3 +171,17 @@ def student_offers(request):
     }
     return render(request, 'student/student_offers.html', context)
 
+@login_required()
+def student_profile(request, id):
+    # try:
+        student = Student.objects.get(id=id)
+        context = {
+        'student' : student,
+        'student_info': student.get_matching_info(),
+        }
+        return render(request, 'student/student_profile.html', context)
+    # except:
+        # messages.error(request, 'Nie znaleziono wybranego studenta')
+        # return redirect('profile')
+
+
