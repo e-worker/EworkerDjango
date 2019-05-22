@@ -197,7 +197,7 @@ def add_offer(request):
         return redirect("login")
 
 
-
+@login_required()
 def employer_offers(request): 
     company = Company.objects.get(user=request.user)
     offers = JobOffer.objects.filter(company=company)

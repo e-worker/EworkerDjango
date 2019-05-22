@@ -2,6 +2,8 @@
 {% block title %}Moje oferty pracy{% endblock %}
 {% block content %}
 <main>
+<div class = "container nes-container with-title is-centered">
+
     {% for offer in offers %}
         <a href="{% url 'offer' offer.id %}">{{offer.title}}</a>
         
@@ -12,6 +14,9 @@
                 {% csrf_token %}
                 <input type="hidden">
                 </form>
+    {% empty %}
+        Nie masz żadnych ofert
     {% endfor %}
+</div>
 </main>
 {% endblock %}

@@ -11,7 +11,7 @@
                                         <div class="row">
                                                 
                                                 <div class="three columns">
-                                                        <img src="{% static 'images/pudzian.png' %}" alt="Pudzian" class="student_profile-img">
+                                                        <img src="{{student.image}}" alt="Pudzian" class="student_profile-img">
                                                 </div>
                                                 <div class="nine columns">
                                                        <a href="{% url 'student_profile' student.id %}">

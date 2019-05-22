@@ -13,6 +13,7 @@
           <li><a class="white-text" href="{% url 'offers' %}" class="navbar">Oferty</a></li>
           <li><a class="white-text" href="{% url 'messages' %}" class="navbar">Wiadomości</a></li>
           {% if user.isEmployer %}
+          <li><a class="white-text" href="{% url 'find_student' %}" class="navbar">Wyszukiwanie studentów</a></li>
           <li><a class="white-text" href="{% url 'add_offer' %}" class="navbar">Dodaj Ofertę</a></li>
           <li><a class="white-text" href="{% url 'employer_offers' %}" class="navbar">Moje Oferty</a></li>
           {% endif %}
