@@ -41,6 +41,9 @@ a
  h1 {
    font-size: 1.4em;
  }
+ h3{
+    font-size: 3rem;
+ }
  
  em {
     font-style: normal;
@@ -180,7 +183,7 @@ header{
    background-color: #33323036;
 }
 .job_description-content{
-   margin-left: 5%;
+   margin-left: 3%;
 }
 
 .sidebar-menu{
@@ -311,6 +314,7 @@ header{
    margin-top: 2%;
    margin-bottom: 10px;
 }
+
 .content-title:after{
    content: "";
    display: block;
@@ -318,6 +322,9 @@ header{
    height: 3px;
    position: absolute;
    background-color: #33323036;
+}
+.content-title .employer-title:after{
+   width: 90%;
 }
 .content-description{
    margin-left: 2%;
@@ -410,6 +417,12 @@ header{
    height: 25%;
    width: 28%;
 }
+#edit_student{
+   display: none;
+}
+#edit_employer{
+   display: none;
+}
  /* Mobile First */
  @media  (min-width: 42em) {
     .s-layout__content {
@@ -499,6 +512,9 @@ header{
    }
 }
  @media only screen and (max-width: 600px){
+    h3{
+       font-size: 2rem;
+    }
    .company_name{
       border-style: solid;
       display: inline-block;
@@ -514,6 +530,7 @@ header{
        width: 100vw;
     }
     footer {
+       margin-bottom: -64%;
       width: 100vw;
     } 
     .company-img{
@@ -539,6 +556,10 @@ header{
       height: 20%;
       padding-bottom: 5%;
    }
+   .job_description-title{
+      font-weight: 600;
+      font-size: 2rem;
+   }
    .job_description-title:after{
       left: 0;
       width: 100%;
@@ -558,10 +579,14 @@ header{
       font-size: 1.3em;
    }
    .sidebar-menu{
-      display: none;
+     display: none;
    }
    .job_description-content{
+      font-size: 1.5rem;
       margin-left: 0%;
+   }
+   .content-description{
+      font-size: 1.5rem;
    }
    .content-title{
       font-size: 1.3em;
@@ -585,36 +610,46 @@ header{
     .u-full-width {
       /* width: 145%; */
     }
-    
+    #edit_student{
+      display: block;
+   }
+   #edit_employer{
+      display: block;
+   }
     /* Sidebar */
     .s-sidebar__trigger {
       z-index: 2;
       position: absolute;
-      top: 12%;
+      top: 28%;
       left: 0;
       width: 100vw;
-      height: 5em;
-      background-color: rgb(62, 29, 248);
+      height: 4em;
+      background-color: #013c83;
    }
-    
+   .sidebar_employer{
+      top: 44%;
+   }
    .s-sidebar__nav {
       overflow: scroll;
       position: absolute;
-      top: 20%;
+      top: 35%;
       left: -35em;
       overflow: hidden;
       transition: all .3s ease-in;
       width: 31em;
       height: 96%;
-      background-color: rgb(62, 29, 248);
+      background-color: #013c83;
       color: rgba(255, 255, 255, 0.7);
    }
-    
+   .nav_employer{
+      top: 51%;
+   }
    .s-sidebar__nav:hover,
    .s-sidebar__nav:focus,
    .s-sidebar__trigger:focus + .s-sidebar__nav,
    .s-sidebar__trigger:hover + .s-sidebar__nav {
       left: 0;
+      position: absolute;
    }
    
    .s-sidebar__nav ul {
