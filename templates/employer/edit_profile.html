@@ -3,7 +3,7 @@
 {% block title %}Edytuj Profil{% endblock %}
 {% block content %}
 <main>
-<form id="employer_form" method="POST">
+<form id="employer_form" method="POST" enctype="multipart/form-data">
 {% csrf_token %}
 <label for="city">Nazwa firmy:</label>
 <input type="text" name="company_name" required value="{{company.company_name}}"></br>
@@ -17,6 +17,13 @@
 <input type="text" name="flat_number" value="{{company.flat_number}}"></br>
 <label for="description">Opis:</label>
 <textarea name="description">{{company.description}}</textarea></br>
+ <div class="nes-field">
+    <label for="image" class="edit_profile">Zdjęcie:</label>
+    <input type="file" name="image" class="nes-input" required>
+    {% if company.image %}
+        <img src="{{ company.image }}" alt="" >
+    {% endif %}
+</div>
 <button id="submitBtn">Wyslij</button>
 </form>
 </main>

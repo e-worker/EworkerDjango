@@ -13,6 +13,7 @@ class Company(models.Model):
     email = models.CharField(max_length=127)
     description = models.CharField(max_length=255)
     creation_date = models.DateTimeField(default=datetime.now)
+    image = models.CharField(max_length=511,blank=True)
     user = models.ForeignKey(CustomUser, models.DO_NOTHING)
 
     def __str__(self):

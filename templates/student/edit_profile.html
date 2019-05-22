@@ -9,7 +9,7 @@
         <div class = "row">
             <!--alerts-->
             {% include 'partials/_alerts.html' %}
-            <form id="student_form" method="POST">
+            <form id="student_form" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="nes-field">
                     <label for="city" class="edit_profile">Miasto:</label>
@@ -46,6 +46,13 @@
                <div class="nes-field">
                   <label for="description" class="edit_profile">Krótki opis siebie:</label>
                   <textarea name="description" class="nes-input">{{student.description}}</textarea>
+               </div>
+               <div class="nes-field">
+                  <label for="image" class="edit_profile">Zdjęcie:</label>
+                  <input type="file" name="image" class="nes-input" required>
+                  {% if student.image %}
+                    <img src="{{ student.image }}" alt="" >
+                  {% endif %}
                </div>
                <label for="course" class="edit_profile">Kierunki studiów:</label>
                <div class="nes-select">
