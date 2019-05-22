@@ -14,8 +14,9 @@
 background-color: cornflowerblue;
 }
 
-
-
+#logout{
+    margin: 0;
+}
 
 body
 {

@@ -4,11 +4,11 @@
 <nav class="main-navbar">
      <div class="row">
         <!--<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>--> 
-    <div class="one column"><a href="#" class="brand-logo">Ework</a></div> 
+    <div class="one column"><img src="/static/images/logo.png" style="margin-top:3%"></div>
     <div class="eleven columns">
         <ul>
         {% if user.is_authenticated %}
-         <p class="title">Witaj, {{user.first_name}}!</p>
+         <li>Witaj, {{user.first_name}}!</li>
           <li><a href="{% url 'profile' %}"><button class="nav-buttons" class="navbar">Profil</button></a></li>
           {% if not user.isEmployer %}
           <li><a href="{% url 'offers' %}" ><button class="nav-buttons" class="navbar">Oferty</button></a></li>
@@ -21,10 +21,7 @@
           {% endif %}
           <li>
           <form action="{% url 'logout' %}" method="POST" id="logout">
-                  <button class="nav-buttons" href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
-                Wyloguj
-                </button>
-
+              <button class="nav-buttons" href="javascript:{document.getElementById('logout').submit()}" class="nav-link">Wyloguj</button>
                 {% csrf_token %}
                 <input type="hidden">
                 </form>
