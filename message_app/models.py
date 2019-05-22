@@ -9,7 +9,6 @@ class Message(models.Model):
     id = models.AutoField(primary_key = True)
     header = models.CharField(max_length=50)
     content = models.CharField(max_length=512)
-    seen = models.BooleanField(default=False)
     creation_date = models.DateTimeField(default=datetime.now)
     msg_from = models.ForeignKey(CustomUser, related_name='sender', on_delete=models.DO_NOTHING)
     msg_to = models.ForeignKey(CustomUser, related_name='receiver', on_delete=models.DO_NOTHING)
