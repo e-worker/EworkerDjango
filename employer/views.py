@@ -220,3 +220,12 @@ def delete_offer(request, id):
     except:
         return redirect("profile")
 
+@login_required()
+def employer_profile(request, id):
+    company = Company.objects.get(id=id)
+    offers = JobOffer.objects.filter(company=company)
+    context = {
+        'company': company,
+        'offers': offers,
+    }
+    return render(request, 'employer/employer_profile.html', context)

@@ -1,0 +1,30 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block title %}Profil Firmy{% endblock %}
+{% block content %}
+
+<div class="container container-profile">
+   
+    <header class="header-profile">
+            <div class="row">
+                    <div class="nine columns">
+                            <p class="header-name">{{company.name}}</p>
+                            <p class="header_company-localication"><i class="fa fa-home">{{company.city}}, {{company.street}}, {{company.house_number}} {{company.flat_number}} </i></p>
+                            
+                    </div>
+                      <div class="three columns">
+                         <img src="{{company.image}}" class="header_company-img">
+                      </div>
+                </div>  
+    </header>
+    <div class="profile-description">
+       <p>email: {{company.email}}</p>
+       <p>opis: {{company.description}}</p>
+       <h1>Oferty pracy:</h1>
+       {% for offer in offers %}
+        <a href="{% url 'offer' offer.id %}">{{offer.title}}</a>
+       {% endfor %}
+    </div>
+    {% include 'partials/_dashboard.html'%}
+</div>
+{% endblock %}
