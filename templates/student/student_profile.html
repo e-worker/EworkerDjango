@@ -64,6 +64,8 @@
                <p class="content-description">{{student.interest_text}}</p> 
         </div>
     </div>
+    {%  if not isEmployer %}
     {% include 'partials/_dashboard.html'%}
+    {% endif %}
 </div>
 {% endblock %}
