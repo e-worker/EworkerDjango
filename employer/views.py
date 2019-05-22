@@ -25,9 +25,11 @@ def edit_profile(request):
             flat_number = request.POST['flat_number']
             description = request.POST['description']
 
-            if Company.objects.filter(company_name=company_name).exists():
+            if not request.user.doneProfileEdit and Company.objects.filter(company_name=company_name).exists():
                 messages.error(request, 'Nazwa firmy aktualnie wystepuje w naszym systemie')
-            else:
+            elif request.user.doneProfileEdit and Company.objects.filter(company_name=company_name).exists():
+                messages.error(request, 'Nazwa firmy aktualnie wystepuje w naszym systemie')
+            elif request.user.doneProfileEdit and company.company_name == company_name:
                 company.city = city
                 company.company_name = company_name
                 company.street = street
@@ -38,6 +40,7 @@ def edit_profile(request):
                 filename = fs.save(image.name, image)
                 uploaded_file_url = fs.url(filename)
                 company.image = uploaded_file_url
+                request.user.doneProfileEdit = 1
                 company.save()
     return render(request, 'employer/edit_profile.html', context)
 
