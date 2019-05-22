@@ -6,4 +6,5 @@ urlpatterns = [
     path('add_offer', views.add_offer, name="add_offer"),
     path('my_offers', views.employer_offers, name="employer_offers"),
     path('delete_offer/<int:id>', views.delete_offer, name="delete_offer"),
+    path('employer_profile/<int:id>', views.employer_profile, name="employer_profile"),
 ]
