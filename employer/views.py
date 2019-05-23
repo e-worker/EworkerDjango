@@ -231,5 +231,6 @@ def employer_profile(request, id):
     context = {
         'company': company,
         'offers': offers,
+        'isEmployer': request.user.isEmployer,
     }
     return render(request, 'employer/employer_profile.html', context)
