@@ -9,7 +9,7 @@ from users.models import CustomUser
 # Create your views here.
 
 @login_required()
-def new_message(request):
+def new_message(request, id):
     if request.method == 'POST':
         header = request.POST['header']
         content = request.POST['content']

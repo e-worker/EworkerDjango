@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 from student import views as studentviews
+from message_app import views as msgviews
 urlpatterns = [
     path('find_student', views.find_students, name='find_student'),
     path('offer/<int:id>', views.offer, name='offer'),
@@ -10,5 +11,6 @@ urlpatterns = [
     path('employer_profile/<int:id>', views.employer_profile, name="employer_profile"),
     path('employer_edit_profile/', views.edit_profile, name="employer_edit_profile"),
     path('student_profile/<int:id>', studentviews.student_profile, name="student_profile"),
+    path('send_message/<int:id>', msgviews.new_message, name="send_message"),
 
 ]

@@ -64,8 +64,20 @@
                <p class="content-description">{{student.interest_text}}</p> 
         </div>
     </div>
-    {%  if not isEmployer %}
-    {% include 'partials/_dashboard.html'%}
+        {% if not isEmployer %}
+    <nav class="sidebar-menu">
+    <ul class="sidebar-menu_content">
+            <li class='active'><a href='/'>Profil</a></li>
+            <li><a href='/student/edit_profile'>Edycja profilu</a></li>
+    </ul>
+    </nav>
+    {% else %}
+        <nav class="sidebar-menu">
+        <ul class="sidebar-menu_content">
+            <li class='active'><a href='/'>Profil</a></li>
+            <li><a href='/student/edit_profile'>Wyślij wiadomość</a></li>
+        </ul>
+    </nav>
     {% endif %}
 </div>
 {% endblock %}
