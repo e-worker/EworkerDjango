@@ -9,7 +9,7 @@ from users.models import CustomUser
 # Create your views here.
 
 @login_required()
-def new_message(request, id):
+def new_message(request, id=0):
     if request.method == 'POST':
         header = request.POST['header']
         content = request.POST['content']
@@ -39,7 +39,20 @@ def new_message(request, id):
                         return redirect('messages')
                     else:
                         messages.error(request, 'Podany pracodawca nie istnieje w bazie, sprawdz email')
-    return render(request, 'users/new_message.html')
+        return render(request, 'users/new_message.html')
+    else:
+        if id != 0:
+            if request.user.isEmployer:
+                student_direct_email = Student.objects.get(id=id).email
+                context = {
+                    'direct_email': student_direct_email
+                }
+            else:
+                employer_direct_email = Company.objects.get(id=id).email
+                context = {
+                    'direct_email': employer_direct_email
+                }
+    return render(request, 'users/new_message.html', context)
 
 
 def dashboard(request):

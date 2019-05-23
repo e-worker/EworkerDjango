@@ -13,7 +13,7 @@
             <form action="{% url 'new_message' %}" method="POST">
                 {% csrf_token %} 
                 <p align="left">📝 E-Mail odbiorcy</p>
-                <textarea  class="nes-textarea" name="email-adresat" style="resize:none" required placeholder="E-mail"></textarea>
+                <textarea  class="nes-textarea" name="email-adresat" style="resize:none" required placeholder="E-mail">{{ direct_email }}</textarea>
                 <p align="left">📩 Temat</p>
                 <textarea  class="nes-textarea" name="header" style="resize:none" required placeholder="Temat"></textarea>
                 <p align="left">📩 Wiadomosc</p>
