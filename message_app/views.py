@@ -56,8 +56,8 @@ def new_message(request, id=0):
 
 
 def dashboard(request):
-
     query_result = Message.received_messages(request.user)
+
     context = {
         'from_list': query_result[0],
         'to_list': query_result[1],
@@ -68,6 +68,10 @@ def dashboard(request):
 
 def viewMessages(request, user_id):
     messages = Message.chat(request.user, user_id)
+    for message in messages:
+        if message.msg_to == request.user:
+            message.seen = True
+            message.save()
 
     if request.user.isEmployer:
         request_name = Company.objects.get(user_id=request.user.id).company_name

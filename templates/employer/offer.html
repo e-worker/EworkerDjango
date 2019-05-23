@@ -11,30 +11,35 @@
         <div class="offer_description">
             <div class="job_description">
                 <p class="job_description-title"> Opis stanowiska</p>
-                <p class="job_description-content">{{offer.description}}</p>
-                            
+                <p class="job_description-content">{{offer.description}}</p>          
             </div>
             <div class="job_requirements">
-                <p class="job_description-title"> Wymagania</p>
-                    {% if offer_language %}
-                    <h3>Języki</h3>
-                    {% for language in offer_language %}
-                        <p>{{language.language}}: {{language.language_lvl}}</p>
-                    {% endfor %}
-                    {% endif %}
-                    {% if offer_degree %}
-                    <h3>Oferta skierowana do studentów kierunków:</h3>
-                    {% for degree in offer_degree %}
-                        <p>{{degree.degree_course}}</p>
-                    {% endfor %}
-                    {% endif %}
-                    {% if offer_info %}
-                    <h3>Opis wymaganych umiejętności</h3>
-                    {% for info in offer_info %}
-                        <p>{{info.job_skill}}</p>
-                        <p>{{info.text}}</p>
-                    {% endfor %}
-                    {% endif %}
+                <p class="job_description-title"> Wymagania</p>    
+                {% if offer_language %}
+                <div class="content">
+                        <h3>Języki</h3>
+                        {% for language in offer_language %}
+                            <p class="content-description">{{language.language}}: {{language.language_lvl}}</p>
+                        {% endfor %}
+                </div>
+                {% endif %}
+                {% if offer_degree %}
+                <div class="content">
+                        <h3>Oferta skierowana do studentów kierunków:</h3>
+                        {% for degree in offer_degree %}
+                            <p class="content-description">{{degree.degree_course}}</p>
+                        {% endfor %}
+                </div>  
+                {% endif %}
+                {% if offer_info %}
+                <div class="content">
+                        <h3>Opis wymaganych umiejętności</h3>
+                        {% for info in offer_info %}
+                            <p class="content-description">{{info.job_skill}}</p>
+                            <p class="content-description">{{info.text}}</p>
+                        {% endfor %}
+                </div>
+                {% endif %}
             </div>
         </div>
     </div>

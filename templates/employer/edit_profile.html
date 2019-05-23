@@ -3,46 +3,48 @@
 {% block title %}Edytuj Profil{% endblock %}
 {% block content %}
 <main>
-    <div class = "container nes-container with-title is-centered">
-        <p class = "title">Edycja profilu</p>
-    <div class = "row">
-    {% include 'partials/_alerts.html' %}
-        <form id="employer_form" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div class="nes-field">
-        <label for="city">Nazwa firmy:</label>
-        <input type="text" name="company_name" class="nes-input" required value="{{company.company_name}}"></br>
+
+        <div class = "container nes-container with-title is-centered"> 
+                <p class = "title">Edycja profilu</p>
+                <div class="row">
+                        <form id="employer_form" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="nes-field">
+                                    <label for="city" class="edit_profile">Nazwa firmy:</label>
+                                    <input type="text" name="company_name" class="nes-input" required value="{{company.company_name}}">
+                            </div>
+                            <div class="nes-field">
+                                    <label for="city" class="edit_profile">Miasto:</label>
+                                    <input type="text" name="city" class="nes-input" required value="{{company.city}}">
+                            </div>
+                            <div class="nes-field">
+                                    <label for="street" class="edit_profile">Ulica</label>
+                                    <input type="text" name="street" class="nes-input" value="{{company.street}}">
+                            </div>
+                            <div class="nes-field">
+                                    <label for="house_number" class="edit_profile">Numer budynku:</label>
+                                    <input type="text" name="house_number" class="nes-input" required value="{{company.house_number}}">
+                            </div>
+                            <div class="nes-field">
+                                    <label for="flat_number" class="edit_profile">Numer mieszkania:</label>
+                                    <input type="text" name="flat_number" class="nes-input"  value="{{company.flat_number}}">
+                            </div>
+                            <div class="nes-field">
+                                    <label for="description" class="edit_profile">Opis:</label>
+                                    <textarea name="description" class="nes-input">{{company.description}}</textarea>
+                            </div>
+                             <div class="nes-field">
+                                <label for="image" class="edit_profile">Zdjęcie:</label>
+                                <input type="file" name="image" class="nes-input" required>
+                                {% if company.image %}
+                                    <img src="{{ company.image }}" alt="" >
+                                {% endif %}
+                            </div>
+                            <br>
+                            <button id="submitBtn" class="nes-btn is-primary">Wyslij</button>
+                            </form>
+                </div>
+                
         </div>
-        <div class="nes-field">
-        <label for="city">Miasto:</label>
-        <input type="text" name="city" required class="nes-input" value="{{company.city}}"></br>
-        </div>
-        <div class="nes-field">
-        <label for="street">Ulica</label>
-        <input type="text" name="street" class="nes-input" value="{{company.street}}"></br>
-        </div>
-        <div class="nes-field">
-        <label for="house_number">Numer budynku:</label>
-        <input type="text" name="house_number" class="nes-input" required value="{{company.house_number}}"></br>
-        </div>
-        <div class="nes-field">
-        <label for="flat_number">Numer mieszkania:</label>
-        <input type="text" name="flat_number" class="nes-input" value="{{company.flat_number}}"></br>
-        </div>
-        <div class="nes-field">
-        <label for="description">Opis:</label>
-        <input type="text" name="description" class="nes-input" value="{{company.description}}"></br>
-        </div>
-         <div class="nes-field">
-            <label for="image" class="edit_profile">Zdjęcie:</label>
-            <input type="file" name="image" class="nes-input" required>
-            {% if company.image %}
-                <img src="{{ company.image }}" alt="" >
-            {% endif %}
-        </div>
-        <button id="submitBtn" class="nes-btn is-primary">Wyslij</button>
-        </form>
-    </div>
-    </div>
 </main>
 {% endblock %}
