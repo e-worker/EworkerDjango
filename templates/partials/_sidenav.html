@@ -1,12 +1,18 @@
 {% load static %}
 <!--Sidenav-->
 <div class="s-layout__sidebar">
-    <a class="s-sidebar__trigger">
-       <i class="fa fa-bars"></i>
+      {% if isEmployer %}
+    <a class="s-sidebar__trigger sidebar_employer ">
+      {% else %}
+      <a class="s-sidebar__trigger"> 
+      {% endif %}
+      <i class="fa fa-bars"></i>
     </a>
-   
+    {% if isEmployer %}
+    <nav class="s-sidebar__nav nav_employer">
+    {% else %}
     <nav class="s-sidebar__nav">
-    
+   {% endif %} 
       <br>
       
       <form method="POST">

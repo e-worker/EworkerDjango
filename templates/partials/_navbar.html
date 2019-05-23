@@ -13,11 +13,18 @@
           {% if not user.isEmployer %}
           <li><a href="{% url 'offers' %}" ><button class="nav-buttons" class="navbar">Oferty</button></a></li>
               {% endif %}
+          {% if user.get_unread_messages > 0 %}
+          <li class="green">{{user.get_unread_messages}}</li>
+          {% endif %}
           <li><a href="{% url 'messages' %}"><button class="nav-buttons"  class="navbar">Wiadomości</button></a></li>
+          {% if not user.isEmployer %}
+          <li id="edit_student"><a class="nav-buttons" href="{% url 'edit_profile' %}" class="navbar">Edytuj profil</a></li>
+          {% endif %}
           {% if user.isEmployer %}
           <li><a href="{% url 'find_student' %}"><button class="nav-buttons" class="navbar">Wyszukiwanie studentów</button></a></li>
           <li><a href="{% url 'add_offer' %}"><button class="nav-buttons" class="navbar">Dodaj Ofertę</button></a></li>
           <li><a href="{% url 'employer_offers' %}"><button class="nav-buttons" class="navbar">Moje Oferty</button></a></li>
+          <li id="edit_employer"><a class="white-text" href="{% url 'employer_edit_profile' %}" class="navbar">Edytuj profil</a></li>
           {% endif %}
           <li>
           <form action="{% url 'logout' %}" method="POST" id="logout">

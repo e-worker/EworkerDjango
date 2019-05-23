@@ -4,13 +4,20 @@
 {% block content %}
 
 <div class="container container-profile">
-   
+        <a class="s-sidebar__trigger sidebar_employer profil_trigger">
+        <i class="fa fa-bars"></i>
+        </a>
     <header class="header-profile">
             <div class="row">
                     <div class="nine columns">
-                            <p class="header-name">{{company.name}}</p>
+                            <p class="header-name">{{company.company_name}}</p>
+                            {% if  company.flat_number == "None" %}
+                            <p class="header_company-localication"><i class="fa fa-home">{{company.city}}, {{company.street}}, {{company.house_number}} </i></p>
+                            {% elif  company.house_number == "None" %}
+                            <p class="header_company-localication"><i class="fa fa-home">{{company.city}}, {{company.street}}, {{company.flat_number}} </i></p>
+                            {% else %}
                             <p class="header_company-localication"><i class="fa fa-home">{{company.city}}, {{company.street}}, {{company.house_number}} {{company.flat_number}} </i></p>
-                            
+                            {% endif %}
                     </div>
                       <div class="three columns">
                          <img src="{{company.image}}" class="header_company-img">
@@ -18,12 +25,21 @@
                 </div>  
     </header>
     <div class="profile-description">
-       <p>email: {{company.email}}</p>
-       <p>opis: {{company.description}}</p>
-       <h1>Oferty pracy:</h1>
-       {% for offer in offers %}
-        <a href="{% url 'offer' offer.id %}">{{offer.title}}</a>
-       {% endfor %}
+       <div class="content">
+                <p class="content-title">E-mail: </p>
+                <p class="content-description">{{company.email}}</p>
+       </div>     
+       <div class="content">
+                <p class="content-title">Opis: </p>
+                <p class="content-description">{{company.description}}</p>   
+       </div>
+       <div class="content">
+                <p class="content-title">Oferty pracy: </p>
+                {% for offer in offers %}
+                <a href="{% url 'offer' offer.id %}">{{offer.title}}</a>
+                {% endfor %}
+       </div>
+       
     </div>
     {% include 'partials/_dashboard.html'%}
 </div>
