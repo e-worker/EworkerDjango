@@ -54,7 +54,6 @@ def edit_profile(request):
             skillsPresent = request.POST.getlist('present')
 
             # form validation
-
             if len(city) < 4:
                 messages.error(request, 'Nazwa miasta nie moze byc tak krotka')
             else:

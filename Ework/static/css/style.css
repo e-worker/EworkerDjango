@@ -6,9 +6,21 @@
    font-weight: bold; 
 }
 
-
 .white-text{
    color: whitesmoke;
+}
+
+.nav-buttons{
+    color: whitesmoke;
+    background-color: royalblue;
+}
+
+.nav-buttons:hover {
+background-color: cornflowerblue;
+}
+
+#logout{
+    margin: 0;
 }
 
 body
@@ -519,8 +531,13 @@ header{
    }
 }
  @media only screen and (max-width: 600px){
+     .nav-buttons{
+    border:none;
+    background-color:#013c83;
+   }
     h3{
        font-size: 2rem;
+
     }
    .company_name{
       border-style: solid;
