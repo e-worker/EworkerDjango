@@ -54,6 +54,7 @@ def find_students(request):
         'language_lvls': language_lvlsPage,
         'skills': skillsPage,
         'courses': coursesPage,
+        'isEmployer': request.user.isEmployer,
     }
     # for student in students:
     #     if student.filter_student(**data):

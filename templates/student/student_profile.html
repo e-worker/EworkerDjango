@@ -4,7 +4,6 @@
 {% block content %}
 
 <div class="container container-profile">
-   
     <header class="header-profile">
             <div class="row">
                     <div class="nine columns">
@@ -17,7 +16,7 @@
                       </div>
                 </div>  
     </header>
-    <div class="profile-description">
+    <div class="profile-description employer_description">
         <div class="content">
                 <p class="content-title"> O sobie: </p>
                 <p class="content-description">{{student.description}}</p> 
@@ -64,8 +63,6 @@
                <p class="content-description">{{student.interest_text}}</p> 
         </div>
     </div>
-    {%  if not isEmployer %}
     {% include 'partials/_dashboard.html'%}
-    {% endif %}
 </div>
 {% endblock %}

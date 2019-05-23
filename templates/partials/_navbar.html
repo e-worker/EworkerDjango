@@ -16,10 +16,14 @@
          
           {% endif %}
           <li><a class="white-text" href="{% url 'messages' %}" class="navbar">Wiadomości</a></li>
+          {% if not user.isEmployer %}
+          <li id="edit_student"><a class="white-text" href="{% url 'edit_profile' %}" class="navbar">Edytuj profil</a></li>
+          {% endif %}
           {% if user.isEmployer %}
           <li><a class="white-text" href="{% url 'find_student' %}" class="navbar">Wyszukiwanie studentów</a></li>
           <li><a class="white-text" href="{% url 'add_offer' %}" class="navbar">Dodaj Ofertę</a></li>
           <li><a class="white-text" href="{% url 'employer_offers' %}" class="navbar">Moje Oferty</a></li>
+          <li id="edit_employer"><a class="white-text" href="{% url 'employer_edit_profile' %}" class="navbar">Edytuj profil</a></li>
           {% endif %}
           <li><a class="white-text" href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
                 Wyloguj
