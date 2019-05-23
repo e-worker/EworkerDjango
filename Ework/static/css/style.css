@@ -121,18 +121,18 @@ ul {
    padding: 0;
  }
  #label-dropdown__lvl{
-   padding-right: 120%;  
+   padding-right: 84%;  
    margin: 0;
  }  
  .label-dropdown{
-   padding-right: 52%;
+   padding-right: 68%;
  }
  .label-dropdown_experience {
-   padding-right: 60%;
+   padding-right: 71%;
  }
 
  .label-dropdown_language{
-   padding-right: 87%;
+   padding-right: 88%;
    margin: -7px;
  }
  
@@ -188,6 +188,7 @@ header{
    margin: 2%; 
 }
 .job_description-title{
+   font-weight: 600;
    font-size: 1.6em;
    margin-top: 2%;
    margin-bottom: 10px;
@@ -213,6 +214,7 @@ header{
    height: 100%;
    min-width: 250px;
 }
+
 .sidebar-menu_content li{
    text-align: left;
    display: block;
@@ -455,17 +457,23 @@ header{
     }
     /* Sidebar */
     .s-sidebar__trigger {
-     top: 3.1%;
+     top: 7.1%;
        width: 4em;
+       z-index: 23;
     }
     
     .s-sidebar__nav {
        height: 96%;
-     top: 4.1%;
+     top: 9.1%;
        width: 4em;
        left: 0;
     }
-    
+    .sidebar_employer{
+      top: 14.1%;
+    }
+    .nav_employer{
+       top: 14.1%;
+    }
     .s-sidebar__nav:hover,
     .s-sidebar__nav:focus,
     .s-sidebar__trigger:hover + .s-sidebar__nav,
@@ -488,11 +496,17 @@ header{
     .s-sidebar__nav {
        height: 93%;
        width: 35em;
-       top: 4.1%;
+       top: 5.1%;
     }
     
     .s-sidebar__nav ul {
        top: 1.3em;
+    }
+    .sidebar_employer{
+      top: 11.1%;
+    }
+    .nav_employer{
+       top: 7.1%;
     }
  }
  .company_name{
@@ -516,6 +530,12 @@ header{
    }
    .sidebar-menu{
       display: none;
+   }
+   #edit_student{
+      display: block;
+   }
+   #edit_employer{
+      display: block;
    }
    .job_description-content{
       margin-left: 0%;
@@ -554,7 +574,7 @@ header{
        width: 100vw;
     }
     footer {
-       margin-bottom: -64%;
+       margin-bottom: -93%;
       width: 100vw;
     } 
     .company-img{
@@ -575,9 +595,10 @@ header{
       top: 80%;
    }
    .header_company-img{
-      margin-left: 23%;
-      width: 50%;
-      height: 20%;
+      /* border-radius: 50%; */
+      margin-left: 22%;
+      width: 60%;
+      height: auto;
       padding-bottom: 5%;
    }
    .job_description-title{
@@ -644,19 +665,19 @@ header{
     .s-sidebar__trigger {
       z-index: 2;
       position: absolute;
-      top: 28%;
+      top: 42%;
       left: 0;
       width: 100vw;
       height: 4em;
       background-color: #013c83;
    }
    .sidebar_employer{
-      top: 44%;
+      top: 55%;
    }
    .s-sidebar__nav {
       overflow: scroll;
       position: absolute;
-      top: 35%;
+      top: 55%;
       left: -35em;
       overflow: hidden;
       transition: all .3s ease-in;
@@ -666,7 +687,7 @@ header{
       color: rgba(255, 255, 255, 0.7);
    }
    .nav_employer{
-      top: 51%;
+      top: 61%;
    }
    .s-sidebar__nav:hover,
    .s-sidebar__nav:focus,
@@ -723,7 +744,7 @@ header{
       transform: translate(-50%, -50%);
    }
    .label-dropdown{
-      padding-right: 40%;
+      padding-right: 64%;
    }
    .course {
       padding-left: 0px;
@@ -757,12 +778,12 @@ header{
       margin-left:1%;
     }
     #label-dropdown__lvl{
-      padding-right: 77%;  
+      padding-right: 84%;  
       margin: 0;
       margin-top: 5%
     }  
     .label-dropdown_experience {
-      padding-right: 51%;
+      padding-right: 69%;
   }
  }
  
@@ -785,7 +806,7 @@ header{
  
  div .sidebar__title-paragraph {
    font-size: 1.5rem;
-   margin-right: 26%;
+   margin-right: 36%;
  }
  
  
