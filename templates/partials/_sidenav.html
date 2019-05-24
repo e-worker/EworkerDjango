@@ -14,7 +14,7 @@
     <nav class="s-sidebar__nav">
    {% endif %} 
       <br>
-      
+      <li><a href="{% url 'match_students' %}"><button class="nav-buttons" class="navbar">Parowanie</button></a></li>
       <form method="POST">
          {% csrf_token %} 
           <ul class="form">
@@ -101,10 +101,12 @@
                   </a>
                </li>
                <li>
-                     <button type="submit" class="nes-btn is-primary" id="search-btn">Primary</button>
+                     <button type="submit" class="nes-btn is-primary" id="search-btn">Primary</button>                   
+
                </li>
            </ul>
       </form>
+      
     </nav>
     
   </div>

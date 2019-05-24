@@ -37,7 +37,7 @@
                                 <label for="image" class="edit_profile">Zdjęcie:</label>
                                 <input type="file" name="image" class="nes-input" required>
                                 {% if company.image %}
-                                    <img src="{{ company.image }}" alt="" >
+                                    <img src="{{ company.image.url }}" alt="" >
                                 {% endif %}
                             </div>
                             <br>

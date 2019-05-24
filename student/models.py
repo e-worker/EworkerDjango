@@ -2,26 +2,34 @@ from django.db import models
 from datetime import datetime
 from job_offers.models import DegreeCourse, Language, Skill, JobOffer
 from users.models import CustomUser
+from PIL import Image
 # Create your models here.
 class Student(models.Model):
     id = models.AutoField(primary_key = True)
-    name = models.CharField(max_length=50)
-    surname = models.CharField(max_length=50)
-    email = models.CharField(max_length=127)
-    city = models.CharField(max_length=127, blank=True, null=True)
-    street = models.CharField(max_length=127, blank=True, null=True)
-    house_number = models.CharField(max_length=20, blank=True, null=True)
-    flat_number = models.CharField(max_length=20, blank=True, null=True)
+    name = models.CharField(max_length=50, default='')
+    surname = models.CharField(max_length=50, default='')
+    email = models.CharField(max_length=127, default='')
+    city = models.CharField(max_length=127, blank=True, null=True, default='')
+    street = models.CharField(max_length=127, blank=True, null=True, default='')
+    house_number = models.CharField(max_length=20, blank=True, null=True, default='')
+    flat_number = models.CharField(max_length=20, blank=True, null=True, default='')
     creation_date = models.DateTimeField(default=datetime.now)
-    salary_from = models.IntegerField(blank=True, null=True)
-    salary_to = models.IntegerField(blank=True, null=True)
-    document_url = models.CharField(max_length=255, blank=True, null=True)
-    interest_text = models.CharField(max_length=255, blank=True, null=True)
-    description = models.CharField(max_length=255, blank=True, null=True)
-    image = models.CharField(max_length=511,blank=True)
+    salary_from = models.IntegerField(blank=True, null=True, default=0)
+    salary_to = models.IntegerField(blank=True, null=True, default=0)
+    document_url = models.CharField(max_length=255, blank=True, null=True, default='')
+    interest_text = models.CharField(max_length=255, blank=True, null=True, default='')
+    description = models.CharField(max_length=255, blank=True, null=True, default='')
+    image = models.ImageField(blank=True, upload_to='gallery_pics/%Y/%m/%d/', default = 'default.png')
     user = models.ForeignKey(CustomUser, models.DO_NOTHING)
     def __str__(self):
         return str(self.name)+" "+str(self.surname)
+
+    def save(self, *args, **kwargs):
+       super(Student, self).save(*args, **kwargs)
+       img = Image.open(self.image.path)
+       output_size = (400, 400)
+       img.thumbnail(output_size)
+       img.save(self.image.path)
 
     def get_matching_info(self):
         """matching categories
@@ -93,7 +101,7 @@ class Student(models.Model):
             
                 
         percentage = student_matched_skills/job_req_skills
-        match = StudentMatchOffer(offer=job_offer, percentage=percentage)
+        match = StudentMatchOffer(student=self, percentage=percentage)
         return match
 
     def filter_student(self, **data):
@@ -196,7 +204,7 @@ class StudentInfo(models.Model):
 
 class StudentMatchOffer(models.Model):
     id = models.AutoField(primary_key = True)
-    offer = models.ForeignKey(JobOffer, models.DO_NOTHING)
+    student = models.ForeignKey(Student, models.DO_NOTHING)
     percentage = models.FloatField()
 
 class StudentLanguage(models.Model):

@@ -5,13 +5,17 @@
 <div class="s-layout">
         {% include 'partials/_sidenav.html'%}
         <main class="s-layout__content">
+        
                 <ul class="student_profile">
+        <li><a href="{% url 'match_students' %}"><button class="nav-buttons" class="navbar">Parowanie</button></a></li>
                         {% for student in students %}
                         <li class="student_profile-content">
                                         <div class="row">
                                                 
                                                 <div class="three columns">
-                                                        <img src="{{student.image}}" alt="Pudzian" class="header_company-img">
+                                                        {% if student.image %}
+                                                        <img src="{{student.image.url}}" alt="Pudzian" class="header_company-img">                                                        
+                                                        {% endif %}
                                                 </div>
                                                 <div class="nine columns">
                                                        <a href="{% url 'student_profile' student.id %}">
