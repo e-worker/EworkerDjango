@@ -11,25 +11,27 @@
 {% include 'partials/_alerts.html' %}
 <br>
 <div class = "container nes-container with-title is-centered">
+
     <p class = "title">Logowanie</p>
     <p>Witaj w systemie Ework</p>
     <br>
 <div class = "row">
     <!--alerts-->
     
-    <div class = "col l4 offset-l1">
+    <div class = "four columns offset-by-four">
         <form action="{% url 'login' %}" method="POST">
             {% csrf_token %} 
 
-            <p align="left">Login</p>
-            <input  class="nes-textarea" name="username" style="resize:none" required>
-        </div>
+            <p align="center">Login</p>
+            <textarea  class="u-full-width" name="username" style="resize:none" required></textarea>
+
         
-            <p align="left">🔑 Hasło</p>
-             <input  class="nes-textarea" name="password" style="resize:none" type="password" required>
+            <p align="center">🔑 Hasło</p>
+             <input  class="u-full-width" name="password" style="resize:none" type="password" required>
             <br><br>
+    </div>
         </div>
-        <input type="submit" value="Zaloguj się" class="nes-btn is-primary">
+    <button type="submit"class="nav-buttons">Zaloguj się</button>
     </div>
 </main>
 {% endblock %}
