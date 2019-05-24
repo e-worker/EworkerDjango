@@ -8,8 +8,9 @@ from users.models import CustomUser
 
 # Create your views here.
 
-@login_required()
+@login_required(login_url='/')
 def new_message(request, id=0):
+    context ={    }
     if request.method == 'POST':
         header = request.POST['header']
         content = request.POST['content']
@@ -54,7 +55,7 @@ def new_message(request, id=0):
                 }
     return render(request, 'users/new_message.html', context)
 
-
+@login_required(login_url='/')
 def dashboard(request):
     query_result = Message.received_messages(request.user)
 
@@ -66,6 +67,7 @@ def dashboard(request):
     }
     return render(request, 'users/messages.html', context)
 
+@login_required(login_url='/')
 def viewMessages(request, user_id):
     messages = Message.chat(request.user, user_id)
     for message in messages:

@@ -44,15 +44,15 @@
     {% if isEmployer %}
     <nav class="sidebar-menu">
     <ul class="sidebar-menu_content">
-            <li class='active'><a href='/'>Profil</a></li>
+            <li class='active'><a href='#'>Profil</a></li>
             <li><a href='/student/edit_profile'>Edycja profilu</a></li>
     </ul>
     </nav>
     {% else %}
         <nav class="sidebar-menu">
         <ul class="sidebar-menu_content">
-            <li class='active'><a href='/'>Profil</a></li>
-            <li><a href='/student/edit_profile'>Wyślij wiadomość</a></li>
+            <li class='active'><a href='#'>Profil</a></li>
+            <li><a href='/employer/send_message/{{ company.id }}'>Wyślij wiadomość</a></li>
         </ul>
     </nav>
     {% endif %}
