@@ -13,10 +13,9 @@
           {% if not user.isEmployer %}
           <li><a href="{% url 'offers' %}" ><button class="nav-buttons" class="navbar">Oferty</button></a></li>
               {% endif %}
-          {% if user.get_unread_messages > 0 %}
-          <li class="green">{{user.get_unread_messages}}</li>
-          {% endif %}
-          <li><a href="{% url 'messages' %}"><button class="nav-buttons"  class="navbar">Wiadomości</button></a></li>
+          <li><a href="{% url 'messages' %}"><button class="nav-buttons"  class="navbar">Wiadomości{% if user.get_unread_messages > 0 %}
+                  <b>({{user.get_unread_messages}})</b>
+          {% endif %}</button></a></li>
           {% if not user.isEmployer %}
           <li id="edit_student"><a class="nav-buttons" href="{% url 'edit_profile' %}" class="navbar">Edytuj profil</a></li>
           {% endif %}
