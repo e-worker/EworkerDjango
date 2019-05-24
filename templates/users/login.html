@@ -22,11 +22,11 @@
         <form action="{% url 'login' %}" method="POST">
             {% csrf_token %} 
 
-            <p align="center">Login</p>
-            <textarea  class="u-full-width" name="username" style="resize:none" required></textarea>
+            <p align="left">Login</p>
+            <input type="text"  class="u-full-width" name="username" style="resize:none" required>
 
-        
-            <p align="center">🔑 Hasło</p>
+            <br><br>
+            <p align="left">🔑 Hasło</p>
              <input  class="u-full-width" name="password" style="resize:none" type="password" required>
             <br><br>
     </div>
