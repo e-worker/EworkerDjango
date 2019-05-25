@@ -9,15 +9,18 @@
                         {% for student in students %}
                         <li class="student_profile-content">
                                         <div class="row">
+                                                <div class="container">
+                                                        <div class="three columns">
+                                                                <img src="{{student.image}}" alt="Pudzian" class="header_company-img">
+                                                        </div>
+                                                        <div class="nine columns">
+                                                               <a href="{% url 'student_profile' student.id %}">
+                                                                   <p class="personal_data">{{student.name}} {{student.surname}}</p>
+                                                               </a>
+                                                                <p class=""> Studiuje: Informatyka</p>
+                                                        </div>
+                                                </div>
                                                 
-                                                <div class="three columns">
-                                                        <img src="{{student.image}}" alt="Pudzian" class="header_company-img">
-                                                </div>
-                                                <div class="nine columns">
-                                                       <a href="{% url 'student_profile' student.id %}">
-                                                           <p class="personal_data">{{student.name}} {{student.surname}}</p>
-                                                       </a>
-                                                </div>
                                                
                                         </div>
 
