@@ -51,7 +51,7 @@
                   <label for="image" class="edit_profile">Zdjęcie:</label>
                   <input type="file" name="image" class="nes-input" required>
                   {% if student.image %}
-                    <img src="{{ student.image }}" alt="" >
+                    <img src="{{ student.image.url }}" alt="" >
                   {% endif %}
                </div>
                <label for="course" class="edit_profile">Kierunki studiów:</label>

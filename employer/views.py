@@ -107,8 +107,7 @@ def find_students(request):
 
     return render(request, 'employer/find_student.html', context)
 
-<<<<<<< HEAD
-@login_required()
+@login_required(login_url='/')
 def match_student_with_offer(request):
     try:
         company = Company.objects.get(user=request.user)
@@ -135,9 +134,6 @@ def match_student_with_offer(request):
         return redirect('profile')
 
 @login_required()
-=======
-@login_required(login_url='/')
->>>>>>> d945b2b40a7b94908237d297877cc3037be997bd
 def offer(request, id):
     try:
         offer = JobOffer.objects.get(id=id)
@@ -155,11 +151,7 @@ def offer(request, id):
         messages.error(request, 'podana oferta nie istnieje')
         return redirect('profile')
 
-<<<<<<< HEAD
-@login_required()
-=======
 @login_required(login_url='/')
->>>>>>> d945b2b40a7b94908237d297877cc3037be997bd
 def add_offer(request):
     if request.user.isEmployer:
         company = Company.objects.get(user__id=request.user.id)
@@ -244,12 +236,8 @@ def employer_offers(request):
     return render(request, 'employer/employer_offers.html', context)
     # except:
     #     return redirect("login")
-<<<<<<< HEAD
-@login_required()
-=======
 
 @login_required(login_url='/')
->>>>>>> d945b2b40a7b94908237d297877cc3037be997bd
 def delete_offer(request, id):
     try:
         company = Company.objects.get(user=request.user)

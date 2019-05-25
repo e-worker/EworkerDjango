@@ -13,13 +13,9 @@
                      <tbody>
                        {% for offer in offers %}
                        <tr>
-<<<<<<< HEAD
                        {% if ofer.company.image.url %}
                            <td><img src="{{offer.company.image.url}}" alt="Asseco" class="company-img"></td>
                        {% endif %}
-=======
-                           <td><img src="{{company.image}}" class="header_company-img"></td>
->>>>>>> d945b2b40a7b94908237d297877cc3037be997bd
                            <td>{{offer.title}} <p class="company_name">Firma: {{offer.company}}</p></td>
                            <td>{{offer.company.city}}</td>
                            <td><a style='position:relative;' href="{% url 'offer' offer.id %}">Zobacz ofertę</a></td>
