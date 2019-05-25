@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
-{% block title %}Parowanie oferty ze studentem{% endblock %}
+{% block title %}Parowanie studenta z ofertą{% endblock %}
 {% block content %}
 <main>
 {% include 'partials/_alerts.html' %}
-    <form id="student_form" method="POST">
+<div class="container nes-container with-title is-centered ">
+<form id="student_form" method="POST">
     {% csrf_token %}
     {% if offers %}
      <select name="offer" required>
@@ -16,8 +17,10 @@
     </form>
     {% if students %}
         {% for student in students %}
-            <p>{{student.student}} :{{student.percentage}}%</p>
+            <a class="visible-links" href="{% url 'student_profile' student.student.id %}"><p>{{student.student}} :{{student.get_percent}}</p></a>
         {% endfor %}
     {% endif %}
+</div>
+    
 </main>
 {% endblock %}

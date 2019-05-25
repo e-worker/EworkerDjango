@@ -13,15 +13,15 @@ class Company(models.Model):
     email = models.CharField(max_length=127, default='')
     description = models.CharField(max_length=255, default='')
     creation_date = models.DateTimeField(default=datetime.now)
-    image = models.ImageField(blank=True, upload_to='gallery_pics/%Y/%m/%d/', default = 'default.png')
+    image = models.ImageField(upload_to='gallery_pics/%Y/%m/%d/', default = 'default.png')
     user = models.ForeignKey(CustomUser, models.DO_NOTHING)
 
     def __str__(self):
         return str(self.company_name)
     
     def save(self, *args, **kwargs):
-      super(Company, self).save(*args, **kwargs)
-      img = Image.open(self.image.path)
-      output_size = (400, 400)
-      img.thumbnail(output_size)
-      img.save(self.image.path)
+        super(Company, self).save(*args, **kwargs)
+        # img = Image.open(self.image.path)
+        # output_size = (400, 400)
+        # img.thumbnail(output_size)
+        # img.save(self.image.path)

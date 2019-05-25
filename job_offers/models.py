@@ -37,19 +37,25 @@ class JobOffer(models.Model):
     def get_info(self):
         degree_course_info = OfferDegreeCourse.objects.filter(job_offer=self).values("degree_course__name")
         skills_info = JobInfo.objects.filter(job_offer=self).values('job_skill__skill__name').distinct() 
+        languages_info = JobOfferLanguage.objects.filter(job_offer=self).values("language__name")
         skills = []
         degree_course = []
+        languages = []
         for skill in skills_info:
             skills.append(skill["job_skill__skill__name"])
         for degree in degree_course_info:
             degree_course.append(degree["degree_course__name"])
-        
+        for language in languages_info:
+            languages.append(language['language__name'])
+
         salary_from = self.sallary_from
-        
+        salary_to = self.sallary_to
         context = {
             'degree_course': degree_course,
             'skills': skills,
             'salary_from': salary_from,
+            'salary_to': salary_to,
+            'languages': languages,
         }
         return context
 
@@ -72,6 +78,54 @@ class JobOffer(models.Model):
         match = OfferMatchStudent(offer=self, percentage=percentage)
         return match
 
+    def filter_offer(self, **data):
+        offer_info = self.get_info()
+        filter_required = 0 
+        filter_offer = 0
+        print(data)
+        if data['salary_from']!='':
+            salary_from = data['salary_from']
+            filter_required+=1
+            if int(salary_from) <= offer_info["salary_from"]:
+                filter_offer+=1
+                print('ok')
+        if data['salary_to']!='':
+            salary_to = data['salary_to']
+            filter_required+=1
+            if int(salary_to) >= offer_info["salary_to"]:
+                filter_offer+=1
+                print('ok')
+        if data['degree_course'] is not None and data['degree_course']!='':
+            degree = data['degree_course']
+            print(data['degree_course'])
+            filter_required+=1  
+            for d in offer_info["degree_course"]:
+                if d in degree:
+                    filter_offer+=1
+                    print('ok')
+        if data['language'] is not None and data['language']!='':
+            language = data['language']
+            filter_required+=1  
+            for l in offer_info['languages']:
+                if l in language:
+                    filter_offer+=1
+                    print('ok')
+        if data['skills'] is not None and data['skills']!='' :
+            skills = data['skills']
+            filter_required+=1 
+            for skill in offer_info['skills']:
+                if skill in skills:
+                    filter_offer+=1
+                    print('**ok**')
+        print('{0}/{1}'.format(filter_offer,filter_required))
+        print("******")
+        print(offer_info)
+        print(data)
+        print("**********")
+        if filter_offer>=filter_required:
+            return True
+        return False
+
 class JobOfferLanguage(models.Model):
     id = models.AutoField(primary_key = True)
     language = models.ForeignKey('Language', models.DO_NOTHING)
@@ -91,6 +145,10 @@ class OfferMatchStudent(models.Model):
     id = models.AutoField(primary_key = True)
     offer = models.ForeignKey(JobOffer, models.DO_NOTHING)
     percentage = models.FloatField()
+
+    def get_percent(self):
+        p = self.percentage * 100
+        return '{:.2f}%'.format(p)
 
 class LanguageLvl(models.Model):
     id = models.AutoField(primary_key = True)
