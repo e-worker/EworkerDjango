@@ -11,6 +11,7 @@
                         {% for student in students %}
                         <li class="student_profile-content">
                                         <div class="row">
+<<<<<<< HEAD
                                                 
                                                 <div class="three columns">
                                                         {% if student.image %}
@@ -21,7 +22,20 @@
                                                        <a href="{% url 'student_profile' student.id %}">
                                                            <p class="personal_data">{{student.name}} {{student.surname}}</p>
                                                        </a>
+=======
+                                                <div class="container">
+                                                        <div class="three columns">
+                                                                <img src="{{student.image}}" alt="Pudzian" class="header_company-img">
+                                                        </div>
+                                                        <div class="nine columns">
+                                                               <a href="{% url 'student_profile' student.id %}">
+                                                                   <p class="personal_data">{{student.name}} {{student.surname}}</p>
+                                                               </a>
+                                                                <p class=""> Studiuje: Informatyka</p>
+                                                        </div>
+>>>>>>> d945b2b40a7b94908237d297877cc3037be997bd
                                                 </div>
+                                                
                                                
                                         </div>
 

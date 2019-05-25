@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.files.storage import FileSystemStorage
 from django.conf import settings
 
-
+@login_required(login_url='/')
 def edit_profile(request):
     if request.user.isEmployer:
         company = Company.objects.get(user__id=request.user.id)
@@ -41,6 +41,8 @@ def edit_profile(request):
 
     return render(request, 'employer/edit_profile.html', context)
 
+
+@login_required(login_url='/')
 def find_students(request):
     studentsPage = Student.objects.all()
     languagesPage = Language.objects.all()
@@ -105,6 +107,7 @@ def find_students(request):
 
     return render(request, 'employer/find_student.html', context)
 
+<<<<<<< HEAD
 @login_required()
 def match_student_with_offer(request):
     try:
@@ -132,6 +135,9 @@ def match_student_with_offer(request):
         return redirect('profile')
 
 @login_required()
+=======
+@login_required(login_url='/')
+>>>>>>> d945b2b40a7b94908237d297877cc3037be997bd
 def offer(request, id):
     try:
         offer = JobOffer.objects.get(id=id)
@@ -149,7 +155,11 @@ def offer(request, id):
         messages.error(request, 'podana oferta nie istnieje')
         return redirect('profile')
 
+<<<<<<< HEAD
 @login_required()
+=======
+@login_required(login_url='/')
+>>>>>>> d945b2b40a7b94908237d297877cc3037be997bd
 def add_offer(request):
     if request.user.isEmployer:
         company = Company.objects.get(user__id=request.user.id)
@@ -224,7 +234,7 @@ def add_offer(request):
         return redirect("login")
 
 
-@login_required()
+@login_required(login_url='/')
 def employer_offers(request): 
     company = Company.objects.get(user=request.user)
     offers = JobOffer.objects.filter(company=company)
@@ -234,7 +244,12 @@ def employer_offers(request):
     return render(request, 'employer/employer_offers.html', context)
     # except:
     #     return redirect("login")
+<<<<<<< HEAD
 @login_required()
+=======
+
+@login_required(login_url='/')
+>>>>>>> d945b2b40a7b94908237d297877cc3037be997bd
 def delete_offer(request, id):
     try:
         company = Company.objects.get(user=request.user)
@@ -247,7 +262,7 @@ def delete_offer(request, id):
     except:
         return redirect("profile")
 
-@login_required()
+@login_required(login_url='/')
 def employer_profile(request, id):
     company = Company.objects.get(id=id)
     offers = JobOffer.objects.filter(company=company)

@@ -4,27 +4,37 @@ from django.contrib.auth.models import User
 from users.models import CustomUser
 from student.models import Student
 from employer.models import Company
+from django.contrib.auth.decorators import login_required
+
 from student import views as stud_views
 
 # Create your views here.
 def login(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = auth.authenticate(username=username, password=password)
-        if user is not None:
-            auth.login(request, user)
-            messages.success(request, 'Pomyślnie zalogowano')
-            if request.user.doneProfileEdit:
-                return redirect('offers')
-            else:
-                return redirect('edit_profile')
+    if request.user.is_authenticated:
+        messages.error(request, 'Jestes juz zalogowany, nie mozesz sie zalogować drugi raz')
+        if request.user.isEmployer == True:
+            return redirect('employer_offers')
         else:
-            messages.error(request, 'Invalid credentials')
-            return render(request, 'users/login.html')
+            return redirect('student_offers')
     else:
-        return render(request, 'users/login.html')
+        if request.method == 'POST':
+            username = request.POST['username']
+            password = request.POST['password']
+            user = auth.authenticate(username=username, password=password)
+            if user is not None:
+                auth.login(request, user)
+                messages.success(request, 'Pomyślnie zalogowano')
+                if request.user.doneProfileEdit:
+                    return redirect('offers')
+                else:
+                    return redirect('edit_profile')
+            else:
+                messages.error(request, 'Invalid credentials')
+                return render(request, 'users/login.html')
+        else:
+            return render(request, 'users/login.html')
 
+@login_required(login_url='/')
 def logout(request):
     if request.method =='POST':
         auth.logout(request)
@@ -82,7 +92,7 @@ def register(request):
             return redirect('register')
     return render(request, 'users/register.html')
     
-
+@login_required()
 def profile(request):
     if not request.user.isEmployer:
         student = Student.objects.get(user_id=request.user.id)
@@ -98,6 +108,8 @@ def profile(request):
             return redirect('employer_profile', company.id)
         except:
             return redirect('login')
+
+@login_required()
 def offers(request):
     if request.user.isEmployer:
         pass #do something

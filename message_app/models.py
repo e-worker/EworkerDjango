@@ -40,7 +40,7 @@ class Message(models.Model):
             msg_to_me.add(messages)
             all_messages.add(messages)
 
-        return msg_from_me, msg_to_me, all_messages, user_type
+        return all_messages, user_type
 
     def chat(user: CustomUser, number_id: int):
         user_type = user.isEmployer

@@ -10,7 +10,7 @@ from django.conf import settings
 
 
 # Create your views here.
-@login_required()
+@login_required(login_url='/')
 def edit_profile(request):
     if not request.user.isEmployer:
         student = Student.objects.get(user__id=request.user.id)
@@ -164,7 +164,7 @@ def string_to_int(variable, error_message, request, length):
         messages.error(request, error_message)
         return True, variable, False
 
-
+@login_required(login_url='/')
 def student_offers(request):
     offers = JobOffer.objects.all()
     context = {
@@ -172,7 +172,7 @@ def student_offers(request):
     }
     return render(request, 'student/student_offers.html', context)
 
-@login_required()
+@login_required(login_url='/')
 def student_profile(request, id):
     try:
         student = Student.objects.get(id=id)

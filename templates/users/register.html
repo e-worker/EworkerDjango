@@ -7,7 +7,7 @@
     <br>
         <div class = "container nes-container with-title is-centered">
             <p class = "title">Rejestracja</p>
-            <p>Witaj w systemie Ework, wypełniaj pola ponizej aby sie zarejestrować</p>
+            <h3>Witaj w systemie Ework, wypełniaj pola ponizej aby sie zarejestrować</h3>
             <br>
     <div class = "row">
         <!--alerts-->
@@ -16,46 +16,45 @@
             <form action="{% url 'register' %}" method="POST">
                 {% csrf_token %} 
                 <p align="left">📝 Imię</p>
-                <textarea  class="nes-textarea" name="first_name" style="resize:none" required placeholder="Imię"></textarea>
-
+                <input type="text" class="u-full-width" name="first_name" style="resize:none" required placeholder="Imię">
+                <br><br>
                 <p align="left">📝 Nazwisko</p>
-                <textarea  class="nes-textarea" name="last_name" style="resize:none" required placeholder="Nazwisko"></textarea>
-
+                <input type="text" class="u-full-width" name="last_name" style="resize:none" required placeholder="Nazwisko">
+                <br><br>
                 <p align="left">Twoja unikalna nazwa uzytkownika</p>
-                <textarea class="nes-textarea" name="username" style="resize:none" required placeholder="Login"></textarea>
-
+                <input type="text" class="u-full-width" name="username" style="resize:none" required placeholder="Login">
+                <br><br>
                 <p align="left">📩 E-mail</p>
-                <input type="email" class="nes-textarea" name="email" style="resize:none" required placeholder="E-mail">
+                <input class="u-full-width" type="email" name="email" style="resize:none" required placeholder="E-mail" id="exampleEmailInput">
             </div>
             <div class = "col l4 offset-l2">
             <p align="left">☎️ Numer komórkowy</p>
-            <textarea  class="nes-textarea" name="phone" style="resize:none" required placeholder="Numer komórkowy"></textarea>
+            <input class="u-full-width" name="phone" type="tel" style="resize:none" required placeholder="Numer komórkowy">
+                <br><br>
             <p align="left">Zarejestruj się jako</p>
-                <div class = "nes-container is-rounded">
                     <label>
-                    <input type="radio" class="nes-radio" name="isEmployer" value='False' checked/>
-                    <span>👩‍🎓 Student</span>
+                    <h2><input type="radio" name="isEmployer" value='False' checked/>
+                    <span>👩‍🎓 Student</span></h2>
                     </label>
-
+                    <br>
                     <label>
-                    <input type="radio" class="nes-radio" name="isEmployer" value='True'/>
-                    <span>👩‍💼 Pracodawca</span>
+                    <h2><input type="radio"  name="isEmployer" value='True'/>
+                    <span>👩‍💼 Pracodawca</span></h2>
                     </label>
-                </div>
-
+                <br><br>
                 <p align="left">🔑 Hasło</p>
 
-                <input type="password" class="nes-textarea" name="passwd1" style="resize:none" placeholder="Hasło" required>
-
+                <input type="password" class="u-full-width" name="passwd1" style="resize:none" placeholder="Hasło" required>
+                <br><br>
                 <p align="left">🔑 Podaj hasło jeszcze raz</p>
-                <input type="password" class="nes-textarea" name="passwd2" style="resize:none" placeholder="Powtórz hasło" required>
+                <input type="password" class="u-full-width" name="passwd2" style="resize:none" placeholder="Powtórz hasło" required>
 
       
             </div>
         </div>
         
-
-        <input type="submit" value="Zarejestruj" class="nes-btn is-primary">
+            <br>
+            <button type="submit" class="nav-buttons">Zarejestruj</button>
         </form>
 
         </div>
