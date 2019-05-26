@@ -19,7 +19,7 @@ class Student(models.Model):
     document_url = models.CharField(max_length=255, blank=True, null=True, default='')
     interest_text = models.CharField(max_length=255, blank=True, null=True, default='')
     description = models.CharField(max_length=255, blank=True, null=True, default='')
-    image = models.ImageField(blank=True, upload_to='gallery_pics/%Y/%m/%d/', default = 'default.png')
+    image = models.ImageField(upload_to='gallery_pics/%Y/%m/%d/', default = 'default.png')
     user = models.ForeignKey(CustomUser, models.DO_NOTHING)
     def __str__(self):
         return str(self.name)+" "+str(self.surname)
@@ -206,6 +206,10 @@ class StudentMatchOffer(models.Model):
     id = models.AutoField(primary_key = True)
     student = models.ForeignKey(Student, models.DO_NOTHING)
     percentage = models.FloatField()
+
+    def get_percent(self):
+        p = self.percentage * 100
+        return '{:.2f}%'.format(p)
 
 class StudentLanguage(models.Model):
     id = models.AutoField(primary_key = True)

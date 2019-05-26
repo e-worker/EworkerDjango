@@ -13,6 +13,10 @@
                 <p class="job_description-title"> Opis stanowiska</p>
                 <p class="job_description-content">{{offer.description}}</p>          
             </div>
+            <div class="job_description">
+                <p class="job_description-title"> Widełki płacowe:</p>
+                <p class="job_description-content">{{offer.sallary_from}}-{{offer.sallary_to}}/h</p>          
+            </div>
             <div class="job_requirements">
                 <p class="job_description-title"> Wymagania</p>    
                 {% if offer_language %}
@@ -41,6 +45,10 @@
                 </div>
                 {% endif %}
             </div>
+            <br>
+        {% if user.isEmployer == False %}
+        <a href="{% url 'chat' offer.company.user.id %}"><button class="nav-buttons" class="navbar">Wyślij Wiadomość</button></a>
+        {% endif %}
         </div>
     </div>
 </main>

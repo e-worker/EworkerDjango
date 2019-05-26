@@ -167,9 +167,61 @@ def string_to_int(variable, error_message, request, length):
 @login_required(login_url='/')
 def student_offers(request):
     offers = JobOffer.objects.all()
+    courses_form = DegreeCourse.objects.all()
+    languages_form = Language.objects.all()
+    languages_lvls_form = LanguageLvl.objects.all()
+    skills_form = Skill.objects.all()
+
     context = {
         'offers': offers,
+        'courses': courses_form,
+        'languages': languages_form,
+        'language_lvls': languages_lvls_form,
+        'skills': skills_form,
     }
+    filtered_offers = []
+    if request.method=='POST':
+        salary_from=''
+        salary_to=''
+        language=''
+        courses=''
+        skills=''
+        
+        salary_from = request.POST.get('salary_from', '')    
+        salary_to = request.POST.get('salary_to','')
+        if request.POST.getlist('courses'): 
+            courses = request.POST['courses']
+        if request.POST.getlist('language'):
+            language = request.POST['language']
+        if request.POST.getlist('language_lvl'):
+            language_lvl = request.POST['language_lvl']
+        if request.POST.getlist('skills'):
+            skills = request.POST.getlist('skills')
+        if salary_from!='' and salary_to!='':
+            if int(salary_from) > int(salary_to):
+                messages.error(request, 'Próg dolny zarobków nie może być wyższy od progu górnego')
+        data = {
+            'salary_from': salary_from,
+            'salary_to': salary_to,
+            'degree_course': courses,
+            'language': language,
+            # 'language_lvl': language_lvl,
+            'skills': skills,
+        } 
+        
+        for offer in offers:
+            if offer.filter_offer(**data):
+                filtered_offers.append(offer)
+        context = {
+            'offers': offers,
+            'courses': courses_form,
+            'languages': languages_form,
+            'language_lvls': languages_lvls_form,
+            'skills': skills_form,
+            'offers': filtered_offers,
+        }
+        return render(request,'student/student_offers.html', context)
+
     return render(request, 'student/student_offers.html', context)
 
 @login_required(login_url='/')

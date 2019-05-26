@@ -3,10 +3,12 @@
 {% block content %}
 <main>
 {% include 'partials/_alerts.html' %}
+<div class="container nes-container with-title is-centered ">
     {% if offers %}
         {% for offer in offers %}
-            <p>{{offer.offer}} :{{offer.percentage}}%</p>
+             <a class="visible-links" href="{% url 'offer' offer.offer.id %}"><p>{{offer.offer}} :{{offer.get_percent}}</p></a>
         {% endfor %}
     {% endif %}
+</div>
 </main>
 {% endblock %}
