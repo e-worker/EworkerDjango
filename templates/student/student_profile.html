@@ -9,12 +9,14 @@
                     <div class="nine columns">
                             <p class="header-name">{{student.name}} {{student.surname}}</p>
                             <p class="header_company-localication"><i class="fa fa-home">{{student.city}} </i></p>
-                            
                     </div>
                       <div class="three columns">
                       {% if student.image %}
                          <img src="{{student.image.url}}" class="header_company-img">
                       {% endif %}
+                                                  {% if isEmployer %}
+                                <a id="edit_employer" href="{% url 'send_message' student.id %}" ><button class="match-button" style="width: 80%">Wyślij wiadomość</button></a>
+                            {% endif %}
                       </div>
                 </div>  
     </header>

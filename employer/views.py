@@ -133,7 +133,7 @@ def match_student_with_offer(request):
         messages.error(request, 'Coś poszło nie tak')
         return redirect('profile')
 
-@login_required()
+@login_required(login_url='/')
 def offer(request, id):
     try:
         offer = JobOffer.objects.get(id=id)

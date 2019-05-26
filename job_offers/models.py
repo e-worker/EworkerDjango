@@ -148,7 +148,7 @@ class OfferMatchStudent(models.Model):
 
     def get_percent(self):
         p = self.percentage * 100
-        return '{:.2f}%'.format(p)
+        return int(p)
 
 class LanguageLvl(models.Model):
     id = models.AutoField(primary_key = True)

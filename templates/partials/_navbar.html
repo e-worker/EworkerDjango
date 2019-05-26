@@ -10,6 +10,9 @@
         {% if user.is_authenticated %}
          <li>Witaj, {{user.first_name}}!</li>
           <li><a href="{% url 'profile' %}"><button class="nav-buttons" class="navbar">Profil</button></a></li>
+            {% if user.isEmployer %}
+            <li id="edit_employer"><a class="white-text" href="{% url 'employer_edit_profile' %}" class="navbar">Edytuj profil</a></li>
+                {% endif %}
           {% if not user.isEmployer %}
           <li><a href="{% url 'offers' %}" ><button class="nav-buttons" class="navbar">Oferty</button></a></li>
               {% endif %}
@@ -23,7 +26,7 @@
           <li><a href="{% url 'find_student' %}"><button class="nav-buttons" class="navbar">Wyszukiwanie studentów</button></a></li>
           <li><a href="{% url 'add_offer' %}"><button class="nav-buttons" class="navbar">Dodaj Ofertę</button></a></li>
           <li><a href="{% url 'employer_offers' %}"><button class="nav-buttons" class="navbar">Moje Oferty</button></a></li>
-          <li id="edit_employer"><a class="white-text" href="{% url 'employer_edit_profile' %}" class="navbar">Edytuj profil</a></li>
+
           {% endif %}
           <li>
           <form action="{% url 'logout' %}" method="POST" id="logout">

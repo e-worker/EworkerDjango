@@ -7,18 +7,22 @@
   {% include 'partials/_sidenav.html'%}
   <!-- Content -->
   <main class="s-layout__content">
-        <li><a href="{% url 'match_offers' %}"><button class="nav-buttons" class="navbar">Parowanie</button></a></li>
+
+            <div class="row">
+
+                     <tr><td><a href="{% url 'match_offers' %}"><button class="match-button" >Dopasuj oferty</button></a></td></tr>
+
 
                <table class="u-full-width">
                      <tbody>
                        {% for offer in offers %}
                        <tr>
-                       {% if ofer.company.image.url %}
+                       {% if offer.company.image.url %}
                            <td><img src="{{offer.company.image.url}}" alt="Asseco" class="company-img"></td>
                        {% endif %}
-                           <td>{{offer.title}} <p class="company_name">Firma: {{offer.company}}</p></td>
-                           <td>{{offer.company.city}}</td>
-                           <td><a style='position:relative;' href="{% url 'offer' offer.id %}">Zobacz ofertę</a></td>
+                           <td>Nazwa oferty: {{offer.title}} </td>
+                           <td><p class="company_name">Firma: {{offer.company}}</p></td>
+                           <td><a style='position:relative; color: darkred' href="{% url 'offer' offer.id %}">Zobacz ofertę</a></td>
                           <!--<td class="percentage__high">100%</td>-->            
                        </tr>
                        {% empty %}
@@ -28,7 +32,7 @@
                        {% endfor %}
                      </tbody>
                    </table>
-         
+         </div>
   </main>
   </div>
 {% endblock %}

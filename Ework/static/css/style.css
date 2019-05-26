@@ -1,7 +1,8 @@
 {% load static %}
 
 .visible-links{
-   font-size: 2.5em;
+   font-size: 1.2em;
+    text-decoration: underline;
 }
 
 p {
@@ -30,6 +31,18 @@ p {
 .nav-buttons:hover {
 background-color: cornflowerblue;
 }
+
+.match-button{
+    color: black;
+    background-color: darkorange;
+    width: 100%;
+    margin-bottom: 2%;
+}
+
+.match-button:hover{
+    background-color: orange;
+}
+
 
 #logout{
     margin: 0;
@@ -310,7 +323,8 @@ header{
   height: 60%; 
 }
 .header-name{
-   font-size: 3em;
+   font-size: 2.2em;
+    font-weight: 600;
    margin-top: 1%;
 }
 .header-name:before {
@@ -333,7 +347,6 @@ header{
    background-color: #efc73c;
 }
 .profile-description{
-   overflow: scroll;
    float: right;
    width: 65%;
    font-size: 1.2em;
@@ -447,8 +460,10 @@ header{
     transform: translate(-50%, -50%);
  }
  .company-img{
-   height: 25%;
-   width: 28%;
+   /*height: 25%;*/
+   /*width: 28%;*/
+     margin-left: 5%;
+     max-width: 20%;
 }
 #edit_student{
    display: none;
@@ -520,10 +535,12 @@ header{
     .nav_employer{
        top: 7.1%;
     }
+
  }
- .company_name{
-   display: none;
-}
+   .company_name{
+      display: inline-block;
+      font-size: 18px;
+   }
 @media only screen and (max-width: 900px){
  
    .container-profile {
@@ -571,11 +588,10 @@ header{
        font-size: 2rem;
 
     }
-   .company_name{
-      border-style: solid;
-      display: inline-block;
-      font-size: 14px;
-   }
+     .company_name{
+   display: none;
+}
+
    td {
       padding: 2% 1%;
    }
@@ -608,7 +624,7 @@ header{
    }
    .header_company-img{
       /* border-radius: 50%; */
-      margin-left: 22%;
+      margin-left: 10%;
       width: 60%;
       height: auto;
       padding-bottom: 5%;
@@ -689,7 +705,7 @@ header{
    .s-sidebar__nav {
       overflow: scroll;
       position: absolute;
-      top: 55%;
+      top: 49%;
       left: -35em;
       overflow: hidden;
       transition: all .3s ease-in;
@@ -823,14 +839,17 @@ header{
  
  
  .percentage__high {
+     color: black;
     text-align: center;
     background: rgb(18, 192, 18);
  }
  .percentage__mid {
    text-align: center;
-    background: rgb(207, 230, 0);
+     color: black;
+    background: rgb(255, 230, 21);
  }
  .percentage__low {
+     color: black;
    text-align: center;
     background: rgb(230, 35, 0);
  }

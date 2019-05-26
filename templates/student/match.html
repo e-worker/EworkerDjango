@@ -4,11 +4,35 @@
 <main>
 {% include 'partials/_alerts.html' %}
 <div class="container nes-container with-title is-centered ">
+    <p class = "title">Dopasowanie ofert</p>
+    <div class="nes-table-responsive">
+            <table class="nes-table is-bordered is-centered is-dark" >
+            <tbody>
     {% if offers %}
         {% for offer in offers %}
-             <a class="visible-links" href="{% url 'offer' offer.offer.id %}"><p>{{offer.offer}} :{{offer.get_percent}}</p></a>
+            <tr>
+                <td>Nazwa oferty:</td>
+             <td><a class="visible-links" href="{% url 'offer' offer.offer.id %}"><p>{{offer.offer}}</p></a></td>
+            <td>Procent dopasowania:</td>
+            <td>
+            <h3>
+            {% if offer.get_percent >= 80 %}
+                <p class="percentage__high">{{ offer.get_percent }}%</p>
+                {% endif %}
+             {% if offer.get_percent >= 30 and offer.get_percent < 80 %}
+                <p class="percentage__mid">{{ offer.get_percent }}%</p>
+                {% endif %}
+            {% if offer.get_percent < 30  %}
+                <p class="percentage__low">{{ offer.get_percent }}%</p>
+                {% endif %}
+            </h3>
+            </td>
+            </tr>
         {% endfor %}
     {% endif %}
+                        </tbody>
+            </table>
+    </div>
 </div>
 </main>
 {% endblock %}

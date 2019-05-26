@@ -239,7 +239,7 @@ def student_profile(request, id):
         return redirect('profile')
 
 
-@login_required()
+@login_required(login_url='/')
 def match_offer_with_student(request):
     try:
         student = Student.objects.get(user=request.user)
