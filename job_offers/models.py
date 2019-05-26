@@ -69,7 +69,7 @@ class JobOffer(models.Model):
                  
                 
         percentage = student_matched_skills/job_req_skills
-        match = OfferMatchStudent(student=student, percentage=percentage)
+        match = OfferMatchStudent(offer=self, percentage=percentage)
         return match
 
 class JobOfferLanguage(models.Model):
@@ -89,7 +89,7 @@ class JobOfferSkill(models.Model):
 
 class OfferMatchStudent(models.Model):
     id = models.AutoField(primary_key = True)
-    student = models.ForeignKey('student.Student', models.DO_NOTHING)
+    offer = models.ForeignKey(JobOffer, models.DO_NOTHING)
     percentage = models.FloatField()
 
 class LanguageLvl(models.Model):

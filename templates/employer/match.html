@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Parowanie oferty ze studentem{% endblock %}
+{% block content %}
+<main>
+{% include 'partials/_alerts.html' %}
+    <form id="student_form" method="POST">
+    {% csrf_token %}
+    {% if offers %}
+     <select name="offer" required>
+                    {% for offer in offers %}
+                    <option value="{{offer.title}}">{{offer.title}}</option>
+                    {% endfor %}
+                  </select>
+    <button id="submitBtn" class="nes-btn is-primary">Wyslij</button>
+    {% endif %}
+    </form>
+    {% if students %}
+        {% for student in students %}
+            <p>{{student.student}} :{{student.percentage}}%</p>
+        {% endfor %}
+    {% endif %}
+</main>
+{% endblock %}

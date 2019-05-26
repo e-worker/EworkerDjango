@@ -33,7 +33,7 @@ def edit_profile(request):
             'student_skills': student_skills,
         }
         if request.method == "POST":
-            image = request.FILES['image']
+            image = request.FILES.get('image', 'default.png')
             city = request.POST['city']
             street = request.POST['street']
             house_number = request.POST['house_number']
@@ -94,10 +94,7 @@ def edit_profile(request):
                                             student.document_url = document_url
                                             student.interest_text = interest_text
                                             student.description = description
-                                            fs = FileSystemStorage()
-                                            filename = fs.save(image.name, image)
-                                            uploaded_file_url = fs.url(filename)
-                                            student.image = uploaded_file_url
+                                            student.image = image
                                             student.save()
 
                                             #user profile edit set to done
@@ -190,3 +187,21 @@ def student_profile(request, id):
         return redirect('profile')
 
 
+@login_required()
+def match_offer_with_student(request):
+    try:
+        student = Student.objects.get(user=request.user)
+        offers = JobOffer.objects.all()
+        offers_matched = []
+        for offer in offers:
+            offers_matched.append(offer.match(student))
+        
+        context = {
+            'student': student,
+            'offers': offers_matched,
+        }
+        return render(request, 'student/match.html', context)
+        
+    except:
+        messages.error(request, 'Coś poszło nie tak')
+        return redirect('profile')

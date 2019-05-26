@@ -17,7 +17,7 @@ def edit_profile(request):
         }
 
         if request.method == "POST":
-            image = request.FILES['image']
+            image = request.FILES.get('image', 'default.png')
             company_name = request.POST['company_name']
             city = request.POST['city']
             street = request.POST['street']
@@ -35,10 +35,7 @@ def edit_profile(request):
                     company.house_number = house_number
                     company.flat_number = flat_number
                     company.description = description
-                    fs = FileSystemStorage()
-                    filename = fs.save(image.name, image)
-                    uploaded_file_url = fs.url(filename)
-                    company.image = uploaded_file_url
+                    company.image = image
                     request.user.doneProfileEdit = 1
                     company.save()
 
@@ -111,6 +108,32 @@ def find_students(request):
     return render(request, 'employer/find_student.html', context)
 
 @login_required(login_url='/')
+def match_student_with_offer(request):
+    try:
+        company = Company.objects.get(user=request.user)
+        students = Student.objects.all()
+        offers = JobOffer.objects.filter(company=company)
+        context = {
+            'offers':offers,
+        }
+        if request.method == 'POST':
+            request_offer = request.POST['offer']
+            offer = JobOffer.objects.get(title=request_offer, company=company)
+            match_students=[]
+            for student in students:
+                match_students.append(student.match(offer))
+            print(match_students)
+            context = {
+                'students': match_students,
+                'offers': offers,
+            }
+            return render(request, 'employer/match.html', context )
+        return render(request, 'employer/match.html', context)
+    except:
+        messages.error(request, 'Coś poszło nie tak')
+        return redirect('profile')
+
+@login_required()
 def offer(request, id):
     try:
         offer = JobOffer.objects.get(id=id)

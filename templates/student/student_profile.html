@@ -12,7 +12,9 @@
                             
                     </div>
                       <div class="three columns">
-                         <img src="{{student.image}}" class="header_company-img">
+                      {% if student.image %}
+                         <img src="{{student.image.url}}" class="header_company-img">
+                      {% endif %}
                       </div>
                 </div>  
     </header>
@@ -67,14 +69,14 @@
     <nav class="sidebar-menu">
     <ul class="sidebar-menu_content">
             <li class='active'><a href='/'>Profil</a></li>
-            <li><a href='/student/edit_profile'>Edycja profilu</a></li>
+            <li><a href="{% url 'edit_profile' %}">Edycja profilu</a></li>
     </ul>
     </nav>
     {% else %}
         <nav class="sidebar-menu">
         <ul class="sidebar-menu_content">
             <li class='active'><a href='/'>Profil</a></li>
-            <li><a href='/employer/send_message/{{ student.id }}'>Wyślij wiadomość</a></li>
+            <li><a href="{% url 'send_message' student.id %}">Wyślij wiadomość</a></li>
         </ul>
     </nav>
     {% endif %}

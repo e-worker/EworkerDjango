@@ -7,11 +7,15 @@
   {% include 'partials/_sidenav.html'%}
   <!-- Content -->
   <main class="s-layout__content">
+        <li><a href="{% url 'match_offers' %}"><button class="nav-buttons" class="navbar">Parowanie</button></a></li>
+
                <table class="u-full-width">
                      <tbody>
                        {% for offer in offers %}
                        <tr>
-                           <td><img src="{{company.image}}" class="header_company-img"></td>
+                       {% if ofer.company.image.url %}
+                           <td><img src="{{offer.company.image.url}}" alt="Asseco" class="company-img"></td>
+                       {% endif %}
                            <td>{{offer.title}} <p class="company_name">Firma: {{offer.company}}</p></td>
                            <td>{{offer.company.city}}</td>
                            <td><a style='position:relative;' href="{% url 'offer' offer.id %}">Zobacz ofertę</a></td>
